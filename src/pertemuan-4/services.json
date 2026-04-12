@@ -1,0 +1,225 @@
+[
+  {
+    "id": 1,
+    "name": "Kursus Web Development",
+    "category": "Programming",
+    "price": 500000,
+    "rating": 4.8,
+    "image": "/img/web.jpg",
+    "details": { "provider": "EduTech", "duration": "3 bulan", "level": "Beginner" },
+    "instructor": { "name": "Budi", "experience": "5 tahun", "email": "budi@mail.com" },
+    "schedule": { "days": "Senin-Rabu", "time": "19:00", "mode": "Online" }
+  },
+  {
+    "id": 2,
+    "name": "UI/UX Design",
+    "category": "Design",
+    "price": 450000,
+    "rating": 4.7,
+    "image": "/img/design.jpg",
+    "details": { "provider": "DesignPro", "duration": "2 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Sinta", "experience": "4 tahun", "email": "sinta@mail.com" },
+    "schedule": { "days": "Selasa-Kamis", "time": "18:00", "mode": "Online" }
+  },
+  {
+    "id": 3,
+    "name": "Digital Marketing",
+    "category": "Marketing",
+    "price": 400000,
+    "rating": 4.6,
+    "image": "/img/marketing.jpg",
+    "details": { "provider": "MarketPro", "duration": "2 bulan", "level": "Beginner" },
+    "instructor": { "name": "Rina", "experience": "6 tahun", "email": "rina@mail.com" },
+    "schedule": { "days": "Senin-Jumat", "time": "20:00", "mode": "Online" }
+  },
+  {
+    "id": 4,
+    "name": "Data Science",
+    "category": "Programming",
+    "price": 600000,
+    "rating": 4.9,
+    "image": "/img/data.jpg",
+    "details": { "provider": "DataLab", "duration": "4 bulan", "level": "Advanced" },
+    "instructor": { "name": "Andi", "experience": "7 tahun", "email": "andi@mail.com" },
+    "schedule": { "days": "Weekend", "time": "10:00", "mode": "Online" }
+  },
+  {
+    "id": 5,
+    "name": "Mobile App Development",
+    "category": "Programming",
+    "price": 550000,
+    "rating": 4.8,
+    "image": "/img/mobile.jpg",
+    "details": { "provider": "AppDev", "duration": "3 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Doni", "experience": "5 tahun", "email": "doni@mail.com" },
+    "schedule": { "days": "Selasa-Kamis", "time": "19:00", "mode": "Online" }
+  },
+
+  {
+    "id": 6,
+    "name": "Graphic Design",
+    "category": "Design",
+    "price": 300000,
+    "rating": 4.5,
+    "image": "/img/design2.jpg",
+    "details": { "provider": "CreativeLab", "duration": "2 bulan", "level": "Beginner" },
+    "instructor": { "name": "Lina", "experience": "3 tahun", "email": "lina@mail.com" },
+    "schedule": { "days": "Weekend", "time": "13:00", "mode": "Offline" }
+  },
+  {
+    "id": 7,
+    "name": "SEO Optimization",
+    "category": "Marketing",
+    "price": 350000,
+    "rating": 4.4,
+    "image": "/img/seo.jpg",
+    "details": { "provider": "SEOPro", "duration": "1 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Yoga", "experience": "5 tahun", "email": "yoga@mail.com" },
+    "schedule": { "days": "Senin-Rabu", "time": "20:00", "mode": "Online" }
+  },
+  {
+    "id": 8,
+    "name": "Python Programming",
+    "category": "Programming",
+    "price": 500000,
+    "rating": 4.9,
+    "image": "/img/python.png",
+    "details": { "provider": "CodeLab", "duration": "3 bulan", "level": "Beginner" },
+    "instructor": { "name": "Reza", "experience": "6 tahun", "email": "reza@mail.com" },
+    "schedule": { "days": "Selasa-Kamis", "time": "18:00", "mode": "Online" }
+  },
+  {
+    "id": 9,
+    "name": "Content Writing",
+    "category": "Marketing",
+    "price": 250000,
+    "rating": 4.3,
+    "image": "/img/writingmarketing.jpg",
+    "details": { "provider": "WritePro", "duration": "1 bulan", "level": "Beginner" },
+    "instructor": { "name": "Tari", "experience": "4 tahun", "email": "tari@mail.com" },
+    "schedule": { "days": "Weekend", "time": "10:00", "mode": "Online" }
+  },
+  {
+    "id": 10,
+    "name": "Figma Design",
+    "category": "Design",
+    "price": 300000,
+    "rating": 5.0,
+    "image": "/img/figma.png",
+    "details": { "provider": "DesignLab", "duration": "2 bulan", "level": "Beginner" },
+    "instructor": { "name": "Agus", "experience": "5 tahun", "email": "agus@mail.com" },
+    "schedule": { "days": "Senin-Jumat", "time": "19:00", "mode": "Online" }
+  },
+
+  {
+    "id": 11,
+    "name": "Public Speaking",
+    "category": "Softskill",
+    "price": 200000,
+    "rating": 4.6,
+    "image": "/img/speaking.jpg",
+    "details": { "provider": "SpeakUp", "duration": "1 bulan", "level": "Beginner" },
+    "instructor": { "name": "Rafi", "experience": "3 tahun", "email": "rafi@mail.com" },
+    "schedule": { "days": "Weekend", "time": "15:00", "mode": "Offline" }
+  },
+  {
+    "id": 12,
+    "name": "Photography",
+    "category": "Design",
+    "price": 300000,
+    "rating": 4.7,
+    "image": "/img/photo.jpg",
+    "details": { "provider": "PhotoLab", "duration": "2 bulan", "level": "Beginner" },
+    "instructor": { "name": "Dika", "experience": "5 tahun", "email": "dika@mail.com" },
+    "schedule": { "days": "Sabtu", "time": "10:00", "mode": "Offline" }
+  },
+  {
+    "id": 13,
+    "name": "Video Editing",
+    "category": "Design",
+    "price": 350000,
+    "rating": 4.6,
+    "image": "/img/video1.jpg",
+    "details": { "provider": "EditPro", "duration": "2 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Bayu", "experience": "4 tahun", "email": "bayu@mail.com" },
+    "schedule": { "days": "Selasa", "time": "18:00", "mode": "Online" }
+  },
+  {
+    "id": 14,
+    "name": "Node JS",
+    "category": "Programming",
+    "price": 500000,
+    "rating": 4.7,
+    "image": "/img/node.png",
+    "details": { "provider": "BackendPro", "duration": "3 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Fajar", "experience": "6 tahun", "email": "fajar@mail.com" },
+    "schedule": { "days": "Senin-Kamis", "time": "20:00", "mode": "Online" }
+  },
+  {
+    "id": 15,
+    "name": "Cyber Security",
+    "category": "Programming",
+    "price": 700000,
+    "rating": 4.9,
+    "image": "/img/security.jpg",
+    "details": { "provider": "SecureLab", "duration": "4 bulan", "level": "Advanced" },
+    "instructor": { "name": "Hendra", "experience": "8 tahun", "email": "hendra@mail.com" },
+    "schedule": { "days": "Weekend", "time": "09:00", "mode": "Online" }
+  },
+
+  {
+    "id": 16,
+    "name": "Business Strategy",
+    "category": "Business",
+    "price": 450000,
+    "rating": 4.6,
+    "image": "/img/business.jpg",
+    "details": { "provider": "BizPro", "duration": "2 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Rizky", "experience": "7 tahun", "email": "rizky@mail.com" },
+    "schedule": { "days": "Rabu", "time": "19:00", "mode": "Online" }
+  },
+  {
+    "id": 17,
+    "name": "Excel Advanced",
+    "category": "Office",
+    "price": 250000,
+    "rating": 4.5,
+    "image": "/img/excel.png",
+    "details": { "provider": "OfficePro", "duration": "1 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Maya", "experience": "4 tahun", "email": "maya@mail.com" },
+    "schedule": { "days": "Senin", "time": "18:00", "mode": "Online" }
+  },
+  {
+    "id": 18,
+    "name": "PowerPoint Design",
+    "category": "Office",
+    "price": 200000,
+    "rating": 4.4,
+    "image": "/img/ppt.png",
+    "details": { "provider": "OfficePro", "duration": "1 bulan", "level": "Beginner" },
+    "instructor": { "name": "Nina", "experience": "3 tahun", "email": "nina@mail.com" },
+    "schedule": { "days": "Selasa", "time": "17:00", "mode": "Online" }
+  },
+  {
+    "id": 19,
+    "name": "Copywriting",
+    "category": "Marketing",
+    "price": 300000,
+    "rating": 4.6,
+    "image": "/img/copywriting.jpg",
+    "details": { "provider": "WritePro", "duration": "1 bulan", "level": "Intermediate" },
+    "instructor": { "name": "Sari", "experience": "5 tahun", "email": "sari@mail.com" },
+    "schedule": { "days": "Kamis", "time": "19:00", "mode": "Online" }
+  },
+  {
+    "id": 20,
+    "name": "Machine Learning",
+    "category": "Programming",
+    "price": 800000,
+    "rating": 5.0,
+    "image": "/img/ml.jpg",
+    "details": { "provider": "AI Lab", "duration": "5 bulan", "level": "Advanced" },
+    "instructor": { "name": "Arif", "experience": "9 tahun", "email": "arif@mail.com" },
+    "schedule": { "days": "Weekend", "time": "08:00", "mode": "Online" }
+  }
+]

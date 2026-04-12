@@ -5,6 +5,6 @@ import TailwindCSS from "./TailWindCSS";
 
 createRoot(document.getElementById("root")).render(
     <div>
-    <TailwindCSS />
+    <TailwindCSS/>
   </div>
 );
