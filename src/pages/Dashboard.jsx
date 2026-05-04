@@ -1,5 +1,5 @@
 import { useState } from "react";
-import data from "../data/services.json";
+import data from "../data/products.json";
 
 export default function Dashboard() {
   const [search, setSearch] = useState("");
