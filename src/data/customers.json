@@ -1,0 +1,212 @@
+[
+  {
+    "id": "CUS001",
+    "name": "Tiara Kania Noer Riska",
+    "email": "tiara@gmail.com",
+    "phone": "08123456789",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS002",
+    "name": "Andi Saputra",
+    "email": "andi@gmail.com",
+    "phone": "08123456780",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS003",
+    "name": "Budi Santoso",
+    "email": "budi@gmail.com",
+    "phone": "08123456781",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS004",
+    "name": "Citra Lestari",
+    "email": "citra@gmail.com",
+    "phone": "08123456782",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS005",
+    "name": "Dewi Anggraini",
+    "email": "dewi@gmail.com",
+    "phone": "08123456783",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS006",
+    "name": "Eko Pratama",
+    "email": "eko@gmail.com",
+    "phone": "08123456784",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS007",
+    "name": "Farhan Ramadhan",
+    "email": "farhan@gmail.com",
+    "phone": "08123456785",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS008",
+    "name": "Gita Maharani",
+    "email": "gita@gmail.com",
+    "phone": "08123456786",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS009",
+    "name": "Hendra Wijaya",
+    "email": "hendra@gmail.com",
+    "phone": "08123456787",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS010",
+    "name": "Indah Permata",
+    "email": "indah@gmail.com",
+    "phone": "08123456788",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS011",
+    "name": "Joko Susilo",
+    "email": "joko@gmail.com",
+    "phone": "08123456790",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS012",
+    "name": "Kiki Amelia",
+    "email": "kiki@gmail.com",
+    "phone": "08123456791",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS013",
+    "name": "Lukman Hakim",
+    "email": "lukman@gmail.com",
+    "phone": "08123456792",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS014",
+    "name": "Maya Sari",
+    "email": "maya@gmail.com",
+    "phone": "08123456793",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS015",
+    "name": "Nanda Putri",
+    "email": "nanda@gmail.com",
+    "phone": "08123456794",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS016",
+    "name": "Oki Setiawan",
+    "email": "oki@gmail.com",
+    "phone": "08123456795",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS017",
+    "name": "Putra Mahesa",
+    "email": "putra@gmail.com",
+    "phone": "08123456796",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS018",
+    "name": "Qori Azzahra",
+    "email": "qori@gmail.com",
+    "phone": "08123456797",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS019",
+    "name": "Rian Kurniawan",
+    "email": "rian@gmail.com",
+    "phone": "08123456798",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS020",
+    "name": "Salsa Nuraini",
+    "email": "salsa@gmail.com",
+    "phone": "08123456799",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS021",
+    "name": "Taufik Hidayat",
+    "email": "taufik@gmail.com",
+    "phone": "08123456800",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS022",
+    "name": "Ulfa Rahma",
+    "email": "ulfa@gmail.com",
+    "phone": "08123456801",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS023",
+    "name": "Vina Melati",
+    "email": "vina@gmail.com",
+    "phone": "08123456802",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS024",
+    "name": "Wahyu Nugroho",
+    "email": "wahyu@gmail.com",
+    "phone": "08123456803",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS025",
+    "name": "Xena Olivia",
+    "email": "xena@gmail.com",
+    "phone": "08123456804",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS026",
+    "name": "Yogi Pramana",
+    "email": "yogi@gmail.com",
+    "phone": "08123456805",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS027",
+    "name": "Zahra Khairunnisa",
+    "email": "zahra@gmail.com",
+    "phone": "08123456806",
+    "loyalty": "Bronze"
+  },
+  {
+    "id": "CUS028",
+    "name": "Aldi Firmansyah",
+    "email": "aldi@gmail.com",
+    "phone": "08123456807",
+    "loyalty": "Gold"
+  },
+  {
+    "id": "CUS029",
+    "name": "Bella Ayu",
+    "email": "bella@gmail.com",
+    "phone": "08123456808",
+    "loyalty": "Silver"
+  },
+  {
+    "id": "CUS030",
+    "name": "Chandra Wijaksana",
+    "email": "chandra@gmail.com",
+    "phone": "08123456809",
+    "loyalty": "Bronze"
+  }
+]

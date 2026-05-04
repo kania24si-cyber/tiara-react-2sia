@@ -1,0 +1,168 @@
+[
+  {
+    "id": 1,
+    "name": "Lipstick Matte Velvet",
+    "category": "Lipstick",
+    "price": 120000,
+    "rating": 4.8,
+    "image": "/img/lipstick.jpg",
+    "brand": "BeautyBloom",
+    "shade": "Rose Pink",
+    "stock": 20
+  },
+  {
+    "id": 2,
+    "name": "Cushion Foundation Glow",
+    "category": "Foundation",
+    "price": 180000,
+    "rating": 4.7,
+    "image": "/img/foundation.jpg",
+    "brand": "GlowSkin",
+    "shade": "Natural Beige",
+    "stock": 15
+  },
+  {
+    "id": 3,
+    "name": "Blush On Peach",
+    "category": "Blush",
+    "price": 95000,
+    "rating": 4.6,
+    "image": "/img/blush.jpg",
+    "brand": "SoftBeauty",
+    "shade": "Peach Coral",
+    "stock": 25
+  },
+  {
+    "id": 4,
+    "name": "Eyeshadow Palette Nude",
+    "category": "Eyeshadow",
+    "price": 210000,
+    "rating": 4.9,
+    "image": "/img/eyeshadow.jpg",
+    "brand": "BeautyBloom",
+    "shade": "Nude Series",
+    "stock": 10
+  },
+  {
+    "id": 5,
+    "name": "Mascara Waterproof",
+    "category": "Mascara",
+    "price": 85000,
+    "rating": 4.8,
+    "image": "/img/mascara.jpg",
+    "brand": "LashPro",
+    "shade": "Black",
+    "stock": 30
+  }
+  ,
+{
+  "id": 6,
+  "name": "Lip Tint Glossy Shine",
+  "category": "Lipstick",
+  "price": 105000,
+  "rating": 4.7,
+  "image": "/img/liptint.jpg",
+  "brand": "BeautyBloom",
+  "shade": "Cherry Red",
+  "stock": 18
+},
+{
+  "id": 7,
+  "name": "Compact Powder Smooth",
+  "category": "Foundation",
+  "price": 130000,
+  "rating": 4.5,
+  "image": "/img/powder.jpg",
+  "brand": "GlowSkin",
+  "shade": "Ivory",
+  "stock": 22
+},
+{
+  "id": 8,
+  "name": "Highlighter Glow Kit",
+  "category": "Blush",
+  "price": 175000,
+  "rating": 4.8,
+  "image": "/img/highlighter.jpg",
+  "brand": "SoftBeauty",
+  "shade": "Golden Shine",
+  "stock": 12
+},
+{
+  "id": 9,
+  "name": "Eyeshadow Smokey Set",
+  "category": "Eyeshadow",
+  "price": 230000,
+  "rating": 4.9,
+  "image": "/img/eyeshadow2.jpg",
+  "brand": "BeautyBloom",
+  "shade": "Smokey Black",
+  "stock": 8
+},
+{
+  "id": 10,
+  "name": "Volume Lash Mascara",
+  "category": "Mascara",
+  "price": 99000,
+  "rating": 4.6,
+  "image": "/img/mascara2.jpg",
+  "brand": "LashPro",
+  "shade": "Jet Black",
+  "stock": 27
+},
+{
+  "id": 11,
+  "name": "Liquid Foundation Pro",
+  "category": "Foundation",
+  "price": 200000,
+  "rating": 4.8,
+  "image": "/img/foundation2.jpg",
+  "brand": "GlowSkin",
+  "shade": "Warm Beige",
+  "stock": 14
+},
+{
+  "id": 12,
+  "name": "Blush On Pink Soft",
+  "category": "Blush",
+  "price": 90000,
+  "rating": 4.5,
+  "image": "/img/blush2.jpg",
+  "brand": "SoftBeauty",
+  "shade": "Soft Pink",
+  "stock": 20
+},
+{
+  "id": 13,
+  "name": "Lipstick Creamy Nude",
+  "category": "Lipstick",
+  "price": 115000,
+  "rating": 4.7,
+  "image": "/img/lipstick2.jpg",
+  "brand": "BeautyBloom",
+  "shade": "Nude Brown",
+  "stock": 16
+},
+{
+  "id": 14,
+  "name": "Waterproof Eyeliner",
+  "category": "Eyeshadow",
+  "price": 80000,
+  "rating": 4.6,
+  "image": "/img/eyeliner.jpg",
+  "brand": "EyePro",
+  "shade": "Black",
+  "stock": 35
+},
+{
+  "id": 15,
+  "name": "Luxury Makeup Set",
+  "category": "Package",
+  "price": 350000,
+  "rating": 5.0,
+  "image": "/img/set.jpg",
+  "brand": "BeautyBloom",
+  "shade": "Full Set",
+  "stock": 5
+}
+]

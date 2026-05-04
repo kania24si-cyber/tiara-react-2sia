@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+/* =========================
+   FONT
+========================= */
+@font-face {
+  font-family: "Barlow";
+  src: url("/fonts/Barlow-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/OpenSans_SemiCondensed-Regular.ttf");
+}
+
+/* =========================
+   THEME
+========================= */
+@theme {
+  --font-barlow: "Barlow", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  --color-pink-utama: #e11d48;
+  --color-pink-soft: #fff1f5;
+  --color-pink-border: #fbcfe8;
+  --color-abu: #6b7280;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+body {
+  @apply font-barlow bg-[#fafafa] text-gray-700;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @apply font-poppins;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header-box {
+  @apply bg-white border-b border-gray-100 px-8 py-5 flex items-center justify-between shadow-sm sticky top-0 z-50;
+}
+
+/* =========================
+   SEARCH
+========================= */
+.input-beauty {
+  @apply border border-gray-200 bg-white px-5 py-3 rounded-full outline-none w-full text-sm transition;
+}
+
+.input-beauty:focus {
+  @apply border-pink-400 shadow-md;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-pink {
+  @apply bg-[#e11d48] text-white px-8 py-3 rounded-full font-medium hover:scale-105 transition;
+}
+
+.btn-outline {
+  @apply border border-pink-500 text-pink-500 px-8 py-3 rounded-full hover:bg-pink-50 transition;
+}
+
+/* =========================
+   HERO
+========================= */
+.hero-beauty {
+  background: linear-gradient(90deg,#f43f5e,#ec4899);
+  @apply rounded-none text-white py-28 text-center;
+}
+
+/* =========================
+   CARD
+========================= */
+.card-beauty {
+  @apply bg-white rounded-2xl border border-gray-100 overflow-hidden transition shadow-sm hover:shadow-xl hover:-translate-y-1;
+}
+
+/* =========================
+   PRODUCT BUTTON
+========================= */
+.cart-btn {
+  @apply bg-[#e11d48] text-white w-full py-3 rounded-xl mt-4 hover:bg-pink-700 transition;
+}
+
+/* =========================
+   FILTER BOX
+========================= */
+.filter-box {
+  @apply bg-white rounded-2xl border border-gray-100 p-6 shadow-sm;
+}
+
+/* =========================
+   ICON
+========================= */
+.icon-box {
+  @apply w-10 h-10 flex items-center justify-center rounded-full bg-pink-50 text-pink-500 hover:bg-pink-100 transition cursor-pointer;
+}
+
+/* =========================
+   BADGE
+========================= */
+.badge-pink {
+  @apply bg-[#e11d48] text-white text-xs px-3 py-1 rounded-full;
+}
+
+.badge-green {
+  @apply bg-green-500 text-white text-xs px-3 py-1 rounded-full;
+}
+
+/* =========================
+   MENU
+========================= */
+.menu-beauty {
+  @apply flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-pink-50 hover:text-pink-500 transition;
+}
+
+.menu-active {
+  @apply bg-pink-500 text-white;
+}
