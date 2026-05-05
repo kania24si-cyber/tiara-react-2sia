@@ -69,11 +69,11 @@ export default function Login() {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
 
-            <div className="card-beauty w-full max-w-md p-8">
+            <div className="card-beauty w-full max-w-md p-8 rounded-none">
 
                 {/* TITLE */}
-                <h2 className="text-3xl font-poppins text-pink-600 mb-6 text-center">
-                    Welcome Back 👋
+               <h2 className="text-3xl font-poppins font-extrabold text-black mb-6 text-center">
+                    Hi, Welcome Back 
                 </h2>
 
                 {errorInfo}
@@ -82,8 +82,8 @@ export default function Login() {
                 <form onSubmit={handleSubmit} className="space-y-5">
 
                     <div>
-                        <label className="text-sm text-gray-600 mb-1 block">
-                            Email Address
+                        <label className="text-sm text-black-600 mb-1 block text-left">
+                            Email 
                         </label>
 
                         <input
@@ -97,7 +97,7 @@ export default function Login() {
                     </div>
 
                     <div>
-                        <label className="text-sm text-gray-600 mb-1 block">
+                        <label className="text-sm text-black-600 mb-1 block text-left">
                             Password
                         </label>
 
@@ -113,7 +113,7 @@ export default function Login() {
 
                     <button
                         type="submit"
-                        className="btn-pink w-full"
+                        className="btn-blue w-full"
                     >
                         Login
                     </button>
@@ -123,7 +123,7 @@ export default function Login() {
                 {/* EXTRA */}
                 <p className="text-sm text-gray-400 mt-6 text-center">
                     Forgot password?{" "}
-                    <span className="text-pink-500 cursor-pointer hover:underline">
+                    <span className="text-blue-500 cursor-pointer hover:underline">
                         Reset here
                     </span>
                 </p>

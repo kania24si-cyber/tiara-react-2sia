@@ -8,74 +8,57 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   const menu = ({ isActive }) =>
-    isActive ? "menu-beauty menu-active" : "menu-beauty";
+    `flex items-center gap-3 px-4 py-3 rounded-lg transition ${
+      isActive
+        ? "bg-white/30 text-white"
+        : "text-white/80 hover:bg-white/20"
+    }`;
 
   return (
-    <div className="w-[280px] min-h-screen bg-white border-r border-gray-100 p-6 flex flex-col">
+    <div className="w-[260px] min-h-screen flex flex-col justify-between p-6 text-white
+      bg-gradient-to-b from-[#FF7B7B] to-[#ED346C]">
 
-      {/* LOGO */}
-      <h1 className="text-3xl font-poppins text-pink-500 mb-1">
-        BeautyBloom
-      </h1>
+      {/* TOP */}
+      <div>
 
-      <p className="text-gray-400 text-sm mb-10">
-        Beauty Admin Dashboard
-      </p>
+        {/* LOGO */}
+        <h1 className="text-2xl font-bold mb-10 tracking-wide">
+          FIGMA
+        </h1>
 
-      {/* MENU */}
-      <div className="space-y-2">
+        {/* MENU */}
+        <div className="space-y-2">
 
-        <NavLink to="/" className={menu}>
-          <MdDashboard />
-          Dashboard
-        </NavLink>
+          <NavLink to="/" className={menu}>
+            <MdDashboard size={20} />
+            Dashboard
+          </NavLink>
 
-        <NavLink to="/orders" className={menu}>
-          <MdShoppingCart />
-          Orders
-        </NavLink>
+          <NavLink to="/orders" className={menu}>
+            <MdShoppingCart size={20} />
+            Account
+          </NavLink>
 
-        <NavLink to="/customers" className={menu}>
-          <MdPeople />
-          Customers
-        </NavLink>
+          <NavLink to="/customers" className={menu}>
+            <MdPeople size={20} />
+            Stats
+          </NavLink>
 
-        <NavLink to="/400" className={menu}>
-          <MdError />
-          Error 400
-        </NavLink>
+          <NavLink to="/support" className={menu}>
+            <MdError size={20} />
+            Support
+          </NavLink>
 
-        <NavLink to="/401" className={menu}>
-          <MdError />
-          Error 401
-        </NavLink>
-
-        <NavLink to="/403" className={menu}>
-          <MdError />
-          Error 403
-        </NavLink>
-
-        <NavLink to="/404" className={menu}>
-          <MdError />
-          Error 404
-        </NavLink>
+        </div>
       </div>
 
-      {/* CARD */}
-      <div className="mt-auto card-beauty p-5">
-
-        <h3 className="font-poppins text-pink-500 mb-2">
-          New Collection
-        </h3>
-
-        <p className="text-sm text-gray-400">
-          Discover premium makeup today.
-        </p>
-
-        <button className="btn-pink w-full mt-4">
-          Shop Now
+      {/* BOTTOM (LOGIN BUTTON) */}
+      <div>
+        <button className="w-full border border-white/40 text-white py-2 rounded-md hover:bg-white/20 transition">
+          LOGIN
         </button>
       </div>
+
     </div>
   );
 }

@@ -28,98 +28,115 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="space-y-6">
+    <div className="min-h-screen bg-[#F4DDDD] p-6">
 
-      {/* FILTER */}
-      <div className="filter-box space-y-5">
+      <div className="max-w-7xl mx-auto space-y-6">
 
-        <div className="flex justify-between items-center">
-          <h2 className="font-poppins text-2xl text-gray-800">
-            Product Filter
-          </h2>
-
-          <span className="badge-pink">
-            {filtered.length} Items
-          </span>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-4">
-
-          {/* SEARCH */}
-          <input
-            type="text"
-            placeholder="Search makeup..."
-            className="input-beauty"
-            onChange={(e) => setSearch(e.target.value)}
-          />
-
-          {/* CATEGORY */}
-          <select
-            className="input-beauty"
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="">All Category</option>
-            <option>Lipstick</option>
-            <option>Foundation</option>
-            <option>Blush</option>
-            <option>Eyeshadow</option>
-            <option>Mascara</option>
-          </select>
-
-          {/* PRICE FILTER */}
-          <select
-            className="input-beauty"
-            onChange={(e) => setPrice(e.target.value)}
-          >
-            <option value="">All Price</option>
-            <option value="low">Under 100K</option>
-            <option value="mid">100K - 200K</option>
-            <option value="high">Above 200K</option>
-          </select>
-
-        </div>
-      </div>
-
-      {/* PRODUCTS */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filtered.map((item) => (
-          <div key={item.id} className="card-beauty">
-
-            <div className="relative">
-              <img
-                src={item.image}
-                className="h-48 w-full object-cover"
-              />
-
-              <span className="badge-pink absolute top-3 left-3">
-                {item.category}
-              </span>
-            </div>
-
-            <div className="p-5">
-              <h3 className="font-semibold text-gray-800">
-                {item.name}
-              </h3>
-
-              <p className="text-sm text-gray-400">
-                {item.brand} • {item.shade}
-              </p>
-
-              <p className="text-yellow-500 text-sm mt-2">
-                ⭐ {item.rating}
-              </p>
-
-              <p className="text-pink-600 font-bold text-xl mt-3">
-                Rp {item.price.toLocaleString()}
-              </p>
-
-              <button className="cart-btn">
-                Add to Cart
-              </button>
-            </div>
-
+        {/* HEADER */}
+        <div className="topbar">
+          <div>
+            <h2 className="text-xl font-semibold">
+              Hello, Beauty Admin 💄
+            </h2>
+            <p className="text-sm text-gray-500">
+              Manage your products easily
+            </p>
           </div>
-        ))}
+        </div>
+
+        {/* FILTER */}
+        <div className="filter-box space-y-5">
+          <div className="flex justify-between items-center">
+            <h2 className="font-poppins text-xl text-gray-800">
+              Product Filter
+            </h2>
+
+            <span className="badge-pink">
+              {filtered.length} Items
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-3">
+            <input
+              type="text"
+              placeholder="Search makeup..."
+              className="input-beauty rounded-md"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <select
+              className="input-beauty rounded-md"
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">All Category</option>
+              <option>Lipstick</option>
+              <option>Foundation</option>
+              <option>Blush</option>
+              <option>Eyeshadow</option>
+              <option>Mascara</option>
+            </select>
+
+            <select
+              className="input-beauty rounded-md"
+              onChange={(e) => setPrice(e.target.value)}
+            >
+              <option value="">All Price</option>
+              <option value="low">Under 100K</option>
+              <option value="mid">100K - 200K</option>
+              <option value="high">Above 200K</option>
+            </select>
+          </div>
+        </div>
+
+        {/* PRODUCTS */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {filtered.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-lg border border-gray-100 p-3 transition duration-200 hover:shadow-lg hover:-translate-y-1"
+            >
+
+              {/* IMAGE */}
+              <div className="relative">
+                <img
+                  src={item.image}
+                  className="h-36 w-full object-cover rounded-md"
+                />
+
+                <span className="badge-pink absolute top-2 left-2 text-[10px] px-2 py-0.5">
+                  {item.category}
+                </span>
+              </div>
+
+              {/* CONTENT */}
+              <div className="mt-3 space-y-1">
+
+                <h3 className="text-sm font-semibold text-gray-800 line-clamp-1">
+                  {item.name}
+                </h3>
+
+                <p className="text-xs text-gray-400">
+                  {item.brand} • {item.shade}
+                </p>
+
+                <p className="text-yellow-500 text-xs">
+                  ⭐ {item.rating}
+                </p>
+
+                <p className="text-pink-600 font-semibold text-sm">
+                  Rp {item.price.toLocaleString()}
+                </p>
+
+                <button className="w-full mt-2 bg-[#FF7B7B] text-white text-xs py-2 rounded-md hover:bg-[#ED346C] transition">
+                  Add to Cart
+                </button>
+
+              </div>
+
+            </div>
+          ))}
+        </div>
+
       </div>
 
     </div>

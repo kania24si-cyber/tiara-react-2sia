@@ -24,7 +24,7 @@ function App() {
     <Suspense fallback={<Loading />}>
       <Routes>
         {/* AUTH */}
-        <Route path="/auth" element={<AuthLayout />}>
+        <Route path="/" element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />

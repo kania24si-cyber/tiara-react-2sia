@@ -7,17 +7,31 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/OpenSans_SemiCondensed-Regular.ttf");
+  src: url("/fonts/Poppins-ExtraBold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf");
 }
 
 @theme {
   --font-barlow: "Barlow", sans-serif;
-  --font-poppins: "Poppins", sans-serif;
+  --font-poppins: "Poppins-ExtraBold.ttf";
 
   --color-pink-utama: #e11d48;
-  --color-pink-soft: #fff1f5;
+  --color-pink-soft: #F4DDDD;
+  --blue-normal: #0E64D2;
+  --black: #000000;
+ 
   --color-pink-border: #fbcfe8;
   --color-abu: #6b7280;
+  --color-pink: #F4DDDD;
+}
+
+.background {
+ @apply min-h-screen flex items-center justify-center bg-[#F4DDDD];
 }
 
 body {
@@ -41,7 +55,11 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .btn-pink {
-  @apply bg-[#e11d48] text-white px-8 py-3 rounded-full font-medium hover:scale-105 transition;
+  @apply bg-[#e11d48] text-white px-8 py-3 rounded-md font-medium hover:scale-105 transition;
+}
+
+.btn-blue {
+  @apply bg-[#0E64D2] text-white px-8 py-3 rounded-md font-medium hover:scale-105 transition;
 }
 
 .btn-outline {
@@ -54,7 +72,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .card-beauty {
-  @apply bg-white rounded-2xl border border-gray-100 overflow-hidden transition shadow-sm hover:shadow-xl hover:-translate-y-1;
+  @apply bg-white rounded-lg border border-gray-100 overflow-hidden transition shadow-sm hover:shadow-xl hover:-translate-y-1;
 }
 
 
@@ -84,4 +102,84 @@ h1,h2,h3,h4,h5,h6 {
 
 .menu-active {
   @apply bg-pink-500 text-white;
+}
+
+
+/* warna dashboard */
+@theme {
+  --color-primary-1: #FF7B7B;
+  --color-primary-2: #ED346C;
+  --color-primary-3: #FD747A;
+  --color-primary-soft: #FFAFCC ;
+  --color-danger: #E90D0D;
+  --color-white: #FFFFFF;
+}
+
+.sidebar {
+  @apply w-64 min-h-screen text-white flex flex-col justify-between p-6;
+  background: linear-gradient(180deg, #FF7B7B, #ED346C);
+}
+
+.sidebar-menu {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg text-white/80 hover:bg-white/20 transition;
+}
+
+.sidebar-active {
+  @apply bg-white/30 text-white;
+}
+
+.card-dashboard {
+  @apply bg-white rounded-xl p-5 shadow-sm border border-gray-100;
+}
+
+.analytics-box {
+  @apply bg-white rounded-xl p-4 shadow-sm border border-gray-100;
+}
+
+.analytics-highlight {
+  @apply border-2 border-blue-500 rounded-xl;
+}
+
+.profile-card {
+  @apply bg-white rounded-xl p-6 border border-pink-200 shadow-sm text-center;
+}
+
+.profile-avatar {
+  @apply w-16 h-16 mx-auto rounded-full flex items-center justify-center text-white;
+  background: linear-gradient(135deg, #FF7B7B, #ED346C);
+}
+
+.balance-card {
+  @apply rounded-xl p-6 text-white;
+  background: linear-gradient(135deg, #FD747A, #ED346C);
+}
+
+.balance-title {
+  @apply text-sm opacity-80;
+}
+
+.balance-amount {
+  @apply text-3xl font-bold mt-2;
+}
+
+.btn-withdraw {
+  @apply border border-[#E90D0D] text-[#E90D0D] px-4 py-2 rounded-md text-sm hover:bg-red-50 transition;
+}
+
+
+.widget-card {
+  @apply bg-white rounded-xl p-4 shadow-sm border border-gray-100;
+}
+
+
+.topbar {
+  @apply flex items-center justify-between bg-white px-6 py-4 shadow-sm rounded-xl;
+}
+
+.title-dashboard {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.subtitle-dashboard {
+  @apply text-sm text-gray-500;
 }
