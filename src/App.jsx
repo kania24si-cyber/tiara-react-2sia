@@ -5,6 +5,7 @@ import "./assets/tailwind.css";
 import Loading from "./components/Loading";
 import BadRequest from "./pages/BadRequest";
 import Unauthorized from "./pages/Unauthorized";
+import ProductsDetail from "./pages/ProductsDetail";
 
 function App() {
   const Dashboard = React.lazy(() => import("./pages/Dashboard"));
@@ -19,6 +20,9 @@ function App() {
 
   const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
   const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
+  const CustomersDetail = React.lazy(() => import("./pages/CustomersDetail"));
+  const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail"));
+  const OrderDetail = React.lazy(() => import("./pages/OrderDetail"));
 
   return (
     <Suspense fallback={<Loading />}>
@@ -35,7 +39,9 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="orders" element={<Orders />} />
           <Route path="customers" element={<Customers />} />
-
+          <Route path="/Customers/:id" element={<CustomersDetail />} />
+          <Route path="/Products/:id" element={<ProductsDetail />} />
+          <Route path="/Orders/:id" element={<OrderDetail />} />
           <Route path="400" element={<BadRequest />} />
           <Route path="403" element={<Forbidden />} />
           <Route path="401" element={<Unauthorized />} />

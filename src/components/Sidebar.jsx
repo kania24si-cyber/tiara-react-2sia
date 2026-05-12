@@ -23,7 +23,7 @@ export default function Sidebar() {
 
         {/* LOGO */}
         <h1 className="text-2xl font-bold mb-10 tracking-wide">
-          FIGMA
+          BLOOM
         </h1>
 
         {/* MENU */}

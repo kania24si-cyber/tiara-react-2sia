@@ -1,6 +1,7 @@
 import orders from "../data/orders.json";
 import PageHeader from "../components/PageHeader";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Orders() {
   const [showForm, setShowForm] = useState(false);
@@ -106,50 +107,55 @@ export default function Orders() {
             </tr>
           </thead>
 
-          <tbody>
-            {orders.map((item, index) => (
-              <tr
-                key={item.id}
-                className={`border-t border-gray-100 hover:bg-pink-50 transition ${
-                  index % 2 === 0 ? "bg-white" : "bg-gray-50/40"
-                }`}
-              >
-                <td className="px-6 py-4 font-medium">
-                  {item.id}
-                </td>
+        <tbody>
+  {orders.map((item, index) => (
+    <tr
+      key={item.id}
+      className={`border-t border-gray-100 hover:bg-pink-50 transition ${
+        index % 2 === 0
+          ? "bg-white"
+          : "bg-gray-50/40"
+      }`}
+    >
+      <td className="px-6 py-4 font-medium">
+        {item.id}
+      </td>
 
-                <td className="px-6 py-4">
-                  {item.customer}
-                </td>
+      <td className="px-6 py-4">
+        <Link
+          to={`/orders/${item.id}`}
+          className="text-pink-500 hover:text-pink-700 font-medium"
+        >
+          {item.customer}
+        </Link>
+      </td>
 
-                <td className="px-6 py-4">
-                  <span
-                    className={
-                      item.status === "Completed"
-                        ? "badge-green"
-                        : item.status === "Pending"
-                        ? "badge-pink"
-                        : "bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full"
-                    }
-                  >
-                    {item.status}
-                  </span>
-                </td>
+      <td className="px-6 py-4">
+        <span
+          className={
+            item.status === "Completed"
+              ? "badge-green"
+              : item.status === "Pending"
+              ? "badge-pink"
+              : "bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full"
+          }
+        >
+          {item.status}
+        </span>
+      </td>
 
-                <td className="px-6 py-4 font-medium text-pink-600">
-                  Rp {item.total}
-                </td>
+      <td className="px-6 py-4 font-medium text-pink-600">
+        Rp {item.total.toLocaleString("id-ID")}
+      </td>
 
-                <td className="px-6 py-4 text-gray-500">
-                  {item.date}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-
+      <td className="px-6 py-4 text-gray-500">
+        {item.date}
+      </td>
+    </tr>
+  ))}
+</tbody>
         </table>
       </div>
-
     </div>
   );
 }

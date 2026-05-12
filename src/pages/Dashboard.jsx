@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import data from "../data/products.json";
 
 export default function Dashboard() {
@@ -38,6 +39,7 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold">
               Hello, Beauty Admin 💄
             </h2>
+
             <p className="text-sm text-gray-500">
               Manage your products easily
             </p>
@@ -46,6 +48,7 @@ export default function Dashboard() {
 
         {/* FILTER */}
         <div className="filter-box space-y-5">
+
           <div className="flex justify-between items-center">
             <h2 className="font-poppins text-xl text-gray-800">
               Product Filter
@@ -57,6 +60,7 @@ export default function Dashboard() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-3">
+
             <input
               type="text"
               placeholder="Search makeup..."
@@ -85,11 +89,13 @@ export default function Dashboard() {
               <option value="mid">100K - 200K</option>
               <option value="high">Above 200K</option>
             </select>
+
           </div>
         </div>
 
         {/* PRODUCTS */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
           {filtered.map((item) => (
             <div
               key={item.id}
@@ -98,22 +104,28 @@ export default function Dashboard() {
 
               {/* IMAGE */}
               <div className="relative">
+
                 <img
                   src={item.image}
+                  alt={item.name}
                   className="h-36 w-full object-cover rounded-md"
                 />
 
                 <span className="badge-pink absolute top-2 left-2 text-[10px] px-2 py-0.5">
                   {item.category}
                 </span>
+
               </div>
 
               {/* CONTENT */}
               <div className="mt-3 space-y-1">
 
-                <h3 className="text-sm font-semibold text-gray-800 line-clamp-1">
+                <Link
+                  to={`/products/${item.id}`}
+                  className="text-pink-500 hover:text-pink-700 font-semibold text-sm line-clamp-1 block"
+                >
                   {item.name}
-                </h3>
+                </Link>
 
                 <p className="text-xs text-gray-400">
                   {item.brand} • {item.shade}
@@ -124,7 +136,7 @@ export default function Dashboard() {
                 </p>
 
                 <p className="text-pink-600 font-semibold text-sm">
-                  Rp {item.price.toLocaleString()}
+                  Rp {item.price.toLocaleString("id-ID")}
                 </p>
 
                 <button className="w-full mt-2 bg-[#FF7B7B] text-white text-xs py-2 rounded-md hover:bg-[#ED346C] transition">
@@ -135,6 +147,7 @@ export default function Dashboard() {
 
             </div>
           ))}
+
         </div>
 
       </div>
