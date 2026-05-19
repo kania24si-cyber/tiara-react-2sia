@@ -23,6 +23,7 @@ function App() {
   const CustomersDetail = React.lazy(() => import("./pages/CustomersDetail"));
   const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail"));
   const OrderDetail = React.lazy(() => import("./pages/OrderDetail"));
+  const BloomComponents = React.lazy(() => import("./pages/BloomComponents"));
 
   return (
     <Suspense fallback={<Loading />}>
@@ -42,6 +43,7 @@ function App() {
           <Route path="/Customers/:id" element={<CustomersDetail />} />
           <Route path="/Products/:id" element={<ProductsDetail />} />
           <Route path="/Orders/:id" element={<OrderDetail />} />
+          <Route path="BloomComponents" element={<BloomComponents />} />
           <Route path="400" element={<BadRequest />} />
           <Route path="403" element={<Forbidden />} />
           <Route path="401" element={<Unauthorized />} />
