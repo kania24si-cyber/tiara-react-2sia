@@ -1,5 +1,24 @@
 // src/pages/BloomComponents.jsx
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import Button from "../components/Button";
 import Badge from "../components/Badge";
 import HeroSection from "../components/HeroSection";
@@ -19,69 +38,43 @@ import Alert from "../components/Alert";
 import Avatar from "../components/Avatar";
 
 export default function BloomComponents() {
-
-  const headers = [
-    "No",
-    "Product",
-    "Category",
-    "Price",
-    "Action"
-  ];
+  const headers = ["No", "Product", "Category", "Price", "Action"];
 
   const products = [
     {
       id: 1,
       name: "Lipstick Velvet",
       category: "Makeup",
-      price: "Rp 299.000"
+      price: "Rp 299.000",
     },
     {
       id: 2,
       name: "Glow Serum",
       category: "Skincare",
-      price: "Rp 450.000"
+      price: "Rp 450.000",
     },
     {
       id: 3,
       name: "Luxury Perfume",
       category: "Perfume",
-      price: "Rp 799.000"
-    }
+      price: "Rp 799.000",
+    },
   ];
 
   return (
     <div className="min-h-screen bg-pink-50 p-8">
-
       {/* HERO SECTION */}
       <HeroSection />
 
       {/* STATS CARD */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-8">
+        <StatsCard title="Products" value="150" icon="💄" />
 
-        <StatsCard
-          title="Products"
-          value="150"
-          icon="💄"
-        />
+        <StatsCard title="Orders" value="320" icon="🛍️" />
 
-        <StatsCard
-          title="Orders"
-          value="320"
-          icon="🛍️"
-        />
+        <StatsCard title="Customers" value="1.2K" icon="👩" />
 
-        <StatsCard
-          title="Customers"
-          value="1.2K"
-          icon="👩"
-        />
-
-        <StatsCard
-          title="Revenue"
-          value="Rp 25M"
-          icon="💰"
-        />
-
+        <StatsCard title="Revenue" value="Rp 25M" icon="💰" />
       </div>
 
       {/* PROMO BANNER */}
@@ -89,27 +82,34 @@ export default function BloomComponents() {
         <PromoBanner />
       </div>
 
+      {/* SHADCN DIALOG */}
+      <div className="mt-10">
+        <Dialog>
+          <DialogTrigger className="bg-pink-500 text-white px-5 py-3 rounded-xl">
+            Open Promo
+          </DialogTrigger>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>BLOOM Makeup Promo</DialogTitle>
+            </DialogHeader>
+
+            <p>Dapatkan diskon 50% untuk semua lipstick hari ini.</p>
+          </DialogContent>
+        </Dialog>
+      </div>
+
       {/* SEARCH & FILTER */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
-
-        <SearchBar
-          placeholder="Search makeup..."
-        />
+        <SearchBar placeholder="Search makeup..." />
 
         <SelectField
-          options={[
-            "Makeup",
-            "Skincare",
-            "Perfume",
-            "Beauty Tools"
-          ]}
+          options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
         />
-
       </div>
 
       {/* CATEGORY CARD */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mt-8">
-
         <CategoryCard
           image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
           title="Makeup"
@@ -129,12 +129,35 @@ export default function BloomComponents() {
           image="https://images.unsplash.com/photo-1526045478516-99145907023c"
           title="Beauty Tools"
         />
+      </div>
 
+      {/* SHADCN CAROUSEL */}
+      <div className="mt-10">
+        <Carousel className="w-full max-w-4xl">
+          <CarouselContent>
+            <CarouselItem>
+              <div className="bg-pink-400 text-white p-10 rounded-2xl">
+                <h2 className="text-3xl font-bold">Flash Sale 50%</h2>
+              </div>
+            </CarouselItem>
+
+            <CarouselItem>
+              <div className="bg-rose-400 text-white p-10 rounded-2xl">
+                <h2 className="text-3xl font-bold">New Serum Collection</h2>
+              </div>
+            </CarouselItem>
+
+            <CarouselItem>
+              <div className="bg-purple-400 text-white p-10 rounded-2xl">
+                <h2 className="text-3xl font-bold">Beauty Voucher</h2>
+              </div>
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
       </div>
 
       {/* PRODUCT CARD */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-
         <ProductCard
           image="https://images.unsplash.com/photo-1586495777744-4413f21062fa"
           title="Lipstick Matte"
@@ -161,218 +184,145 @@ export default function BloomComponents() {
           category="Perfume"
           price="Rp 799.000"
         />
-
       </div>
 
       {/* DISCOUNT CARD */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
+        <DiscountCard title="Flash Sale" discount="50%" />
 
-        <DiscountCard
-          title="Flash Sale"
-          discount="50%"
-        />
-
-        <DiscountCard
-          title="Special Voucher"
-          discount="30%"
-        />
-
+        <DiscountCard title="Special Voucher" discount="30%" />
       </div>
 
       {/* PRODUCT MANAGEMENT TABLE */}
       <div className="mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Product Management
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Product Management</h2>
 
         <Table headers={headers}>
-
           {products.map((product, index) => (
-            <tr
-              key={product.id}
-              className="border-b hover:bg-pink-50"
-            >
+            <tr key={product.id} className="border-b hover:bg-pink-50">
+              <td className="px-6 py-4">{index + 1}</td>
+
+              <td className="px-6 py-4">{product.name}</td>
 
               <td className="px-6 py-4">
-                {index + 1}
+                <Badge>{product.category}</Badge>
               </td>
 
-              <td className="px-6 py-4">
-                {product.name}
-              </td>
+              <td className="px-6 py-4">{product.price}</td>
 
               <td className="px-6 py-4">
-
-                <Badge>
-                  {product.category}
-                </Badge>
-
-              </td>
-
-              <td className="px-6 py-4">
-                {product.price}
-              </td>
-
-              <td className="px-6 py-4">
-
                 <div className="flex gap-3">
+                  <Button type="primary">Edit</Button>
 
-                  <Button type="primary">
-                    Edit
-                  </Button>
-
-                  <Button type="danger">
-                    Delete
-                  </Button>
-
+                  <Button type="danger">Delete</Button>
                 </div>
-
               </td>
-
             </tr>
           ))}
-
         </Table>
-
       </div>
 
       {/* FORM COMPONENT */}
       <div className="bg-white rounded-2xl shadow p-8 mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Product Form
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Product Form</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <InputField placeholder="Product Name" />
 
-          <InputField
-            placeholder="Product Name"
-          />
-
-          <InputField
-            placeholder="Product Price"
-          />
-
+          <InputField placeholder="Product Price" />
         </div>
 
         <div className="mt-5">
-
           <SelectField
-            options={[
-              "Makeup",
-              "Skincare",
-              "Perfume",
-              "Beauty Tools"
-            ]}
+            options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
           />
-
         </div>
 
         {/* BUTTON COMPONENT */}
         <div className="flex flex-wrap gap-5 mt-8">
+          <Button type="primary">Add Product</Button>
 
-          <Button type="primary">
-            Add Product
-          </Button>
+          <Button type="secondary">Upload Image</Button>
 
-          <Button type="secondary">
-            Upload Image
-          </Button>
+          <Button type="success">Save Product</Button>
 
-          <Button type="success">
-            Save Product
-          </Button>
+          <Button type="danger">Delete Product</Button>
 
-          <Button type="danger">
-            Delete Product
-          </Button>
-
-          <Button type="warning">
-            Flash Sale
-          </Button>
-
+          <Button type="warning">Flash Sale</Button>
         </div>
-
       </div>
 
       {/* REVIEW CARD */}
       <div className="mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Review Card
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Review Card</h2>
 
         <ReviewCard
           name="Tiara"
           review="Lipstick nya bagus banget dan tahan lama!"
           rating={5}
         />
-
       </div>
 
       {/* REVIEW SECTION */}
       <div className="mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Review Section
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Review Section</h2>
 
         <ReviewSection />
+      </div>
 
+      {/* SHADCN ACCORDION */}
+      <div className="mt-10 bg-white p-8 rounded-2xl shadow">
+        <h2 className="text-3xl font-bold mb-5">FAQ Beauty Store</h2>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Apakah produk aman?</AccordionTrigger>
+
+            <AccordionContent>Semua produk BLOOM sudah BPOM.</AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Apakah tersedia voucher?</AccordionTrigger>
+
+            <AccordionContent>
+              Voucher tersedia saat flash sale.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
 
       {/* LOYALTY BADGE */}
       <div className="mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Loyalty Badge
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Loyalty Badge</h2>
 
         <div className="flex gap-5">
-
           <LoyaltyBadge type="gold" />
 
           <LoyaltyBadge type="silver" />
 
           <LoyaltyBadge type="bronze" />
-
         </div>
-
       </div>
 
       {/* ALERT */}
       <div className="mt-10">
+        <h2 className="text-3xl font-bold mb-5">Alert Component</h2>
 
-        <h2 className="text-3xl font-bold mb-5">
-          Alert Component
-        </h2>
-
-        <Alert>
-          Product berhasil ditambahkan!
-        </Alert>
-
+        <Alert>Product berhasil ditambahkan!</Alert>
       </div>
 
       {/* AVATAR */}
       <div className="mt-10">
-
-        <h2 className="text-3xl font-bold mb-5">
-          Avatar Component
-        </h2>
+        <h2 className="text-3xl font-bold mb-5">Avatar Component</h2>
 
         <div className="flex gap-5">
-
           <Avatar name="Tiara" />
 
           <Avatar name="Siti" />
 
           <Avatar name="Alya" />
-
         </div>
-
       </div>
-
     </div>
   );
 }
