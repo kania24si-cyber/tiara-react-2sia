@@ -1,4 +1,3 @@
-// src/pages/BloomComponents.jsx
 import {
   Dialog,
   DialogContent,
@@ -182,7 +181,7 @@ export default function BloomComponents() {
           brand="BLOOM"
           color="Rose"
           category="Perfume"
-          price="Rp 799.000"
+          price="Rp 800.000"
         />
       </div>
 
