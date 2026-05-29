@@ -1,3 +1,4 @@
+import { FiSearch } from "react-icons/fi";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +18,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 
 import Button from "../components/Button";
@@ -94,8 +97,23 @@ export default function BloomComponents() {
         {/* SEARCH + MEMBERSHIP */}
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-6">
+            <div className="mb-4">
+              <p className="text-sm text-gray-500">Find products faster</p>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-4">
-              <SearchBar placeholder="Search beauty products..." />
+              <div className="relative">
+                <FiSearch
+                  size={18}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+
+                <input
+                  type="text"
+                  placeholder="Search beauty products..."
+                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-pink-200 bg-white focus:outline-none focus:ring-4 focus:ring-pink-200 focus:border-pink-500 transition"
+                />
+              </div>
 
               <SelectField
                 options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
@@ -112,28 +130,54 @@ export default function BloomComponents() {
           </div>
         </div>
 
-        {/* CAROUSEL */}
-        <Carousel className="w-full">
-          <CarouselContent>
-            <CarouselItem>
-              <div className="bg-pink-400 text-white p-12 rounded-3xl">
-                <h2 className="text-4xl font-bold">Flash Sale 50%</h2>
-              </div>
-            </CarouselItem>
+        <div className="bg-white rounded-3xl shadow-sm p-6">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent>
+              <CarouselItem className="basis-full">
+                <div className="h-[250px] rounded-3xl bg-gradient-to-r from-pink-500 to-rose-400 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <h2 className="text-5xl font-bold">Flash Sale 50%</h2>
 
-            <CarouselItem>
-              <div className="bg-rose-400 text-white p-12 rounded-3xl">
-                <h2 className="text-4xl font-bold">New Serum Collection</h2>
-              </div>
-            </CarouselItem>
+                    <p className="mt-3">
+                      Special discount for all beauty products
+                    </p>
+                  </div>
+                </div>
+              </CarouselItem>
 
-            <CarouselItem>
-              <div className="bg-purple-400 text-white p-12 rounded-3xl">
-                <h2 className="text-4xl font-bold">Beauty Voucher</h2>
-              </div>
-            </CarouselItem>
-          </CarouselContent>
-        </Carousel>
+              <CarouselItem className="basis-full">
+                <div className="h-[250px] rounded-3xl bg-gradient-to-r from-rose-500 to-orange-400 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <h2 className="text-5xl font-bold">New Collection</h2>
+
+                    <p className="mt-3">
+                      Discover our latest skincare products
+                    </p>
+                  </div>
+                </div>
+              </CarouselItem>
+
+              <CarouselItem className="basis-full">
+                <div className="h-[250px] rounded-3xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white">
+                  <div className="text-center">
+                    <h2 className="text-5xl font-bold">Beauty Voucher</h2>
+
+                    <p className="mt-3">Get exclusive vouchers for members</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious className="left-4 z-50" />
+            <CarouselNext className="right-4 z-50" />
+          </Carousel>
+        </div>
 
         {/* CATEGORY + DISCOUNT */}
         <div className="grid lg:grid-cols-4 gap-5">
