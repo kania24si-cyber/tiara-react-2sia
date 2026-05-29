@@ -8,7 +8,6 @@ export default function Orders() {
 
   return (
     <div className="space-y-6">
-
       {/* HEADER */}
       <PageHeader
         title="Orders"
@@ -18,17 +17,16 @@ export default function Orders() {
           onClick={() => setShowForm(true)}
           className="btn-pink"
         >
-          Add Orders
+          Add Transaction
         </button>
       </PageHeader>
 
       {/* FORM */}
       {showForm && (
         <div className="filter-box">
-
           <div className="flex justify-between items-center mb-5">
             <h2 className="text-2xl font-poppins text-pink-600">
-              Add Order
+              Add Transaction
             </h2>
 
             <button
@@ -43,117 +41,136 @@ export default function Orders() {
 
             <input
               type="text"
-              placeholder="Order ID"
+              placeholder="Transaction ID"
               className="input-beauty"
             />
 
             <input
               type="text"
-              placeholder="Customer Name"
+              placeholder="Customer ID"
+              className="input-beauty"
+            />
+
+            <input
+              type="text"
+              placeholder="Product Purchased"
               className="input-beauty"
             />
 
             <select className="input-beauty">
-              <option>Pending</option>
-              <option>Completed</option>
-              <option>Cancelled</option>
+              <option>QRIS</option>
+              <option>E-Wallet</option>
+              <option>Transfer Bank</option>
+              <option>COD</option>
+              <option>Kartu Kredit</option>
             </select>
 
             <input
               type="number"
-              placeholder="Total Price"
+              placeholder="Total Transaction"
               className="input-beauty"
             />
 
             <input
               type="date"
-              className="input-beauty md:col-span-2"
+              className="input-beauty"
             />
 
           </div>
 
           <div className="mt-5">
             <button className="btn-pink w-full">
-              Save Order
+              Save Transaction
             </button>
           </div>
-
         </div>
       )}
 
       {/* TABLE */}
       <div className="card-beauty overflow-x-auto">
 
-        {/* TOP */}
         <div className="flex justify-between items-center px-6 py-5 border-b border-gray-100">
           <h2 className="text-2xl font-poppins text-gray-800">
-            Order List
+            Transaction List
           </h2>
 
           <span className="badge-pink">
-            {orders.length} Orders
+            {orders.length} Transactions
           </span>
         </div>
 
-        <table className="w-full text-sm">
+        <table className="min-w-[1200px] w-full text-sm">
 
           <thead className="bg-pink-50 text-gray-700">
             <tr>
-              <th className="text-left px-6 py-4">Order ID</th>
-              <th className="text-left px-6 py-4">Customer</th>
-              <th className="text-left px-6 py-4">Status</th>
-              <th className="text-left px-6 py-4">Total</th>
-              <th className="text-left px-6 py-4">Date</th>
+              <th className="text-left px-6 py-4">
+                Transaction ID
+              </th>
+
+              <th className="text-left px-6 py-4">
+                Customer ID
+              </th>
+
+              <th className="text-left px-6 py-4">
+                Product Purchased
+              </th>
+
+              <th className="text-left px-6 py-4">
+                Payment Method
+              </th>
+
+              <th className="text-left px-6 py-4">
+                Total Transaction
+              </th>
+
+              <th className="text-left px-6 py-4">
+                Transaction Date
+              </th>
             </tr>
           </thead>
 
-        <tbody>
-  {orders.map((item, index) => (
-    <tr
-      key={item.id}
-      className={`border-t border-gray-100 hover:bg-pink-50 transition ${
-        index % 2 === 0
-          ? "bg-white"
-          : "bg-gray-50/40"
-      }`}
-    >
-      <td className="px-6 py-4 font-medium">
-        {item.id}
-      </td>
+          <tbody>
+            {orders.map((item, index) => (
+              <tr
+                key={item.transaction_id}
+                className={`border-t border-gray-100 hover:bg-pink-50 transition ${
+                  index % 2 === 0
+                    ? "bg-white"
+                    : "bg-gray-50/40"
+                }`}
+              >
+                <td className="px-6 py-4 font-semibold text-pink-600">
+                  {item.transaction_id}
+                </td>
 
-      <td className="px-6 py-4">
-        <Link
-          to={`/orders/${item.id}`}
-          className="text-pink-500 hover:text-pink-700 font-medium"
-        >
-          {item.customer}
-        </Link>
-      </td>
+                <td className="px-6 py-4">
+                  <Link
+                    to={`/orders/${item.transaction_id}`}
+                    className="text-pink-500 hover:text-pink-700 font-medium"
+                  >
+                    {item.customer_id}
+                  </Link>
+                </td>
 
-      <td className="px-6 py-4">
-        <span
-          className={
-            item.status === "Completed"
-              ? "badge-green"
-              : item.status === "Pending"
-              ? "badge-pink"
-              : "bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full"
-          }
-        >
-          {item.status}
-        </span>
-      </td>
+                <td className="px-6 py-4">
+                  {item.produk_dibeli}
+                </td>
 
-      <td className="px-6 py-4 font-medium text-pink-600">
-        Rp {item.total.toLocaleString("id-ID")}
-      </td>
+                <td className="px-6 py-4">
+                  {item.metode_pembayaran}
+                </td>
 
-      <td className="px-6 py-4 text-gray-500">
-        {item.date}
-      </td>
-    </tr>
-  ))}
-</tbody>
+                <td className="px-6 py-4 font-medium text-pink-600">
+                  Rp {item.total_transaksi.toLocaleString("id-ID")}
+                </td>
+
+                <td className="px-6 py-4 text-gray-500">
+                  {item.tanggal_transaksi}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+
         </table>
       </div>
     </div>

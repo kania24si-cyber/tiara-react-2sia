@@ -5,90 +5,73 @@ export default function OrderDetail() {
   const { id } = useParams();
 
   const order = orders.find(
-    (item) => item.id === id
+    (item) => item.transaction_id === id
   );
 
   if (!order) {
     return (
       <div className="p-6 text-red-500 font-semibold">
-        Order not found
+        Transaction not found
       </div>
     );
   }
 
-  const getStatusColor = (status) => {
-    if (status === "Completed") {
-      return "bg-green-100 text-green-700";
-    }
-
-    if (status === "Pending") {
-      return "bg-yellow-100 text-yellow-700";
-    }
-
-    if (status === "Cancelled") {
-      return "bg-red-100 text-red-700";
-    }
-
-    return "bg-gray-100 text-gray-700";
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <div className="bg-white rounded-2xl shadow-lg max-w-xl mx-auto p-6">
+      <div className="bg-white rounded-2xl shadow-lg max-w-3xl mx-auto p-6">
 
         <h1 className="text-3xl font-bold mb-6">
-          Order Detail
+          Transaction Detail
         </h1>
 
-        <div className="space-y-4 text-gray-700">
+        <div className="grid md:grid-cols-2 gap-5">
 
           <div>
-            <span className="font-semibold">
-              Order ID:
-            </span>
-            <p>{order.id}</p>
+            <h3 className="font-semibold">
+              Transaction ID
+            </h3>
+            <p>{order.transaction_id}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Customer:
-            </span>
-            <p>{order.customer}</p>
+            <h3 className="font-semibold">
+              Customer ID
+            </h3>
+            <p>{order.customer_id}</p>
+          </div>
+
+          <div className="md:col-span-2">
+            <h3 className="font-semibold">
+              Product Purchased
+            </h3>
+            <p>{order.produk_dibeli}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Status:
-            </span>
-
-            <div className="mt-1">
-              <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(order.status)}`}
-              >
-                {order.status}
-              </span>
-            </div>
+            <h3 className="font-semibold">
+              Payment Method
+            </h3>
+            <p>{order.metode_pembayaran}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Total Payment:
-            </span>
-
-            <p>
-              Rp {order.total.toLocaleString("id-ID")}
+            <h3 className="font-semibold">
+              Total Transaction
+            </h3>
+            <p className="text-pink-600 font-semibold">
+              Rp {order.total_transaksi.toLocaleString("id-ID")}
             </p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Order Date:
-            </span>
-
-            <p>{order.date}</p>
+            <h3 className="font-semibold">
+              Transaction Date
+            </h3>
+            <p>{order.tanggal_transaksi}</p>
           </div>
 
         </div>
+
       </div>
     </div>
   );

@@ -3,16 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import "./assets/tailwind.css";
 
 import Loading from "./components/Loading";
-import BadRequest from "./pages/BadRequest";
-import Unauthorized from "./pages/Unauthorized";
-import ProductsDetail from "./pages/ProductsDetail";
+import MembershipsDetail from "./pages/MembershipsDetail";
 
 function App() {
   const Dashboard = React.lazy(() => import("./pages/Dashboard"));
   const Orders = React.lazy(() => import("./pages/Orders"));
   const Customers = React.lazy(() => import("./pages/Customers"));
-  const NotFound = React.lazy(() => import("./pages/NotFound"));
-  const Forbidden = React.lazy(() => import("./pages/Forbidden"));
+  const Memberships = React.lazy(() => import("./pages/Memberships"));
 
   const Login = React.lazy(() => import("./pages/auth/Login"));
   const Register = React.lazy(() => import("./pages/auth/Register"));
@@ -23,6 +20,7 @@ function App() {
   const CustomersDetail = React.lazy(() => import("./pages/CustomersDetail"));
   const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail"));
   const OrderDetail = React.lazy(() => import("./pages/OrderDetail"));
+  const MembershipsDetail = React.lazy(() => import("./pages/MembershipsDetail"));
   const BloomComponents = React.lazy(() => import("./pages/BloomComponents"));
 
   return (
@@ -44,10 +42,8 @@ function App() {
           <Route path="/Products/:id" element={<ProductsDetail />} />
           <Route path="/Orders/:id" element={<OrderDetail />} />
           <Route path="BloomComponents" element={<BloomComponents />} />
-          <Route path="400" element={<BadRequest />} />
-          <Route path="403" element={<Forbidden />} />
-          <Route path="401" element={<Unauthorized />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="Memberships" element={<Memberships />} />
+          <Route path="/Memberships/:id" element={<MembershipsDetail />} />
         </Route>
       </Routes>
     </Suspense>

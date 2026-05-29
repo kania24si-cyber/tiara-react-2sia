@@ -1,0 +1,182 @@
+[
+  {
+    "membership_id": "MEM001",
+    "customer_id": "CUS001",
+    "tanggal_daftar": "2024-02-02",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0001",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM002",
+    "customer_id": "CUS002",
+    "tanggal_daftar": "2024-03-03",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0002",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM003",
+    "customer_id": "CUS003",
+    "tanggal_daftar": "2024-04-04",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0003",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM004",
+    "customer_id": "CUS004",
+    "tanggal_daftar": "2024-05-05",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0004",
+    "status_aktif": "Tidak Aktif"
+  },
+  {
+    "membership_id": "MEM005",
+    "customer_id": "CUS005",
+    "tanggal_daftar": "2024-06-06",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0005",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM006",
+    "customer_id": "CUS006",
+    "tanggal_daftar": "2024-07-07",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0006",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM007",
+    "customer_id": "CUS007",
+    "tanggal_daftar": "2024-08-08",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0007",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM008",
+    "customer_id": "CUS008",
+    "tanggal_daftar": "2024-09-09",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0008",
+    "status_aktif": "Tidak Aktif"
+  },
+  {
+    "membership_id": "MEM009",
+    "customer_id": "CUS009",
+    "tanggal_daftar": "2024-10-10",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0009",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM010",
+    "customer_id": "CUS010",
+    "tanggal_daftar": "2024-11-11",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0010",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM011",
+    "customer_id": "CUS011",
+    "tanggal_daftar": "2024-12-12",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0011",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM012",
+    "customer_id": "CUS012",
+    "tanggal_daftar": "2024-01-13",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0012",
+    "status_aktif": "Tidak Aktif"
+  },
+  {
+    "membership_id": "MEM013",
+    "customer_id": "CUS013",
+    "tanggal_daftar": "2024-02-14",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0013",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM014",
+    "customer_id": "CUS014",
+    "tanggal_daftar": "2024-03-15",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0014",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM015",
+    "customer_id": "CUS015",
+    "tanggal_daftar": "2024-04-16",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0015",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM016",
+    "customer_id": "CUS016",
+    "tanggal_daftar": "2024-05-17",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0016",
+    "status_aktif": "Tidak Aktif"
+  },
+  {
+    "membership_id": "MEM017",
+    "customer_id": "CUS017",
+    "tanggal_daftar": "2024-06-18",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0017",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM018",
+    "customer_id": "CUS018",
+    "tanggal_daftar": "2024-07-19",
+    "status_member": "Member",
+    "level_membership": "Gold",
+    "creator_code": "REF0018",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM019",
+    "customer_id": "CUS019",
+    "tanggal_daftar": "2024-08-20",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0019",
+    "status_aktif": "Aktif"
+  },
+  {
+    "membership_id": "MEM020",
+    "customer_id": "CUS020",
+    "tanggal_daftar": "2024-09-21",
+    "status_member": "Member",
+    "level_membership": "Silver",
+    "creator_code": "REF0020",
+    "status_aktif": "Tidak Aktif"
+  }
+]

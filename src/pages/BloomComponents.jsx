@@ -18,6 +18,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+
 import Button from "../components/Button";
 import Badge from "../components/Badge";
 import HeroSection from "../components/HeroSection";
@@ -61,265 +62,234 @@ export default function BloomComponents() {
   ];
 
   return (
-    <div className="min-h-screen bg-pink-50 p-8">
-      {/* HERO SECTION */}
-      <HeroSection />
+    <div className="min-h-screen bg-gradient-to-b from-rose-50 via-pink-50 to-white">
+      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+        {/* HERO + PROMO */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <HeroSection />
+          </div>
 
-      {/* STATS CARD */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mt-8">
-        <StatsCard title="Products" value="150" icon="💄" />
+          <div className="space-y-6">
+            <PromoBanner />
 
-        <StatsCard title="Orders" value="320" icon="🛍️" />
+            <div className="bg-gradient-to-r from-pink-500 to-rose-400 rounded-3xl p-6 text-white shadow-lg">
+              <p className="text-sm opacity-80">Monthly Beauty Rewards</p>
 
-        <StatsCard title="Customers" value="1.2K" icon="👩" />
+              <h2 className="text-4xl font-bold mt-2">1.250 Points</h2>
 
-        <StatsCard title="Revenue" value="Rp 25M" icon="💰" />
-      </div>
+              <p className="mt-3">Redeem your points for exclusive products.</p>
+            </div>
+          </div>
+        </div>
 
-      {/* PROMO BANNER */}
-      <div className="mt-8">
-        <PromoBanner />
-      </div>
+        {/* STATS */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <StatsCard title="Products" value="150" icon="💄" />
+          <StatsCard title="Orders" value="320" icon="🛍️" />
+          <StatsCard title="Customers" value="1.2K" icon="👩" />
+          <StatsCard title="Revenue" value="Rp 25M" icon="💰" />
+        </div>
 
-      {/* SHADCN DIALOG */}
-      <div className="mt-10">
-        <Dialog>
-          <DialogTrigger className="bg-pink-500 text-white px-5 py-3 rounded-xl">
-            Open Promo
-          </DialogTrigger>
+        {/* SEARCH + MEMBERSHIP */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-6">
+            <div className="grid md:grid-cols-2 gap-4">
+              <SearchBar placeholder="Search beauty products..." />
 
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>BLOOM Makeup Promo</DialogTitle>
-            </DialogHeader>
+              <SelectField
+                options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
+              />
+            </div>
+          </div>
 
-            <p>Dapatkan diskon 50% untuk semua lipstick hari ini.</p>
-          </DialogContent>
-        </Dialog>
-      </div>
+          <div className="bg-white rounded-3xl shadow-sm p-6 flex items-center justify-center">
+            <div className="flex gap-4">
+              <LoyaltyBadge type="gold" />
+              <LoyaltyBadge type="silver" />
+              <LoyaltyBadge type="bronze" />
+            </div>
+          </div>
+        </div>
 
-      {/* SEARCH & FILTER */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
-        <SearchBar placeholder="Search makeup..." />
-
-        <SelectField
-          options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
-        />
-      </div>
-
-      {/* CATEGORY CARD */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 mt-8">
-        <CategoryCard
-          image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
-          title="Makeup"
-        />
-
-        <CategoryCard
-          image="https://images.unsplash.com/photo-1556228578-8c89e6adf883"
-          title="Skincare"
-        />
-
-        <CategoryCard
-          image="https://images.unsplash.com/photo-1596462502278-27bfdc403348"
-          title="Perfume"
-        />
-
-        <CategoryCard
-          image="https://images.unsplash.com/photo-1526045478516-99145907023c"
-          title="Beauty Tools"
-        />
-      </div>
-
-      {/* SHADCN CAROUSEL */}
-      <div className="mt-10">
-        <Carousel className="w-full max-w-4xl">
+        {/* CAROUSEL */}
+        <Carousel className="w-full">
           <CarouselContent>
             <CarouselItem>
-              <div className="bg-pink-400 text-white p-10 rounded-2xl">
-                <h2 className="text-3xl font-bold">Flash Sale 50%</h2>
+              <div className="bg-pink-400 text-white p-12 rounded-3xl">
+                <h2 className="text-4xl font-bold">Flash Sale 50%</h2>
               </div>
             </CarouselItem>
 
             <CarouselItem>
-              <div className="bg-rose-400 text-white p-10 rounded-2xl">
-                <h2 className="text-3xl font-bold">New Serum Collection</h2>
+              <div className="bg-rose-400 text-white p-12 rounded-3xl">
+                <h2 className="text-4xl font-bold">New Serum Collection</h2>
               </div>
             </CarouselItem>
 
             <CarouselItem>
-              <div className="bg-purple-400 text-white p-10 rounded-2xl">
-                <h2 className="text-3xl font-bold">Beauty Voucher</h2>
+              <div className="bg-purple-400 text-white p-12 rounded-3xl">
+                <h2 className="text-4xl font-bold">Beauty Voucher</h2>
               </div>
             </CarouselItem>
           </CarouselContent>
         </Carousel>
-      </div>
 
-      {/* PRODUCT CARD */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10">
-        <ProductCard
-          image="https://images.unsplash.com/photo-1586495777744-4413f21062fa"
-          title="Lipstick Matte"
-          brand="BLOOM"
-          color="Pink"
-          category="Makeup"
-          price="Rp 299.000"
-        />
-
-        <ProductCard
-          image="https://images.unsplash.com/photo-1620916566398-39f1143ab7be"
-          title="Glow Serum"
-          brand="BLOOM"
-          color="Gold"
-          category="Skincare"
-          price="Rp 450.000"
-        />
-
-        <ProductCard
-          image="https://images.unsplash.com/photo-1596755389378-c31d21fd1273"
-          title="Luxury Perfume"
-          brand="BLOOM"
-          color="Rose"
-          category="Perfume"
-          price="Rp 800.000"
-        />
-      </div>
-
-      {/* DISCOUNT CARD */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
-        <DiscountCard title="Flash Sale" discount="50%" />
-
-        <DiscountCard title="Special Voucher" discount="30%" />
-      </div>
-
-      {/* PRODUCT MANAGEMENT TABLE */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Product Management</h2>
-
-        <Table headers={headers}>
-          {products.map((product, index) => (
-            <tr key={product.id} className="border-b hover:bg-pink-50">
-              <td className="px-6 py-4">{index + 1}</td>
-
-              <td className="px-6 py-4">{product.name}</td>
-
-              <td className="px-6 py-4">
-                <Badge>{product.category}</Badge>
-              </td>
-
-              <td className="px-6 py-4">{product.price}</td>
-
-              <td className="px-6 py-4">
-                <div className="flex gap-3">
-                  <Button type="primary">Edit</Button>
-
-                  <Button type="danger">Delete</Button>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </Table>
-      </div>
-
-      {/* FORM COMPONENT */}
-      <div className="bg-white rounded-2xl shadow p-8 mt-10">
-        <h2 className="text-3xl font-bold mb-5">Product Form</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <InputField placeholder="Product Name" />
-
-          <InputField placeholder="Product Price" />
-        </div>
-
-        <div className="mt-5">
-          <SelectField
-            options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
+        {/* CATEGORY + DISCOUNT */}
+        <div className="grid lg:grid-cols-4 gap-5">
+          <CategoryCard
+            image="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9"
+            title="Makeup"
           />
+
+          <CategoryCard
+            image="https://images.unsplash.com/photo-1556228578-8c89e6adf883"
+            title="Skincare"
+          />
+
+          <DiscountCard title="Flash Sale" discount="50%" />
+
+          <DiscountCard title="Special Voucher" discount="30%" />
         </div>
 
-        {/* BUTTON COMPONENT */}
-        <div className="flex flex-wrap gap-5 mt-8">
-          <Button type="primary">Add Product</Button>
+        {/* PRODUCTS */}
+        <div className="bg-white rounded-3xl shadow-sm p-6">
+          <div className="grid md:grid-cols-3 gap-5">
+            <ProductCard
+              image="https://images.unsplash.com/photo-1586495777744-4413f21062fa"
+              title="Lipstick Matte"
+              brand="BLOOM"
+              color="Pink"
+              category="Makeup"
+              price="Rp 299.000"
+            />
 
-          <Button type="secondary">Upload Image</Button>
+            <ProductCard
+              image="https://images.unsplash.com/photo-1620916566398-39f1143ab7be"
+              title="Glow Serum"
+              brand="BLOOM"
+              color="Gold"
+              category="Skincare"
+              price="Rp 450.000"
+            />
 
-          <Button type="success">Save Product</Button>
-
-          <Button type="danger">Delete Product</Button>
-
-          <Button type="warning">Flash Sale</Button>
+            <ProductCard
+              image="https://images.unsplash.com/photo-1596755389378-c31d21fd1273"
+              title="Luxury Perfume"
+              brand="BLOOM"
+              color="Rose"
+              category="Perfume"
+              price="Rp 800.000"
+            />
+          </div>
         </div>
-      </div>
 
-      {/* REVIEW CARD */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Review Card</h2>
+        {/* COMMUNITY */}
+        <div className="bg-white rounded-3xl shadow-sm p-6">
+          <div className="flex justify-center gap-4 mb-6">
+            <Avatar name="Tiara" />
+            <Avatar name="Siti" />
+            <Avatar name="Alya" />
+          </div>
 
-        <ReviewCard
-          name="Tiara"
-          review="Lipstick nya bagus banget dan tahan lama!"
-          rating={5}
-        />
-      </div>
+          <ReviewCard
+            name="Tiara"
+            review="Lipstick nya bagus banget dan tahan lama!"
+            rating={5}
+          />
 
-      {/* REVIEW SECTION */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Review Section</h2>
-
-        <ReviewSection />
-      </div>
-
-      {/* SHADCN ACCORDION */}
-      <div className="mt-10 bg-white p-8 rounded-2xl shadow">
-        <h2 className="text-3xl font-bold mb-5">FAQ Beauty Store</h2>
-
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Apakah produk aman?</AccordionTrigger>
-
-            <AccordionContent>Semua produk BLOOM sudah BPOM.</AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2">
-            <AccordionTrigger>Apakah tersedia voucher?</AccordionTrigger>
-
-            <AccordionContent>
-              Voucher tersedia saat flash sale.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
-
-      {/* LOYALTY BADGE */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Loyalty Badge</h2>
-
-        <div className="flex gap-5">
-          <LoyaltyBadge type="gold" />
-
-          <LoyaltyBadge type="silver" />
-
-          <LoyaltyBadge type="bronze" />
+          <div className="mt-6">
+            <ReviewSection />
+          </div>
         </div>
-      </div>
 
-      {/* ALERT */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Alert Component</h2>
+        {/* TABLE + FORM */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-6 overflow-x-auto">
+            <Table headers={headers}>
+              {products.map((product, index) => (
+                <tr key={product.id} className="border-b hover:bg-pink-50">
+                  <td className="px-6 py-4">{index + 1}</td>
 
-        <Alert>Product berhasil ditambahkan!</Alert>
-      </div>
+                  <td className="px-6 py-4">{product.name}</td>
 
-      {/* AVATAR */}
-      <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-5">Avatar Component</h2>
+                  <td className="px-6 py-4">
+                    <Badge>{product.category}</Badge>
+                  </td>
 
-        <div className="flex gap-5">
-          <Avatar name="Tiara" />
+                  <td className="px-6 py-4">{product.price}</td>
 
-          <Avatar name="Siti" />
+                  <td className="px-6 py-4">
+                    <div className="flex gap-2">
+                      <Button type="primary">Edit</Button>
 
-          <Avatar name="Alya" />
+                      <Button type="danger">Delete</Button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </Table>
+          </div>
+
+          <div className="bg-white rounded-3xl shadow-sm p-6">
+            <div className="space-y-4">
+              <InputField placeholder="Product Name" />
+
+              <InputField placeholder="Product Price" />
+
+              <SelectField
+                options={["Makeup", "Skincare", "Perfume", "Beauty Tools"]}
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 mt-5">
+              <Button type="primary">Add</Button>
+              <Button type="success">Save</Button>
+              <Button type="secondary">Upload</Button>
+              <Button type="warning">Promo</Button>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQ + ALERT */}
+        <div className="grid lg:grid-cols-2 gap-6">
+          <div className="bg-white rounded-3xl shadow-sm p-6">
+            <Accordion type="single" collapsible>
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Apakah produk aman?</AccordionTrigger>
+
+                <AccordionContent>
+                  Semua produk BLOOM sudah BPOM.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Apakah tersedia voucher?</AccordionTrigger>
+
+                <AccordionContent>
+                  Voucher tersedia saat flash sale.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+
+          <div className="space-y-4">
+            <Alert>Product berhasil ditambahkan!</Alert>
+
+            <Dialog>
+              <DialogTrigger className="w-full bg-pink-500 text-white py-3 rounded-xl">
+                View Promo
+              </DialogTrigger>
+
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>BLOOM Makeup Promo</DialogTitle>
+                </DialogHeader>
+
+                <p>Dapatkan diskon 50% untuk semua lipstick hari ini.</p>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       </div>
     </div>

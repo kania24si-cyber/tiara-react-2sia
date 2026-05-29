@@ -37,19 +37,38 @@ export default function Customers() {
 
             <input
               type="text"
-              placeholder="Customer Name"
+              placeholder="Nama Lengkap"
+              className="input-beauty"
+            />
+
+            <input
+              type="text"
+              placeholder="Username"
+              className="input-beauty"
+            />
+
+            <select className="input-beauty">
+              <option>L</option>
+              <option>P</option>
+            </select>
+
+            <input type="date" className="input-beauty" />
+
+            <input
+              type="text"
+              placeholder="Nomor HP"
               className="input-beauty"
             />
 
             <input type="email" placeholder="Email" className="input-beauty" />
 
-            <input type="text" placeholder="Phone" className="input-beauty" />
+            <input type="text" placeholder="Alamat" className="input-beauty" />
 
-            <select className="input-beauty md:col-span-2">
-              <option>Bronze</option>
-              <option>Silver</option>
-              <option>Gold</option>
-            </select>
+            <input
+              type="text"
+              placeholder="Kota / Provinsi"
+              className="input-beauty md:col-span-2"
+            />
           </div>
 
           <div className="mt-5">
@@ -59,66 +78,80 @@ export default function Customers() {
       )}
 
       {/* TABLE */}
-      <div className="card-beauty overflow-x-auto">
-        {/* TOP */}
-        <div className="flex justify-between items-center px-6 py-5 border-b border-gray-100">
-          <h2 className="text-2xl font-poppins text-gray-800">Customer List</h2>
+      <div className="card-beauty overflow-x-auto rounded-xl">
+        <div className="flex justify-between items-center px-5 py-4 border-b border-gray-100">
+          <h2 className="text-xl font-poppins text-gray-800">Customer List</h2>
 
           <span className="badge-pink">{customers.length} Customers</span>
         </div>
 
-        <table className="w-full text-sm">
-          <thead className="bg-pink-50 text-gray-700">
+        <table className="min-w-[1100px] w-full text-xs">
+          <thead className="bg-pink-50 text-gray-700 text-xs">
             <tr>
-              <th className="text-left px-6 py-4">Customer ID</th>
-              <th className="text-left px-6 py-4">Name</th>
-              <th className="text-left px-6 py-4">Email</th>
-              <th className="text-left px-6 py-4">Phone</th>
-              <th className="text-left px-6 py-4">Loyalty</th>
+              <th className="px-3 py-3 text-left">ID</th>
+              <th className="px-3 py-3 text-left">Customer</th>
+              <th className="px-3 py-3 text-left">Username</th>
+              <th className="px-3 py-3 text-left">Gender</th>
+              <th className="px-3 py-3 text-left">Birth Date</th>
+              <th className="px-3 py-3 text-left">Phone</th>
+              <th className="px-3 py-3 text-left">Email</th>
+              <th className="px-3 py-3 text-left">Address</th>
+              <th className="px-3 py-3 text-left">City</th>
             </tr>
           </thead>
+
           <tbody>
             {customers.map((item, index) => (
               <tr
-                key={item.id}
-                className={`border-t border-gray-100 text-center hover:bg-pink-50 transition ${
+                key={item.customer_id}
+                className={`border-t border-gray-100 hover:bg-pink-50 transition ${
                   index % 2 === 0 ? "bg-white" : "bg-gray-50/40"
                 }`}
               >
-                <td className="px-6 py-4 font-medium">{item.id}</td>
+                <td className="px-3 py-2 font-semibold text-pink-600">
+                  {item.customer_id}
+                </td>
 
-                <td className="px-6 py-4">
-                  <div className="flex items-center justify-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold">
-                      {item.name.charAt(0)}
+                <td className="px-3 py-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-xs">
+                      {item.nama_lengkap.charAt(0)}
                     </div>
 
                     <Link
-                      to={`/customers/${index + 1}`}
-                      className="text-pink-500 hover:text-pink-700 font-medium"
+                      to={`/customers/${item.customer_id}`}
+                      className="font-medium text-sm text-gray-800 hover:text-pink-600"
                     >
-                      {item.name}
+                      {item.nama_lengkap}
                     </Link>
                   </div>
                 </td>
 
-                <td className="px-6 py-4 text-gray-500">{item.email}</td>
+                <td className="px-3 py-2 text-gray-600">{item.username}</td>
 
-                <td className="px-6 py-4">{item.phone}</td>
-
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <span
-                    className={
-                      item.loyalty === "Gold"
-                        ? "badge-pink"
-                        : item.loyalty === "Silver"
-                          ? "badge-green"
-                          : "bg-gray-200 text-gray-700 text-xs px-3 py-1 rounded-full"
-                    }
+                    className={`px-2 py-1 rounded-full text-[10px] font-medium ${
+                      item.jenis_kelamin === "L"
+                        ? "bg-blue-100 text-blue-600"
+                        : "bg-pink-100 text-pink-600"
+                    }`}
                   >
-                    {item.loyalty}
+                    {item.jenis_kelamin}
                   </span>
                 </td>
+
+                <td className="px-3 py-2">{item.tanggal_lahir}</td>
+
+                <td className="px-3 py-2">{item.nomor_hp}</td>
+
+                <td className="px-3 py-2 text-gray-500">{item.email}</td>
+
+                <td className="px-3 py-2 max-w-[180px] truncate">
+                  {item.alamat}
+                </td>
+
+                <td className="px-3 py-2">{item.kota_provinsi}</td>
               </tr>
             ))}
           </tbody>

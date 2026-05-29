@@ -4,7 +4,9 @@ import customers from "../data/customers.json";
 export default function CustomersDetail() {
   const { id } = useParams();
 
-  const customer = customers[Number(id) - 1];
+  const customer = customers.find(
+    (item) => item.customer_id === id
+  );
 
   if (!customer) {
     return (
@@ -16,47 +18,58 @@ export default function CustomersDetail() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <div className="bg-white rounded-2xl shadow-lg max-w-xl mx-auto p-6">
-
+      <div className="bg-white rounded-2xl shadow-lg max-w-4xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">
           Customer Detail
         </h1>
 
-        <div className="space-y-4 text-gray-700">
+        <div className="grid md:grid-cols-2 gap-5">
 
           <div>
-            <span className="font-semibold">
-              Customer ID:
-            </span>
-            <p>{customer.id}</p>
+            <h3 className="font-semibold text-gray-700">Customer ID</h3>
+            <p>{customer.customer_id}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Name:
-            </span>
-            <p>{customer.name}</p>
+            <h3 className="font-semibold text-gray-700">Nama Lengkap</h3>
+            <p>{customer.nama_lengkap}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Email:
-            </span>
+            <h3 className="font-semibold text-gray-700">Username</h3>
+            <p>{customer.username}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-700">Jenis Kelamin</h3>
+            <p>{customer.jenis_kelamin}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-700">Tanggal Lahir</h3>
+            <p>{customer.tanggal_lahir}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-700">Nomor HP</h3>
+            <p>{customer.nomor_hp}</p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-gray-700">Email</h3>
             <p>{customer.email}</p>
           </div>
 
           <div>
-            <span className="font-semibold">
-              Phone:
-            </span>
-            <p>{customer.phone}</p>
+            <h3 className="font-semibold text-gray-700">Alamat</h3>
+            <p>{customer.alamat}</p>
           </div>
 
-          <div>
-            <span className="font-semibold">
-              Loyalty:
-            </span>
-            <p>{customer.loyalty}</p>
+          <div className="md:col-span-2">
+            <h3 className="font-semibold text-gray-700">
+              Kota / Provinsi
+            </h3>
+            <p>{customer.kota_provinsi}</p>
           </div>
 
         </div>

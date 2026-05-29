@@ -1,212 +1,131 @@
 [
   {
-    "id": "CUS001",
-    "name": "Tiara Kania Noer Riska",
-    "email": "tiara@gmail.com",
-    "phone": "08123456789",
-    "loyalty": "Gold"
+    "customer_id": "CUS001",
+    "nama_lengkap": "Andi Nabila Setiawan",
+    "username": "andi.setiawan1",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2003-06-22",
+
+    "nomor_hp": "080261955194",
+    "email": "andi.setiawan1@gmail.com",
+    "alamat": "Jl. Tuanku Tambusai No.125, Kel. Marpoyan Damai",
+    "kota_provinsi": "Surabaya, Jawa Timur"
   },
+
   {
-    "id": "CUS002",
-    "name": "Andi Saputra",
-    "email": "andi@gmail.com",
-    "phone": "08123456780",
-    "loyalty": "Silver"
+    "customer_id": "CUS002",
+    "nama_lengkap": "Arif Budi Pratama",
+    "username": "arif.pratama2",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2001-10-09",
+
+    "nomor_hp": "089597548378",
+    "email": "arif.pratama2@gmail.com",
+    "alamat": "Jl. Tuanku Tambusai No.118, Kel. Tampan",
+    "kota_provinsi": "Jakarta Selatan, DKI Jakarta"
   },
+
   {
-    "id": "CUS003",
-    "name": "Budi Santoso",
-    "email": "budi@gmail.com",
-    "phone": "08123456781",
-    "loyalty": "Bronze"
+    "customer_id": "CUS003",
+    "nama_lengkap": "Andi Rian Setiawan",
+    "username": "andi.setiawan3",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2000-01-21",
+
+    "nomor_hp": "081642538285",
+    "email": "andi.setiawan3@gmail.com",
+    "alamat": "Jl. Diponegoro No.244, Kel. Rumbai",
+    "kota_provinsi": "Jakarta Selatan, DKI Jakarta"
   },
+
   {
-    "id": "CUS004",
-    "name": "Citra Lestari",
-    "email": "citra@gmail.com",
-    "phone": "08123456782",
-    "loyalty": "Gold"
+    "customer_id": "CUS004",
+    "nama_lengkap": "Lestari Aisyah Pratama",
+    "username": "lestari.pratama4",
+    "jenis_kelamin": "P",
+    "tanggal_lahir": "2000-05-22",
+
+    "nomor_hp": "085083223867",
+    "email": "lestari.pratama4@gmail.com",
+    "alamat": "Jl. Sudirman No.74, Kel. Payung Sekaki",
+    "kota_provinsi": "Bandung, Jawa Barat"
   },
+
   {
-    "id": "CUS005",
-    "name": "Dewi Anggraini",
-    "email": "dewi@gmail.com",
-    "phone": "08123456783",
-    "loyalty": "Silver"
+    "customer_id": "CUS005",
+    "nama_lengkap": "Budi Aulia Pratama",
+    "username": "budi.pratama5",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2005-10-01",
+
+    "nomor_hp": "081988007470",
+    "email": "budi.pratama5@gmail.com",
+    "alamat": "Jl. HR Soebrantas No.2, Kel. Rumbai",
+    "kota_provinsi": "Surabaya, Jawa Timur"
   },
+
   {
-    "id": "CUS006",
-    "name": "Eko Pratama",
-    "email": "eko@gmail.com",
-    "phone": "08123456784",
-    "loyalty": "Bronze"
+    "customer_id": "CUS006",
+    "nama_lengkap": "Budi Rina Pratama",
+    "username": "budi.pratama6",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2001-11-03",
+
+    "nomor_hp": "089945397556",
+    "email": "budi.pratama6@gmail.com",
+    "alamat": "Jl. Diponegoro No.46, Kel. Bukit Raya",
+    "kota_provinsi": "Jakarta Selatan, DKI Jakarta"
   },
+
   {
-    "id": "CUS007",
-    "name": "Farhan Ramadhan",
-    "email": "farhan@gmail.com",
-    "phone": "08123456785",
-    "loyalty": "Gold"
+    "customer_id": "CUS007",
+    "nama_lengkap": "Andi Yoga Saputra",
+    "username": "andi.saputra7",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2002-07-10",
+
+    "nomor_hp": "082300046603",
+    "email": "andi.saputra7@gmail.com",
+    "alamat": "Jl. Kartini No.201, Kel. Marpoyan Damai",
+    "kota_provinsi": "Pekanbaru, Riau"
   },
+
   {
-    "id": "CUS008",
-    "name": "Gita Maharani",
-    "email": "gita@gmail.com",
-    "phone": "08123456786",
-    "loyalty": "Silver"
+    "customer_id": "CUS008",
+    "nama_lengkap": "Rizky Intan Hidayat",
+    "username": "rizky.hidayat8",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2001-12-08",
+
+    "nomor_hp": "088109034117",
+    "email": "rizky.hidayat8@gmail.com",
+    "alamat": "Jl. Gatot Subroto No.204, Kel. Sukajadi",
+    "kota_provinsi": "Surabaya, Jawa Timur"
   },
+
   {
-    "id": "CUS009",
-    "name": "Hendra Wijaya",
-    "email": "hendra@gmail.com",
-    "phone": "08123456787",
-    "loyalty": "Bronze"
+    "customer_id": "CUS009",
+    "nama_lengkap": "Aulia Siti Pratama",
+    "username": "aulia.pratama9",
+    "jenis_kelamin": "P",
+    "tanggal_lahir": "1999-12-20",
+
+    "nomor_hp": "086971647876",
+    "email": "aulia.pratama9@gmail.com",
+    "alamat": "Jl. Gatot Subroto No.105, Kel. Tampan",
+    "kota_provinsi": "Bandung, Jawa Barat"
   },
+
   {
-    "id": "CUS010",
-    "name": "Indah Permata",
-    "email": "indah@gmail.com",
-    "phone": "08123456788",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS011",
-    "name": "Joko Susilo",
-    "email": "joko@gmail.com",
-    "phone": "08123456790",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS012",
-    "name": "Kiki Amelia",
-    "email": "kiki@gmail.com",
-    "phone": "08123456791",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS013",
-    "name": "Lukman Hakim",
-    "email": "lukman@gmail.com",
-    "phone": "08123456792",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS014",
-    "name": "Maya Sari",
-    "email": "maya@gmail.com",
-    "phone": "08123456793",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS015",
-    "name": "Nanda Putri",
-    "email": "nanda@gmail.com",
-    "phone": "08123456794",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS016",
-    "name": "Oki Setiawan",
-    "email": "oki@gmail.com",
-    "phone": "08123456795",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS017",
-    "name": "Putra Mahesa",
-    "email": "putra@gmail.com",
-    "phone": "08123456796",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS018",
-    "name": "Qori Azzahra",
-    "email": "qori@gmail.com",
-    "phone": "08123456797",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS019",
-    "name": "Rian Kurniawan",
-    "email": "rian@gmail.com",
-    "phone": "08123456798",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS020",
-    "name": "Salsa Nuraini",
-    "email": "salsa@gmail.com",
-    "phone": "08123456799",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS021",
-    "name": "Taufik Hidayat",
-    "email": "taufik@gmail.com",
-    "phone": "08123456800",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS022",
-    "name": "Ulfa Rahma",
-    "email": "ulfa@gmail.com",
-    "phone": "08123456801",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS023",
-    "name": "Vina Melati",
-    "email": "vina@gmail.com",
-    "phone": "08123456802",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS024",
-    "name": "Wahyu Nugroho",
-    "email": "wahyu@gmail.com",
-    "phone": "08123456803",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS025",
-    "name": "Xena Olivia",
-    "email": "xena@gmail.com",
-    "phone": "08123456804",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS026",
-    "name": "Yogi Pramana",
-    "email": "yogi@gmail.com",
-    "phone": "08123456805",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS027",
-    "name": "Zahra Khairunnisa",
-    "email": "zahra@gmail.com",
-    "phone": "08123456806",
-    "loyalty": "Bronze"
-  },
-  {
-    "id": "CUS028",
-    "name": "Aldi Firmansyah",
-    "email": "aldi@gmail.com",
-    "phone": "08123456807",
-    "loyalty": "Gold"
-  },
-  {
-    "id": "CUS029",
-    "name": "Bella Ayu",
-    "email": "bella@gmail.com",
-    "phone": "08123456808",
-    "loyalty": "Silver"
-  },
-  {
-    "id": "CUS030",
-    "name": "Chandra Wijaksana",
-    "email": "chandra@gmail.com",
-    "phone": "08123456809",
-    "loyalty": "Bronze"
+    "customer_id": "CUS010",
+    "nama_lengkap": "Arif Nabila Nugroho",
+    "username": "arif.nugroho10",
+    "jenis_kelamin": "L",
+    "tanggal_lahir": "2006-09-11",
+
+    "nomor_hp": "084493577700",
+    "email": "arif.nugroho10@gmail.com",
+    "alamat": "Jl. Soekarno Hatta No.243, Kel. Payung Sekaki",
+    "kota_provinsi": "Bandung, Jawa Barat"
   }
 ]
