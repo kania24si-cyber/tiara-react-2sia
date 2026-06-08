@@ -6,7 +6,7 @@ import Loading from "./components/Loading";
 import MembershipsDetail from "./pages/MembershipsDetail";
 
 function App() {
-  const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+  const Products = React.lazy(() => import("./pages/Products"));
   const Orders = React.lazy(() => import("./pages/Orders"));
   const Customers = React.lazy(() => import("./pages/Customers"));
   const Memberships = React.lazy(() => import("./pages/Memberships"));
@@ -35,7 +35,7 @@ function App() {
 
         {/* MAIN */}
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Products />} />
           <Route path="orders" element={<Orders />} />
           <Route path="customers" element={<Customers />} />
           <Route path="/Customers/:id" element={<CustomersDetail />} />

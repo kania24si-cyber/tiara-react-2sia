@@ -1,16 +1,27 @@
 import customers from "../data/customers.json";
 import PageHeader from "../components/PageHeader";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Customers() {
   const [showForm, setShowForm] = useState(false);
 
+  const customerIdRef = useRef(null);
+
+  useEffect(() => {
+    if (showForm) {
+      customerIdRef.current?.focus();
+    }
+  }, [showForm]);
+
   return (
     <div className="space-y-6">
       {/* HEADER */}
       <PageHeader title="Customers" breadcrumb={["Dashboard", "Customers"]}>
-        <button onClick={() => setShowForm(true)} className="btn-pink">
+        <button
+          onClick={() => setShowForm(true)}
+          className="btn-pink"
+        >
           Add Customer
         </button>
       </PageHeader>
@@ -23,13 +34,17 @@ export default function Customers() {
               Add Customer
             </h2>
 
-            <button onClick={() => setShowForm(false)} className="btn-outline">
+            <button
+              onClick={() => setShowForm(false)}
+              className="btn-outline"
+            >
               Close
             </button>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <input
+              ref={customerIdRef}
               type="text"
               placeholder="Customer ID"
               className="input-beauty"
@@ -52,7 +67,10 @@ export default function Customers() {
               <option>P</option>
             </select>
 
-            <input type="date" className="input-beauty" />
+            <input
+              type="date"
+              className="input-beauty"
+            />
 
             <input
               type="text"
@@ -60,9 +78,17 @@ export default function Customers() {
               className="input-beauty"
             />
 
-            <input type="email" placeholder="Email" className="input-beauty" />
+            <input
+              type="email"
+              placeholder="Email"
+              className="input-beauty"
+            />
 
-            <input type="text" placeholder="Alamat" className="input-beauty" />
+            <input
+              type="text"
+              placeholder="Alamat"
+              className="input-beauty"
+            />
 
             <input
               type="text"
@@ -72,7 +98,9 @@ export default function Customers() {
           </div>
 
           <div className="mt-5">
-            <button className="btn-pink w-full">Save Customer</button>
+            <button className="btn-pink w-full">
+              Save Customer
+            </button>
           </div>
         </div>
       )}
@@ -80,9 +108,13 @@ export default function Customers() {
       {/* TABLE */}
       <div className="card-beauty overflow-x-auto rounded-xl">
         <div className="flex justify-between items-center px-5 py-4 border-b border-gray-100">
-          <h2 className="text-xl font-poppins text-gray-800">Customer List</h2>
+          <h2 className="text-xl font-poppins text-gray-800">
+            Customer List
+          </h2>
 
-          <span className="badge-pink">{customers.length} Customers</span>
+          <span className="badge-pink">
+            {customers.length} Customers
+          </span>
         </div>
 
         <table className="min-w-[1100px] w-full text-xs">
@@ -105,7 +137,9 @@ export default function Customers() {
               <tr
                 key={item.customer_id}
                 className={`border-t border-gray-100 hover:bg-pink-50 transition ${
-                  index % 2 === 0 ? "bg-white" : "bg-gray-50/40"
+                  index % 2 === 0
+                    ? "bg-white"
+                    : "bg-gray-50/40"
                 }`}
               >
                 <td className="px-3 py-2 font-semibold text-pink-600">
@@ -127,7 +161,9 @@ export default function Customers() {
                   </div>
                 </td>
 
-                <td className="px-3 py-2 text-gray-600">{item.username}</td>
+                <td className="px-3 py-2 text-gray-600">
+                  {item.username}
+                </td>
 
                 <td className="px-3 py-2">
                   <span
@@ -141,17 +177,25 @@ export default function Customers() {
                   </span>
                 </td>
 
-                <td className="px-3 py-2">{item.tanggal_lahir}</td>
+                <td className="px-3 py-2">
+                  {item.tanggal_lahir}
+                </td>
 
-                <td className="px-3 py-2">{item.nomor_hp}</td>
+                <td className="px-3 py-2">
+                  {item.nomor_hp}
+                </td>
 
-                <td className="px-3 py-2 text-gray-500">{item.email}</td>
+                <td className="px-3 py-2 text-gray-500">
+                  {item.email}
+                </td>
 
                 <td className="px-3 py-2 max-w-[180px] truncate">
                   {item.alamat}
                 </td>
 
-                <td className="px-3 py-2">{item.kota_provinsi}</td>
+                <td className="px-3 py-2">
+                  {item.kota_provinsi}
+                </td>
               </tr>
             ))}
           </tbody>

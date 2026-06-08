@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import data from "../data/products.json";
 
@@ -6,6 +6,17 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+
+  // useEffect example
+  const [message, setMessage] = useState("Hello, Beauty Admin 💄");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMessage("Welcome Back, Beauty Admin ✨");
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const filtered = data.filter((item) => {
     const matchSearch = item.name
@@ -30,14 +41,13 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#F4DDDD] p-6">
-
       <div className="max-w-7xl mx-auto space-y-6">
 
         {/* HEADER */}
         <div className="topbar">
           <div>
             <h2 className="text-xl font-semibold">
-              Hello, Beauty Admin 💄
+              {message}
             </h2>
 
             <p className="text-sm text-gray-500">
@@ -151,7 +161,6 @@ export default function Dashboard() {
         </div>
 
       </div>
-
     </div>
   );
 }
