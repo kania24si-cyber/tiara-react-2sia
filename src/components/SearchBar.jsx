@@ -1,19 +1,17 @@
 export default function SearchBar({
-  placeholder
+  placeholder,
+  value,
+  onChange,
 }) {
   return (
     <div className="relative">
-
       <input
         type="text"
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="w-full border border-pink-100 rounded-full px-5 py-4"
       />
-
-      <span className="absolute right-5 top-4">
-        🔍
-      </span>
-
     </div>
   );
 }

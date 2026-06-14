@@ -4,17 +4,15 @@ import { Outlet } from "react-router-dom";
 
 export default function MainLayout() {
   return (
-    <div className="flex min-h-screen bg-gray-100 text-gray-800">
-      {/* SIDEBAR */}
+    <div className="flex overflow-x-hidden">
       <Sidebar />
 
-      {/* CONTENT */}
-      <div className="flex-1 p-4">
-        {/* HEADER */}
+      <div className="flex-1 ml-[210px] min-h-screen">
         <Header />
 
-        {/* ROUTES */}
-        <Outlet />
+        <main className="p-6">
+          <Outlet />
+        </main>
       </div>
     </div>
   );
