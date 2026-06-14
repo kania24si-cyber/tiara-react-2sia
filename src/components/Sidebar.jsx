@@ -8,12 +8,11 @@ import {
   MdLocalOffer,
   MdRateReview,
   MdManageAccounts,
-  MdNotificationImportant, // Icon baru untuk alert/reminder
+  MdNotificationImportant,
 } from "react-icons/md";
 
 import { NavLink } from "react-router-dom";
 
-// Daftar pengingat operasional yang krusial untuk Admin Toko Kecantikan
 const ADMIN_REMINDERS = [
   "Check out-of-stock items in the 'Products' tab. 🛒",
   "Reply to pending customer reviews today. 💬",
@@ -25,13 +24,11 @@ const ADMIN_REMINDERS = [
 export default function Sidebar() {
   const [reminder, setReminder] = useState(ADMIN_REMINDERS[0]);
 
-  // Mengacak pengingat setiap kali halaman dimuat/di-refresh
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * ADMIN_REMINDERS.length);
     setReminder(ADMIN_REMINDERS[randomIndex]);
   }, []);
 
-  // Data Simulasi Target Penjualan
   const currentSales = 24;
   const targetSales = 30;
   const progressPercentage = Math.min((currentSales / targetSales) * 100, 100);
@@ -63,8 +60,20 @@ export default function Sidebar() {
         shadow-xl
       "
     >
-      {/* BAGIAN ATAS: LOGO & MENU LINKS */}
-      <div className="overflow-y-auto pr-1 space-y-6 custom-scrollbar">
+      {/* BAGIAN ATAS: LOGO & MENU LINKS 
+        [PERUBAHAN]: Menghapus 'overflow-y-auto' dan menggantinya dengan kelas CSS khusus penyembunyi scrollbar
+      */}
+      <div 
+        className="space-y-6 overflow-y-auto" 
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }} // Solusi inline untuk Firefox & IE
+      >
+        {/* Trik menyembunyikan scrollbar di Chrome/Safari/Webkit */}
+        <style>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+
         {/* LOGO */}
         <div>
           <h1 className="text-2xl font-black tracking-wider">BLOOM 🌸</h1>
@@ -156,7 +165,7 @@ export default function Sidebar() {
           </p>
         </div>
 
-        {/* FUNGSI BARU: GLASSMORPHISM ADMIN REMINDER BOX */}
+        {/* GLASSMORPHISM ADMIN REMINDER BOX */}
         <div className="bg-white/10 rounded-xl p-3 border border-white/10 shadow-sm relative overflow-hidden group">
           <div className="absolute top-2 right-2 text-amber-300/40 group-hover:text-amber-300 transition-colors duration-300">
             <MdNotificationImportant size={14} />
