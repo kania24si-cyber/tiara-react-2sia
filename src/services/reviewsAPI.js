@@ -15,7 +15,8 @@ export const reviewsAPI = {
   // GET ALL REVIEWS
   async fetchReviews() {
     const response = await axios.get(
-      `${API_URL}?select=*,products(name),customers(nama_lengkap)&order=id.desc`,
+      // UBAH DISINI: products(name) -> products(nama_produk) ✨
+      `${API_URL}?select=*,products(nama_produk),customers(nama_lengkap)&order=id.desc`,
       { headers }
     );
 

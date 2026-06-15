@@ -3,11 +3,18 @@ import { usersAPI } from "../../services/usersAPI";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import AlertBox from "../../components/AlertBox";
+// Import Icons for password toggle
+import { Eye, EyeOff } from "lucide-react";
 
 export default function Register() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Added loading state for button
   const navigate = useNavigate();
+
+  // States to manage password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -30,11 +37,14 @@ export default function Register() {
 
     if (formData.password !== formData.confirmPassword) {
       setError("Password dan Confirm Password tidak sama!");
+      // Shake animation or scroll to error could be added here
       return;
     }
 
     try {
+      setLoading(true);
       setError("");
+      setSuccess("");
 
       await usersAPI.createUser({
         username: formData.username,
@@ -42,104 +52,150 @@ export default function Register() {
         password: formData.password,
       });
 
-      setSuccess("Registrasi berhasil! Silakan login.");
+      setSuccess("Registrasi berhasil! Menghubungkan ke halaman login...");
+
+      // Clean form
+      setFormData({ username: "", email: "", password: "", confirmPassword: "" });
 
       setTimeout(() => {
         navigate("/login");
-      }, 1500);
+      }, 2000);
     } catch (err) {
-      setError(err.message);
+      // Assuming api throws error message directly or inside response.data.message
+      const errorMsg = err.response?.data?.message || err.message || "Gagal melakukan registrasi.";
+      setError(errorMsg);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="card-beauty w-full max-w-md p-8">
-        {/* TITLE */}
-        <h2 className="text-3xl font-poppins text-pink-600 mb-6 text-center">
-          Create Your Account ✨
-        </h2>
-        {error && <AlertBox type="error">{error}</AlertBox>}
+    <div className="min-h-screen flex items-center justify-center px-4 bg-[#FFFBFB]">
+      <div className="card-beauty w-full max-w-md p-8 shadow-lg bg-white border border-pink-100 rounded-3xl animate-fade-in">
+        
+        {/* LOGO AREA (Small Placeholder) */}
+        <div className="flex justify-center mb-4">
+            <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center border border-pink-100">
+                <span className="text-2xl">🌸</span>
+            </div>
+        </div>
 
-        {success && <AlertBox type="success">{success}</AlertBox>}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        {/* TITLE */}
+        <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold font-poppins text-[#ED346C] tracking-tight">
+                Join Us!
+            </h2>
+            <p className="text-xs font-medium text-gray-400 mt-1">
+                Create your BeautyBloom Admin Account
+            </p>
+        </div>
+
+        {error && <div className="mb-4 animate-shake"><AlertBox type="error">{error}</AlertBox></div>}
+        {success && <div className="mb-4"><AlertBox type="success">{success}</AlertBox></div>}
+
+        <form onSubmit={handleSubmit} className="space-y-5 text-left">
           {/* USERNAME */}
           <div>
-            <label className="text-sm text-gray-600 mb-1 block">Username</label>
-
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5 block">Username</label>
             <input
               type="text"
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="input-beauty"
-              placeholder="Username"
+              className="input-beauty w-full text-xs px-4 py-2.5 focus:ring-1 focus:ring-pink-200"
+              placeholder="Example: Admin"
               required
+              disabled={loading}
             />
           </div>
 
           {/* EMAIL */}
           <div>
-            <label className="text-sm text-gray-600 mb-1 block">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5 block">
               Email Address
             </label>
-
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="input-beauty"
+              className="input-beauty w-full text-xs px-4 py-2.5 focus:ring-1 focus:ring-pink-200"
               placeholder="you@example.com"
               required
+              disabled={loading}
             />
           </div>
 
-          {/* PASSWORD */}
+          {/* PASSWORD WITH TOGGLE */}
           <div>
-            <label className="text-sm text-gray-600 mb-1 block">Password</label>
-
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="input-beauty"
-              placeholder="********"
-              required
-            />
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5 block">Password</label>
+            <div className="relative flex items-center">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="input-beauty w-full text-xs py-2.5 pl-4 pr-10 focus:ring-1 focus:ring-pink-200"
+                  placeholder="••••••••"
+                  required
+                  disabled={loading}
+                  minLength={6}
+                />
+                <button
+                    type="button"
+                    tabIndex="-1"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 text-gray-400 hover:text-[#ED346C] focus:outline-none"
+                >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+            </div>
           </div>
 
-          {/* CONFIRM PASSWORD */}
+          {/* CONFIRM PASSWORD WITH TOGGLE */}
           <div>
-            <label className="text-sm text-gray-600 mb-1 block">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-1.5 block">
               Confirm Password
             </label>
-
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="input-beauty"
-              placeholder="********"
-              required
-            />
+            <div className="relative flex items-center">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="input-beauty w-full text-xs py-2.5 pl-4 pr-10 focus:ring-1 focus:ring-pink-200"
+                  placeholder="••••••••"
+                  required
+                  disabled={loading}
+                />
+                <button
+                    type="button"
+                    tabIndex="-1"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 text-gray-400 hover:text-[#ED346C] focus:outline-none"
+                >
+                    {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+            </div>
           </div>
 
-          {/* BUTTON */}
-          <Button type="primary">Register</Button>
+          {/* BUTTON CONTAINER - Widened via CSS nesting */}
+          <div className="pt-3 [&>button]:w-full [&>button]:py-3 [&>button]:rounded-xl [&>button]:text-xs [&>button]:font-semibold [&>button]:shadow-sm">
+            <Button type="primary" disabled={loading}>
+              {loading ? "Registering..." : "Create Account"}
+            </Button>
+          </div>
         </form>
 
         {/* EXTRA */}
-        <div className="mt-6 border-t border-pink-100 pt-5 text-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-8 border-t border-pink-100 pt-6 text-center">
+          <p className="text-xs font-medium text-gray-400">
             Already have an account?
             <span
               onClick={() => navigate("/login")}
-              className="ml-1 font-semibold text-[#ED346C] hover:text-[#FF7B7B] transition cursor-pointer"
+              className="ml-1.5 font-bold text-[#ED346C] hover:text-[#d62659] transition cursor-pointer"
             >
-              Login
+              Login here
             </span>
           </p>
         </div>

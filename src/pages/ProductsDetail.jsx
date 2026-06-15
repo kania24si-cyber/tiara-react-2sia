@@ -72,10 +72,10 @@ export default function ProductsDetail() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-0">
           <div className="md:col-span-5 bg-gradient-to-br from-pink-50/30 to-pink-100/30 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-gray-50">
             <div className="relative group">
-              {/* SINKRONISASI: Mengubah src dari product.image_url ke product.image */}
               <img
                 src={product.image || "https://placehold.co/400?text=No+Image"}
-                alt={product.name}
+                // SINKRONISASI: product.nama_produk
+                alt={product.nama_produk}
                 className="w-64 h-64 object-cover rounded-2xl shadow-md border-2 border-white transition-transform duration-300 group-hover:scale-[1.02]"
                 onError={(e) => {
                   e.target.onerror = null;
@@ -100,7 +100,8 @@ export default function ProductsDetail() {
                 <span className="inline-flex items-center gap-1.5 bg-pink-50 text-[#ED346C] px-3 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider mb-3 border border-pink-100/60">
                   <Layers size={11} /> {product.category || "Cosmetics"}
                 </span>
-                <h1 className="text-2xl font-black text-gray-800 leading-tight tracking-tight">{product.name}</h1>
+                {/* SINKRONISASI: product.name -> product.nama_produk */}
+                <h1 className="text-2xl font-black text-gray-800 leading-tight tracking-tight">{product.nama_produk}</h1>
                 <p className="text-xs text-gray-400 font-medium mt-1">Brand: <span className="text-gray-600 font-bold">{product.brand || "BLOOM"}</span></p>
               </div>
 

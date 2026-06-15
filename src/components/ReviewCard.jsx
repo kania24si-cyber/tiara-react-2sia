@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Star, Trash2, Eye, Calendar, MessageSquare, ShoppingBag } from "lucide-react";
+import { Star, Trash2, Eye, Calendar, ShoppingBag } from "lucide-react";
 
 export default function ReviewCard({ review, formatReviewId, onDelete }) {
   return (
@@ -60,7 +60,8 @@ export default function ReviewCard({ review, formatReviewId, onDelete }) {
         <div className="flex items-center gap-1.5 text-[11px] text-purple-600 font-medium bg-purple-50/50 px-2.5 py-1 rounded-lg w-fit mb-3">
           <ShoppingBag size={12} />
           <span className="truncate max-w-[180px]">
-            {review.products?.nama_produk || review.products?.name || "Produk Dihapus"}
+            {/* PERBAIKAN DISINI: Langsung mengarah ke nama_produk 🛒 */}
+            {review.products?.nama_produk || "Produk Dihapus"}
           </span>
         </div>
 

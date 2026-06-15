@@ -3,7 +3,16 @@ import Button from "./Button";
 export default function ProductForm({ dataForm, handleChange, handleSubmit, isEdit, loading }) {
   return (
     <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
-      <input type="text" name="name" placeholder="Product Name" value={dataForm.name || ""} onChange={handleChange} className="input-beauty" required />
+      {/* PERUBAHAN: name="name" -> name="nama_produk" */}
+      <input 
+        type="text" 
+        name="nama_produk" 
+        placeholder="Product Name" 
+        value={dataForm.nama_produk || ""} 
+        onChange={handleChange} 
+        className="input-beauty" 
+        required 
+      />
       <input type="text" name="brand" placeholder="Brand" value={dataForm.brand || ""} onChange={handleChange} className="input-beauty" required />
       <input type="text" name="shade" placeholder="Shade" value={dataForm.shade || ""} onChange={handleChange} className="input-beauty" />
       <input type="number" name="price" placeholder="Price" value={dataForm.price || ""} onChange={handleChange} className="input-beauty" required />

@@ -16,7 +16,8 @@ export default function ReviewForm({ dataForm, handleChange, handleSubmit, loadi
 
     // Menggunakan Promise.all agar loading selesai bersamaan
     Promise.all([
-      axios.get("https://bjehblhcuapgyuibidfe.supabase.co/rest/v1/products?select=id,name&order=name.asc", { headers }),
+      // PERBAIKAN DISINI: Mengubah select=id,name & order=name menjadi nama_produk 🛒
+      axios.get("https://bjehblhcuapgyuibidfe.supabase.co/rest/v1/products?select=id,nama_produk&order=nama_produk.asc", { headers }),
       axios.get("https://bjehblhcuapgyuibidfe.supabase.co/rest/v1/customers?select=id,nama_lengkap&order=nama_lengkap.asc", { headers })
     ])
       .then(([resProducts, resCustomers]) => {
@@ -54,7 +55,8 @@ export default function ReviewForm({ dataForm, handleChange, handleSubmit, loadi
         >
           <option value="">-- Pilih Produk BLOOM --</option>
           {products.map((p) => (
-            <option key={p.id} value={p.id}>{p.name}</option>
+            // PERBAIKAN DISINI: Mengubah p.name menjadi p.nama_produk ✨
+            <option key={p.id} value={p.id}>{p.nama_produk}</option>
           ))}
         </select>
       </div>

@@ -1,15 +1,16 @@
 import { AiOutlineLoading } from "react-icons/ai";
 import { MdOutlineError } from "react-icons/md";
-import { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi"; // Menggunakan ikon mata yang bersih
+import { useState, useEffect } from "react";
 import Button from "../../components/Button";
 import { usersAPI } from "../../services/usersAPI";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State pemicu show/hide password
   const [dataForm, setDataForm] = useState({
     email: "",
     password: "",
@@ -42,7 +43,7 @@ export default function Login() {
 
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Gagal menghubungkan ke server.");
     } finally {
       setLoading(false);
     }
@@ -50,96 +51,131 @@ export default function Login() {
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
-
     if (isLoggedIn === "true") {
       navigate("/dashboard");
     }
-  }, []);
-
-  const errorInfo = error ? (
-    <div className="bg-red-100 mb-4 p-4 text-sm text-red-600 rounded-xl flex items-center">
-      <MdOutlineError className="me-2 text-lg" />
-      {error}
-    </div>
-  ) : null;
-
-  const loadingInfo = loading ? (
-    <div className="bg-gray-100 mb-4 p-4 text-sm rounded-xl flex items-center">
-      <AiOutlineLoading className="me-2 animate-spin" />
-      Mohon Tunggu...
-    </div>
-  ) : null;
+  }, [navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="card-beauty w-full max-w-md p-8 rounded-xl">
-        {/* TITLE */}
-        <h2 className="text-3xl font-poppins text-[#ED346C] mb-2 text-center">
-          Hi, Welcome Back
-        </h2>
+    <div className="min-h-[85vh] flex items-center justify-center px-4">
+      <div className="card-beauty w-full max-w-md p-8 rounded-2xl bg-white border border-pink-100/70 shadow-sm">
+        
+        {/* LOGO AREA (Small Placeholder) */}
+        <div className="flex justify-center mb-4">
+          <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center border border-pink-100">
+            <span className="text-2xl">🌸</span>
+          </div>
+        </div>
 
-        <p className="text-sm text-gray-500 text-center mb-8 leading-relaxed">
-          Sign in to continue
-        </p>
+        {/* BRANDING TITLE */}
+        <div className="text-center mb-6">
+          <h2 className="text-3xl font-bold font-poppins text-[#ED346C] tracking-tight mb-1.5">
+            BeautyBloom
+          </h2>
+          <p className="text-xs font-medium text-gray-400">
+            Sign in to manage your BeautyBloom Store
+          </p>
+        </div>
 
-        {errorInfo}
-        {loadingInfo}
+        {/* NOTIFIKASI ERROR */}
+        {error && (
+          <div className="bg-rose-50 border border-rose-100 mb-4 p-3.5 text-xs font-semibold text-rose-700 rounded-xl flex items-center gap-2">
+            <MdOutlineError className="text-base shrink-0 text-rose-500" />
+            <span>{error}</span>
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="text-sm text-black-600 mb-1 block text-left">
-              Email
+        {/* NOTIFIKASI LOADING */}
+        {loading && (
+          <div className="bg-pink-50/50 border border-pink-100 mb-4 p-3.5 text-xs font-semibold text-[#ED346C] rounded-xl flex items-center gap-2">
+            <AiOutlineLoading className="animate-spin text-base shrink-0" />
+            <span>Memvalidasi kredensial admin...</span>
+          </div>
+        )}
+
+        {/* FORMULIR UTAMA */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          {/* FIELD EMAIL */}
+          <div className="text-left">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5 block">
+              Email Address
             </label>
-
-            <input
-              type="text"
-              name="email"
-              id="email"
-              className="input-beauty"
-              placeholder="you@example.com"
-              onChange={handleChange}
-            />
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="input-beauty w-full text-xs py-2.5 px-3.5 focus:ring-1 focus:ring-pink-200"
+                placeholder="admin@beautybloom.com"
+                value={dataForm.email}
+                onChange={handleChange}
+                disabled={loading}
+                required
+              />
+            </div>
           </div>
 
-          <div>
-            <label className="text-sm text-black-600 mb-1 block text-left">
+          {/* FIELD PASSWORD (Dengan Fitur Show/Hide) */}
+          <div className="text-left">
+            <label className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mb-1.5 block">
               Password
             </label>
-
-            <input
-              type="password"
-              name="password"
-              id="password"
-              className="input-beauty"
-              placeholder="********"
-              onChange={handleChange}
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showPassword ? "text" : "password"} // Berubah dinamis sesuai klik mata
+                name="password"
+                id="password"
+                className="input-beauty w-full text-xs py-2.5 pl-3.5 pr-10 focus:ring-1 focus:ring-pink-200"
+                placeholder="••••••••"
+                value={dataForm.password}
+                onChange={handleChange}
+                disabled={loading}
+                required
+              />
+              {/* Tombol Ikon Mata */}
+              <button
+                type="button"
+                tabIndex="-1"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 text-gray-400 hover:text-[#ED346C] transition-colors focus:outline-none"
+              >
+                {showPassword ? <FiEyeOff size={16} /> : <FiEye size={16} />}
+              </button>
+            </div>
           </div>
-          <Button type="primary">Login</Button>
+
+          {/* TOMBOL LOGIN UTAMA */}
+          <div className="pt-2 w-full [&>button]:w-full [&>button]:py-3 [&>button]:rounded-xl [&>button]:text-xs [&>button]:font-semibold [&>button]:shadow-sm [&>button]:transition-all">
+            <Button type="primary" disabled={loading}>
+              Login Ke Dashboard
+            </Button>
+          </div>
         </form>
 
-        {/* EXTRA */}
-        <div className="mt-6 border-t border-pink-100 pt-5 text-center space-y-3">
-          <p className="text-sm text-gray-500">
+        {/* TAUTAN TAMBAHAN (FOOTER CARD) */}
+        <div className="mt-6 border-t border-pink-100/60 pt-4 text-center space-y-2.5">
+          <p className="text-xs font-medium text-gray-400">
             Forgot your password?
             <Link
               to="/forgot"
-              className="ml-1 font-semibold text-[#ED346C] hover:text-[#FF7B7B] transition"
+              className="ml-1 font-bold text-[#ED346C] hover:text-[#d62659] transition-colors"
             >
               Reset here
             </Link>
           </p>
 
-          <p className="text-sm text-gray-500">
+          <p className="text-xs font-medium text-gray-400">
             Belum punya akun?
             <Link
               to="/register"
-              className="ml-1 font-semibold text-[#ED346C] hover:text-[#FF7B7B] transition"
+              className="ml-1 font-bold text-[#ED346C] hover:text-[#d62659] transition-colors"
             >
               Register sekarang
             </Link>
           </p>
         </div>
+
       </div>
     </div>
   );

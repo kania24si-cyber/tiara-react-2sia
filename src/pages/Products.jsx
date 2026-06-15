@@ -14,9 +14,9 @@ import ProductForm from "../components/ProductForm";
 
 import { Trash2, Pencil, Eye, Sparkles, SearchX } from "lucide-react";
 
-// SINKRONISASI 1: Ubah properti state awal menjadi 'image'
+// SINKRONISASI: name -> nama_produk
 const INITIAL_FORM_STATE = {
-  name: "", 
+  nama_produk: "", 
   category: "", 
   brand: "", 
   shade: "", 
@@ -68,9 +68,9 @@ export default function Products() {
     try {
       setLoading(true); setError(""); setSuccess("");
       
-      // SINKRONISASI 2: Mapping payload ke kolom 'image' sesuai Supabase
+      // SINKRONISASI: Kirim key 'nama_produk' ke kolom database Supabase
       const payload = {
-        name: dataForm.name,
+        nama_produk: dataForm.nama_produk,
         brand: dataForm.brand,
         category: dataForm.category,
         shade: dataForm.shade || null,
@@ -118,9 +118,9 @@ export default function Products() {
   const handleEdit = (product) => {
     setIsEdit(true);
     setSelectedId(product.id);
-    // SINKRONISASI 3: Isi value dataForm dari data baris 'product.image'
+    // SINKRONISASI: Ambil properti 'product.nama_produk' saat tombol edit ditekan
     setDataForm({
-      name: product.name, 
+      nama_produk: product.nama_produk, 
       category: product.category, 
       brand: product.brand,
       shade: product.shade || "", 
@@ -142,8 +142,9 @@ export default function Products() {
 
   const filteredProducts = products.filter((product) => {
     const prettyProdId = formatProductId(product.id).toLowerCase();
+    // SINKRONISASI: Filter berdasarkan nama_produk
     const matchSearch = 
-      product.name?.toLowerCase().includes(search.toLowerCase()) ||
+      product.nama_produk?.toLowerCase().includes(search.toLowerCase()) ||
       product.brand?.toLowerCase().includes(search.toLowerCase()) ||
       prettyProdId.includes(search.toLowerCase());
       
@@ -212,10 +213,10 @@ export default function Products() {
                   <>
                     <td className="px-6 py-4 font-mono font-bold text-[#ED346C] whitespace-nowrap">{formatProductId(product.id)}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {/* SINKRONISASI 4: Ubah src dari product.image_url ke product.image */}
                       <img 
                         src={product.image || "https://placehold.co/100?text=No+Image"} 
-                        alt={product.name} 
+                        // SINKRONISASI: alt nama_produk
+                        alt={product.nama_produk} 
                         className="w-12 h-12 object-cover rounded-xl shadow-sm border border-gray-100 bg-gray-50" 
                         onError={(e) => {
                           e.target.onerror = null;
@@ -225,7 +226,8 @@ export default function Products() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div>
-                        <p className="font-semibold text-sm text-gray-800 tracking-tight">{product.name}</p>
+                        {/* SINKRONISASI: product.name -> product.nama_produk */}
+                        <p className="font-semibold text-sm text-gray-800 tracking-tight">{product.nama_produk}</p>
                         <p className="text-[11px] text-gray-400 font-medium">{product.brand} {product.shade ? `• ${product.shade}` : ""}</p>
                       </div>
                     </td>

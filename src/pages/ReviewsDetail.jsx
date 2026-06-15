@@ -82,7 +82,8 @@ export default function ReviewsDetail() {
             <div className="flex items-center gap-2 text-gray-700">
               <ShoppingBag size={14} className="text-purple-500" />
               <span className="font-semibold">Produk Diulas:</span>
-              <span className="text-gray-600">{review.products?.name || "Produk tidak teridentifikasi"}</span>
+              {/* UBAH DISINI: name -> nama_produk ✨ */}
+              <span className="text-gray-600">{review.products?.nama_produk || "Produk tidak teridentifikasi"}</span>
             </div>
 
             <div className="p-3 bg-gray-50 rounded-xl border border-gray-100 mt-2">
