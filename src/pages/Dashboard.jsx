@@ -6,7 +6,7 @@ import axios from "axios";
 import { 
   FiTrendingUp, FiShoppingBag, FiUsers, FiDollarSign, 
   FiPackage, FiRefreshCw, FiLogOut, FiBell, FiShield, FiActivity, 
-  FiCheckCircle, FiCpu, FiZap, FiPlusCircle, FiSliders, FiList, FiCheck,
+  FiCheckCircle, FiCpu, FiZap, FiPlusCircle, FiSliders, FiList,
   FiHardDrive, FiStar, FiPercent, FiGift
 } from "react-icons/fi";
 
@@ -42,12 +42,12 @@ export default function Dashboard() {
   const [rawPromos, setRawPromos] = useState([]);
   const [rawReviews, setRawReviews] = useState([]);
 
-  // Data Ringkasan Angka (Metrics)
+  // Data Ringkasan Angka (Metrics) - MENGGUNAKAN activeStock 🛒
   const [metrics, setMetrics] = useState({
     revenue: 0,
     orders: 0,
     customers: 0,
-    activeStok: 0
+    activeStock: 0
   });
 
   // Log Aktivitas Sistem
@@ -87,15 +87,15 @@ export default function Dashboard() {
         setRawPromos(dataPromos.slice(0, 3)); // Ambil 3 promo teratas
         setRawReviews(dataReviews.slice(0, 3)); // Ambil 3 review terbaru
 
-        // Kalkulasi metrics statistika
+        // Kalkulasi metrics statistika - MENGGUNAKAN stock / quantity 📦
         const totalRevenue = transactionsData.reduce((sum, item) => sum + (Number(item.total_transaksi) || 0), 0);
-        const totalStok = productsData.reduce((sum, item) => sum + (Number(item.stok || item.stok_produk || item.quantity) || 0), 0);
+        const totalStock = productsData.reduce((sum, item) => sum + (Number(item.stock || item.stock_produk || item.quantity) || 0), 0);
 
         setMetrics({
           revenue: totalRevenue || 542000000, 
           orders: transactionsData.length,
           customers: customersData.length,
-          activeStok: totalStok || 450
+          activeStock: totalStock || 450
         });
 
         // Trigger Log otomatis dari transaksi terbaru
@@ -208,7 +208,8 @@ export default function Dashboard() {
           <StatsCard title="Total Pendapatan" value={`Rp ${metrics.revenue.toLocaleString("id-ID")}`} trend="Langsung" icon={<FiDollarSign />} color="from-rose-500 to-pink-500" />
           <StatsCard title="Jumlah Transaksi" value={`${metrics.orders} Sukses`} trend="Sinkron" icon={<FiShoppingBag />} color="from-amber-400 to-orange-500" />
           <StatsCard title="Total Pelanggan" value={`${metrics.customers} Akun`} trend="Bertumbuh" icon={<FiUsers />} color="from-indigo-500 to-purple-500" />
-          <StatsCard title="Sisa Stok Produk" value={`${metrics.activeStok} Unit`} trend="Otomatis" icon={<FiPackage />} color="from-emerald-500 to-teal-500" />
+          {/* PERBAIKAN: Menggunakan value metrics.activeStock & Judul Sisa Stock Produk */}
+          <StatsCard title="Sisa Stock Produk" value={`${metrics.activeStock} Unit`} trend="Otomatis" icon={<FiPackage />} color="from-emerald-500 to-teal-500" />
         </section>
 
         {/* ================= KOMP. 3: GRAFIK & AKTIVITAS SISTEM ================= */}
@@ -254,10 +255,10 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ================= KOMP. 4: LIVE REVIEW FEED CARDS & PROMOS (MENGGANTIKAN TABEL GENERIK KAKU) ================= */}
+        {/* ================= KOMP. 4: LIVE REVIEW FEED CARDS & PROMOS ================= */}
         <section className="grid lg:grid-cols-3 gap-6">
           
-          {/* SEKSI A: MINI REVIEW FEED CARDS (Tampilan Komentar Berbentuk Card Mini) */}
+          {/* SEKSI A: MINI REVIEW FEED CARDS */}
           <div className="lg:col-span-2 bg-white border border-slate-100 p-6 rounded-3xl shadow-sm space-y-4">
             <div>
               <h3 className="font-extrabold text-slate-900 text-sm flex items-center gap-2">
@@ -280,7 +281,7 @@ export default function Dashboard() {
                         </span>
                       </div>
                       <p className="text-[10px] text-indigo-600 font-bold mb-2 truncate">
-                        📦 {rev.products?.name || "Produk Bloom"}
+                        📦 {rev.products?.nama_produk || rev.products?.name || "Produk Bloom"}
                       </p>
                       <p className="text-slate-600 italic line-clamp-3">
                         "{rev.komentar || "Hanya memberi rating bintang."}"
@@ -334,10 +335,11 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* ================= KOMP. 5: DETAIL STOK GUDANG ================= */}
+        {/* ================= KOMP. 5: DETAIL STOCK GUDANG ================= */}
+        {/* PERBAIKAN: Mengubah judul komponen menjadi Stock Terkini Alokasi Gudang */}
         <section className="bg-white border border-slate-100 p-6 rounded-3xl shadow-sm">
           <h3 className="font-extrabold text-slate-900 text-sm mb-4 flex items-center gap-2">
-            <FiList className="text-indigo-500" size={16} /> Stok Terkini Alokasi Gudang
+            <FiList className="text-indigo-500" size={16} /> Stock Terkini Alokasi Gudang
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {rawProducts.length > 0 ? rawProducts.map((prod, idx) => (
@@ -348,7 +350,8 @@ export default function Dashboard() {
                 </div>
                 <div className="mt-3 flex items-center justify-between bg-white px-2.5 py-1 rounded-xl border border-slate-100">
                   <span className="text-[10px] text-slate-500 font-medium">Tersedia</span>
-                  <span className="font-mono font-bold text-slate-900 text-xs">{prod.stok || prod.quantity || 0} Pcs</span>
+                  {/* PERBAIKAN: Prioritas render prod.stock daripada prod.stok */}
+                  <span className="font-mono font-bold text-slate-900 text-xs">{prod.stock || prod.stock_produk || prod.stok || prod.quantity || 0} Pcs</span>
                 </div>
               </div>
             )) : (
@@ -368,13 +371,14 @@ export default function Dashboard() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              {/* PERBAIKAN: Mengubah parameter handleQuickAction & Label teks tombol menjadi Stock */}
               <button 
-                onClick={() => handleQuickAction("add_stock", "Tambah Alokasi Stok")}
+                onClick={() => handleQuickAction("add_stock", "Tambah Alokasi Stock")}
                 disabled={actionLoading !== null}
                 className="flex items-center justify-center gap-2 p-3.5 bg-slate-50 border border-slate-200/70 hover:border-indigo-200 hover:bg-indigo-50/30 rounded-2xl text-xs font-bold text-slate-700 hover:text-indigo-600 transition-all active:scale-95 disabled:opacity-50"
               >
                 {actionLoading === "add_stock" ? <FiRefreshCw className="animate-spin" /> : <FiPlusCircle size={15} />}
-                Tambah Stok Baru
+                Tambah Stock Baru
               </button>
 
               <button 
