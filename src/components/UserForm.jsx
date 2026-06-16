@@ -24,7 +24,7 @@ export default function UserForm({ dataForm, handleChange, handleSubmit, loading
         <input
           type="text"
           name="username"
-          placeholder="e.g. adriana_beauty"
+          placeholder="e.g. Admin"
           value={dataForm.username}
           onChange={handleChange}
           disabled={loading}
