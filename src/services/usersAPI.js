@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Menggunakan Environment Variables agar aman dan dinamis di Localhost maupun Vercel
 const API_URL = import.meta.env.VITE_SUPABASE_URL 
   ? `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/users`
   : "https://bjehblhcuapgyuibidfe.supabase.co/rest/v1/users";
@@ -31,15 +30,11 @@ export const usersAPI = {
     await axios.patch(`${API_URL}?id=eq.${id}`, data, { headers });
   },
 
-  // 4. Fitur Login yang Sudah Diperbaiki (Langsung filter di database)
   async loginUser(email, password) {
-    // Memanfaatkan parameter eq (equal) bawaan Supabase PostgREST
     const response = await axios.get(
       `${API_URL}?email=eq.${email}&password=eq.${password}&select=*`,
       { headers }
     );
-
-    // Supabase akan langsung mengembalikan array berisi user yang cocok (atau array kosong jika salah)
     return response.data; 
   },
 
