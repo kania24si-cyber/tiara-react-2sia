@@ -1,3 +1,4 @@
+// src/pages/dashboard/UsersDetail.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { usersAPI } from "../services/usersAPI";
@@ -113,8 +114,9 @@ export default function UsersDetail() {
           </div>
 
           <h2 className="text-xl font-bold text-gray-800 mt-4 tracking-tight">{user.username}</h2>
+          {/* Mengubah nilai fallback cetak role dari "guest" menjadi "member" */}
           <span className={`inline-block mt-2 px-3.5 py-0.5 rounded text-[11px] font-bold tracking-wide uppercase border ${user.role === "admin" ? "bg-pink-50 text-[#ED346C] border-pink-100" : "bg-emerald-50 text-emerald-600 border-emerald-100"}`}>
-            {user.role || "guest"}
+            {user.role || "member"}
           </span>
         </div>
 

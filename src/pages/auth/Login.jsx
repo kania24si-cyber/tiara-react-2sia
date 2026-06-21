@@ -1,3 +1,4 @@
+// src/pages/Login.jsx
 import { AiOutlineLoading } from "react-icons/ai";
 import { MdOutlineError } from "react-icons/md";
 import { FiEye, FiEyeOff } from "react-icons/fi"; // Menggunakan ikon mata yang bersih
@@ -31,21 +32,26 @@ export default function Login() {
       setLoading(true);
       setError("");
 
-      const user = 
-      await usersAPI.loginUser(
+      const user = await usersAPI.loginUser(
         dataForm.email, 
         dataForm.password
       );
 
-      if (user.length === 0) {
+      if (!user || user.length === 0) {
         setError("Email atau Password salah!");
         return;
       }
 
+      const loggedInUser = user[0];
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("admin", JSON.stringify(user[0]));
+      localStorage.setItem("admin", JSON.stringify(loggedInUser));
 
-      navigate("/dashboard");
+      // Dialihkan berdasarkan peran (role) yang masuk
+      if (loggedInUser.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/member"); // Jika rolenya adalah 'member', arahkan ke rute khusus member
+      }
     } catch (err) {
       setError(err.message || "Gagal menghubungkan ke server.");
     } finally {
@@ -56,12 +62,17 @@ export default function Login() {
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn === "true") {
-      navigate("/dashboard");
+      const storedUser = JSON.parse(localStorage.getItem("admin") || "{}");
+      if (storedUser.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/member");
+      }
     }
   }, [navigate]);
 
   return (
-    <div className="min-h-[85vh] flex items-center justify-center px-4">
+    <div className="min-h-[85vh] flex items-center justify-center px-4 font-[var(--font-barlow)]">
       <div className="card-beauty w-full max-w-md p-8 rounded-2xl bg-white border border-pink-100/70 shadow-sm">
         
         {/* LOGO AREA (Small Placeholder) */}
@@ -93,7 +104,7 @@ export default function Login() {
         {loading && (
           <div className="bg-pink-50/50 border border-pink-100 mb-4 p-3.5 text-xs font-semibold text-[#ED346C] rounded-xl flex items-center gap-2">
             <AiOutlineLoading className="animate-spin text-base shrink-0" />
-            <span>Memvalidasi kredensial admin...</span>
+            <span>Memvalidasi kredensial pengguna...</span>
           </div>
         )}
 
@@ -111,7 +122,7 @@ export default function Login() {
                 name="email"
                 id="email"
                 className="input-beauty w-full text-xs py-2.5 px-3.5 focus:ring-1 focus:ring-pink-200"
-                placeholder="admin@beautybloom.com"
+                placeholder="email@beautybloom.com"
                 value={dataForm.email}
                 onChange={handleChange}
                 disabled={loading}
@@ -152,7 +163,7 @@ export default function Login() {
           {/* TOMBOL LOGIN UTAMA */}
           <div className="pt-2 w-full [&>button]:w-full [&>button]:py-3 [&>button]:rounded-xl [&>button]:text-xs [&>button]:font-semibold [&>button]:shadow-sm [&>button]:transition-all">
             <Button type="primary" disabled={loading}>
-              Login Ke Dashboard
+              Masuk ke Akun Anda
             </Button>
           </div>
         </form>

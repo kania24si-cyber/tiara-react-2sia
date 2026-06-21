@@ -14,7 +14,8 @@ import UserForm from "../components/UserForm";
 
 import { Trash2, Pencil, Eye, Sparkles, SearchX } from "lucide-react"; 
 
-const INITIAL_FORM_STATE = { username: "", email: "", password: "", role: "guest", avatar_url: "" };
+// Mengubah role default dari "guest" menjadi "member"
+const INITIAL_FORM_STATE = { username: "", email: "", password: "", role: "member", avatar_url: "" };
 const formatUserId = (id) => id ? `USR-${String(id).padStart(4, '0')}` : "";
 
 export default function Users() {
@@ -96,7 +97,7 @@ export default function Users() {
       username: user.username || "",
       email: user.email || "",
       password: user.password || "",
-      role: user.role || "guest",
+      role: user.role || "member", // Mengubah fallback role menjadi "member"
       avatar_url: user.avatar_url || "",
     });
     setShowForm(true);
@@ -144,14 +145,16 @@ export default function Users() {
           <SearchBar placeholder="Cari akun berdasarkan nama, email, atau kode (Contoh: USR-0002)..." value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <div className="w-full sm:w-64">
-          <SelectField value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)} options={[{ value: "all", label: "Semua Peran / Role" }, { value: "admin", label: "Admin 🛡️" }, { value: "guest", label: "Guest 👤" }]} />
+          {/* Mengubah opsi label dan value dari "guest" menjadi "member" */}
+          <SelectField value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)} options={[{ value: "all", label: "Semua Peran / Role" }, { value: "admin", label: "Admin 🛡️" }, { value: "member", label: "Member 👤" }]} />
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded-2xl border border-pink-100/40 shadow-sm"><StatsCard title="Total Users" value={users.length} color="text-[#ED346C] font-bold text-2xl" /></div>
         <div className="bg-white p-4 rounded-2xl border border-pink-100/40 shadow-sm"><StatsCard title="Administrator" value={users.filter((u) => u.role === "admin").length} color="text-purple-600 font-bold text-2xl" /></div>
-        <div className="bg-white p-4 rounded-2xl border border-pink-100/40 shadow-sm"><StatsCard title="Guest Access" value={users.filter((u) => u.role === "guest").length} color="text-emerald-600 font-bold text-2xl" /></div>
+        {/* Mengubah title dan filter perhitungan statistik dari guest menjadi "Member Access" */}
+        <div className="bg-white p-4 rounded-2xl border border-pink-100/40 shadow-sm"><StatsCard title="Member Access" value={users.filter((u) => u.role === "member").length} color="text-emerald-600 font-bold text-2xl" /></div>
       </div>
 
       <div className="bg-white rounded-2xl border border-pink-100/40 shadow-sm overflow-hidden">
@@ -177,7 +180,6 @@ export default function Users() {
                 columns={["User ID", "Profile Picture", "Account Identifier", "Email", "Role Otoritas", "Actions"]}
                 data={filteredUsers}
                 renderRow={(user) => {
-                  // Fallback logika: deteksi apakah isi avatar_url benar-benar tautan web utuh
                   const isValidUrl = user.avatar_url && user.avatar_url.startsWith("http");
                   const displayAvatar = isValidUrl 
                     ? user.avatar_url 

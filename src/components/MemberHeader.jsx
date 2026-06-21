@@ -1,32 +1,50 @@
-import React from "react";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { Heart, ShoppingBag } from "lucide-react";
 
 export default function MemberHeader({ user }) {
-  const isValidUrl = user?.avatar_url && user.avatar_url.startsWith("http");
-  const fallbackAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.username || "M")}&background=FCE7F3&color=ED346C&bold=true`;
+  const navigate = useNavigate();
+  const displayName = user?.username || "Bloom Member";
+  const avatarUrl = useMemo(() => {
+    if (user?.avatar_url?.startsWith("http")) return user.avatar_url;
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=FCE7F3&color=ED346C&bold=true`;
+  }, [displayName, user?.avatar_url]);
 
   return (
-    <header className="bg-white border-b border-pink-100/40 px-6 py-4 flex items-center justify-between sticky top-0 z-40 shadow-sm">
-      <div className="flex items-center gap-2 text-slate-400 font-medium text-xs">
-        <span>Sesi Akses:</span>
-        <span className="bg-pink-50 text-[#ED346C] font-bold px-2.5 py-0.5 rounded-full text-[10px] uppercase tracking-wide border border-pink-100">
-          ✨ {user?.role || "Member"}
-        </span>
-      </div>
-
-      <div className="flex items-center gap-3 text-right">
+    <header className="sticky top-16 z-40 border-b border-pink-100/70 bg-white/90 px-5 py-3 backdrop-blur-xl">
+      <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="font-bold text-slate-800 text-xs">{user?.username || "Glow Member"}</p>
-          <p className="text-[10px] text-gray-400 font-medium">{user?.email}</p>
+          <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[var(--color-pink-utama)]">
+            Welcome back
+          </p>
+          <h2 className="mt-0.5 text-sm font-extrabold text-slate-900">
+            {displayName}
+          </h2>
         </div>
-        <img 
-          src={isValidUrl ? user.avatar_url : fallbackAvatar} 
-          alt="Avatar" 
-          className="w-9 h-9 rounded-full object-cover border border-pink-100 bg-slate-50 shadow-sm"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = fallbackAvatar;
-          }}
-        />
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => navigate("/member/wishlist")}
+            className="hidden items-center gap-1.5 rounded-full border border-pink-100 bg-pink-50 px-3 py-2 text-xs font-bold text-[var(--color-pink-utama)] transition hover:bg-pink-100 sm:flex"
+          >
+            <Heart size={14} />
+            Wishlist
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate("/member/orders")}
+            className="hidden items-center gap-1.5 rounded-full bg-[var(--color-pink-utama)] px-3 py-2 text-xs font-bold text-white transition hover:bg-rose-700 sm:flex"
+          >
+            <ShoppingBag size={14} />
+            My Bag
+          </button>
+          <img
+            src={avatarUrl}
+            alt={displayName}
+            className="h-8 w-8 rounded-full border border-pink-100 bg-pink-50 object-cover"
+          />
+        </div>
       </div>
     </header>
   );

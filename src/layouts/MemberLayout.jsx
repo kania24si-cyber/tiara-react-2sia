@@ -1,13 +1,11 @@
 import { Suspense } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
-import MemberSidebar from "../components/MemberSidebar";
-import MemberHeader from "../components/MemberHeader";
+import MemberSidebar from "../components/MemberNavbar";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function MemberLayout() {
-  const isLoggedIn =
-    localStorage.getItem("isLoggedIn") === "true";
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   const user = JSON.parse(
     localStorage.getItem("admin") || "null"
@@ -25,15 +23,12 @@ export default function MemberLayout() {
 
   return (
     <div className="min-h-screen bg-[#FFFBFB] flex text-xs text-slate-800 antialiased font-sans">
-      {/* Sidebar */}
+      {/* Sidebar / Navbar Kiri */}
       <MemberSidebar />
 
       {/* Content Area */}
       <div className="flex-1 ml-[210px] min-h-screen flex flex-col">
-        {/* Header */}
-        <MemberHeader user={user} />
-
-        {/* Main Content */}
+        {/* Main Content (Langsung render isi konten halaman) */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto">
           <Suspense
             fallback={
