@@ -147,7 +147,7 @@ export default function GuestLandingShell() {
   return (
     <div className="text-slate-800 font-sans overflow-x-hidden">
       {/* Header dan Footer tidak perlu ditulis lagi disini karena 
-        sudah dirender otomatis oleh GuestLayout melalui <Outlet /> 
+        sudah dirender otomatis oleh GuestLandingHeader & GuestFooter di layout router.
       */}
 
       {/* Attention / Hero */}
