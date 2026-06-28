@@ -16,7 +16,7 @@ function Container({ children }) {
 
 function SoftPill({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-pink-500/10 border border-pink-200/60 px-4 py-1 text-[11px] font-extrabold uppercase tracking-widest text-[#ED346C]">
+    <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 border border-pink-border px-4 py-1 text-[11px] font-poppins font-extrabold uppercase tracking-widest text-[#e11d48]">
       {children}
     </span>
   );
@@ -39,16 +39,16 @@ export default function GuestLandingShell() {
       {
         tier: "Silver",
         discountPct: 5,
-        benefit: ["Akses katalog & promo member", "Diskon tambahan di hari spesial", "Prioritas info review produk"],
-        upgradeSyarat: "Belanja minimal 1x/minggu atau total 3 transaksi/bulan",
-        highlight: "Untuk mulai loyal & hemat",
+        benefit: ["Akses penuh ke katalog kecantikan & penawaran khusus", "Potongan harga spesial di bulan kelahiranmu", "Akses awal untuk membaca ulasan produk terbaru"],
+        upgradeSyarat: "Melakukan transaksi minimal 1x seminggu atau akumulasi 3 pesanan dalam sebulan.",
+        highlight: "Langkah Awal Menuju Pesona Sempurna",
       },
       {
         tier: "Gold",
         discountPct: 10,
-        benefit: ["Diskon lebih besar", "Akses promo flash lebih cepat", "Rekomendasi produk berbasis preferensi"],
-        upgradeSyarat: "Naik level setelah memenuhi 8 transaksi dalam 2 months",
-        highlight: "Untuk member paling aktif",
+        benefit: ["Diskon belanja lebih besar untuk semua produk", "Akses eksklusif ke *flash sale* produk terbatas", "Rekomendasi kurasi *shade* personal berbasis preferensi kulit"],
+        upgradeSyarat: "Otomatis naik level setelah menyelesaikan 8 transaksi dalam waktu 2 bulan.",
+        highlight: "Keistimewaan Maksimal untuk Loyalitas Terbaik",
       },
     ],
     [],
@@ -60,16 +60,16 @@ export default function GuestLandingShell() {
         id: "PRM-0007",
         kode: "BLOOM10",
         diskonPct: 10,
-        berlaku: "2026-07-15",
-        deskripsi: "Diskon 10% untuk member Gold (auto berlaku).",
+        berlaku: "15 Juli 2026",
+        deskripsi: "Nikmati potongan 10% khusus bagi pemilik keanggotaan Gold (otomatis terpotong saat checkout).",
         is_active: true,
       },
       {
         id: "PRM-0012",
         kode: "FLASH5",
         diskonPct: 5,
-        berlaku: "2026-07-01",
-        deskripsi: "Flash Sale: diskon 5% untuk semua member (terbatas).",
+        berlaku: "01 Juli 2026",
+        deskripsi: "Flash Sale Terbatas: Tambahan potongan 5% bagi seluruh tingkatan member resmi.",
         is_active: true,
       },
     ],
@@ -113,20 +113,20 @@ export default function GuestLandingShell() {
   const faqs = useMemo(
     () => [
       {
-        q: "Bagaimana cara menjadi member?",
-        a: "Klik tombol “Daftar Member Gratis Sekarang”, isi data, lalu kamu otomatis masuk ke tier Silver sebagai awal loyalty.",
+        q: "Bagaimana cara bergabung menjadi member?",
+        a: "Cukup klik tombol 'Join Club', isi profil kecantikan singkat Anda, dan Anda akan langsung terdaftar di level Silver untuk mulai mengumpulkan benefit.",
       },
       {
-        q: "Bagaimana cara mendapatkan diskon membership?",
-        a: "Diskon mengikuti tier kamu (Silver/Gold). Saat syarat kenaikan level terpenuhi, benefit akan naik otomatis di V3.",
+        q: "Bagaimana sistem penerapan diskon keanggotaan?",
+        a: "Potongan harga eksklusif akan langsung menyesuaikan dengan level keanggotaan aktif Anda (Silver atau Gold) secara otomatis di dalam keranjang belanja Anda.",
       },
       {
-        q: "Apakah poin membership bisa hangus?",
-        a: "Di roadmap awal, poin akan punya masa berlaku. Untuk V2, informasi ini masih konseptual (dummy) tanpa integrasi backend.",
+        q: "Apakah reward dan poin keanggotaan saya memiliki masa berlaku?",
+        a: "Setiap akumulasi *privilege reward* dirancang dengan masa aktif berkala demi kenyamanan Anda, detail masa tenggang tertera transparan pada dasbor akun Anda.",
       },
       {
-        q: "Apakah promo dapat digabung dengan diskon membership?",
-        a: "Konsepnya: sebagian promo bisa digabung dengan diskon tier, sebagian lain tidak. Pada V2 ini aturan masih dijelaskan secara umum (dummy).",
+        q: "Apakah voucher promosi dapat digabungkan dengan diskon level?",
+        a: "Sebagian besar penawaran istimewa kami dapat diakumulasikan langsung dengan diskon level keanggotaan Anda untuk keuntungan maksimal, kecuali dinyatakan berbeda pada syarat kupon.",
       },
     ],
     [],
@@ -145,31 +145,38 @@ export default function GuestLandingShell() {
   };
 
   return (
-    <div className="text-slate-800 font-sans overflow-x-hidden">
-      {/* Header dan Footer tidak perlu ditulis lagi disini karena 
-        sudah dirender otomatis oleh GuestLandingHeader & GuestFooter di layout router.
-      */}
+    <div className="text-gray-900 bg-[#fafafa] font-barlow overflow-x-hidden selection:bg-rose-100 selection:text-pink-utama">
+      
+      {/* 1. Hero Area (Menerima ID internal #home di dalam komponennya) */}
+      <div id="home">
+        <GuestHeroAttention navigate={navigate} scrollToId={scrollToId} />
+      </div>
 
-      {/* Attention / Hero */}
-      <GuestHeroAttention navigate={navigate} scrollToId={scrollToId} />
-
-      {/* Interest */}
+      {/* 2. Keunggulan Fitur */}
       <GuestFeaturesInterest navigate={navigate} />
 
-      {/* Desire */}
+      {/* 3. Katalog Produk Terlaris (#products) */}
       <GuestProductsDesire products={products} navigate={navigate} />
+      
+      {/* 4. Sistem Tingkat Loyalty (#membership) */}
       <GuestMembershipDesire memberships={memberships} navigate={navigate} />
+      
+      {/* 5. Daftar Kupon Spesial (#promo) */}
       <GuestPromoDesire promos={promos} navigate={navigate} />
+      
+      {/* 6. Jurnal Ulasan Komunitas (#reviews) */}
       <GuestReviewsDesire reviews={reviews} />
 
-      {/* FAQ */}
+      {/* 7. Pertanyaan Umum */}
       <GuestFAQ faqs={faqs} />
 
-      {/* Action */}
+      {/* 8. Undangan Bergabung Akhir (CTA) */}
       <GuestActionCTA navigate={navigate} scrollToId={scrollToId} SoftPill={SoftPill} Container={Container} />
 
-      {/* Contact */}
-      <GuestContact navigate={navigate} socials={socials} />
+      {/* 9. Hubungi Layanan Concierge (#contact) */}
+      <div id="contact">
+        <GuestContact navigate={navigate} socials={socials} />
+      </div>
     </div>
   );
 }
@@ -180,34 +187,34 @@ const featuredProducts = [
     name: "Velvet Lipstick",
     price: 75000,
     image: "/img/lipstick.jpg",
-    desc: "Tekstur lembut, warna intens, tahan lama.",
+    desc: "Tekstur selembut sutra dengan pigmentasi intens yang tahan lama sepanjang hari.",
   },
   {
     id: "cushion",
     name: "Bloom Cushion",
     price: 125000,
     image: "/img/foundation.jpg",
-    desc: "Coverage natural dengan finishing fresh.",
+    desc: "Menghasilkan *coverage* natural dengan sensasi ringan dan hasil akhir yang segar.",
   },
   {
     id: "foundation",
     name: "Soft Matte Foundation",
     price: 145000,
     image: "/img/foundation2.jpg",
-    desc: "Tampilan halus, tidak mudah luntur.",
+    desc: "Alas bedak cair berkarakter halus, menyerap minyak berlebih, dan tidak mudah luntur.",
   },
   {
     id: "serum",
     name: "Glow Serum",
     price: 99000,
     image: "/img/data.jpg",
-    desc: "Membantu kulit tampak lebih cerah & sehat.",
+    desc: "Konsentrat aktif yang membantu mencerahkan, menghidrasi, dan mengembalikan kesehatan kulit.",
   },
   {
     id: "blush",
     name: "Blush in Bloom",
     price: 82000,
     image: "/img/blush.jpg",
-    desc: "Pipi berwarna natural untuk look sehari-hari.",
+    desc: "Perona pipi bergradasi natural untuk rona manis alami yang segar sepanjang hari.",
   },
 ];
