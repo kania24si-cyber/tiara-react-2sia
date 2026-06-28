@@ -27,13 +27,9 @@ function App() {
   const Users = React.lazy(() => import("./pages/Users"));
 
   const ProductsDetail = React.lazy(() => import("./pages/ProductsDetail"));
-  const TransactionsDetail = React.lazy(
-    () => import("./pages/TransactionsDetail"),
-  );
+  const TransactionsDetail = React.lazy(() => import("./pages/TransactionsDetail"));
   const CustomersDetail = React.lazy(() => import("./pages/CustomersDetail"));
-  const MembershipsDetail = React.lazy(
-    () => import("./pages/MembershipsDetail"),
-  );
+  const MembershipsDetail = React.lazy(() => import("./pages/MembershipsDetail"));
   const PromosDetail = React.lazy(() => import("./pages/PromosDetail"));
   const ReviewsDetail = React.lazy(() => import("./pages/ReviewsDetail"));
   const UsersDetail = React.lazy(() => import("./pages/UsersDetail"));
@@ -47,37 +43,38 @@ function App() {
   const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
   const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
   const MemberLayout = React.lazy(() => import("./layouts/MemberLayout"));
+  const GuestLayout = React.lazy(() => import("./layouts/GuestLayout")); // <--- SUDAH DI-IMPORT
+
+  // ================= GUEST PAGES =================
+  const GuestLandingShell = React.lazy(() => import("./pages/Guest/GuestLandingShell"));
 
   // ================= MEMBER =================
-  const MemberDashboard = React.lazy(
-    () => import("./pages/member/MemberDashboard"),
-  );
-  const MemberProducts = React.lazy(
-    () => import("./pages/member/MemberProducts"),
-  );
-  const MemberProductDetail = React.lazy(
-    () => import("./pages/member/MemberProductDetail"),
-  );
+  const MemberDashboard = React.lazy(() => import("./pages/member/MemberDashboard"));
+  const MemberProducts = React.lazy(() => import("./pages/member/MemberProducts"));
+  const MemberProductDetail = React.lazy(() => import("./pages/member/MemberProductDetail"));
   const MemberOrders = React.lazy(() => import("./pages/member/MemberOrders"));
   const MemberPromos = React.lazy(() => import("./pages/member/MemberPromos"));
-  const MemberReviews = React.lazy(
-    () => import("./pages/member/MemberReviews"),
-  );
-  const MemberProfile = React.lazy(
-    () => import("./pages/member/MemberProfile"),
-  );
-const MemberWishlist = React.lazy(() => import("./pages/member/MemberWishlist"));
-const MemberAddress = React.lazy(() => import("./pages/member/MemberAddress"));
+  const MemberReviews = React.lazy(() => import("./pages/member/MemberReviews"));
+  const MemberProfile = React.lazy(() => import("./pages/member/MemberProfile"));
+  const MemberWishlist = React.lazy(() => import("./pages/member/MemberWishlist"));
+  const MemberAddress = React.lazy(() => import("./pages/member/MemberAddress"));
 
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
-        {/* ================= AUTH ================= */}
+        {/* ================= AUTH AREA ================= */}
         <Route path="/" element={<AuthLayout />}>
           <Route index element={<Login />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />
+        </Route>
+
+        {/* ================= GUEST LANDING (Menggunakan GuestLayout) ================= */}
+        <Route path="/landing" element={<GuestLayout />}>
+          <Route index element={<GuestLandingShell />} />
+          {/* Kamu bisa tambah route guest lain di sini nanti, misal: */}
+          {/* <Route path="about" element={<GuestAbout />} /> */}
         </Route>
 
         {/* ================= ADMIN AREA (Hanya Boleh Diakses Admin) ================= */}

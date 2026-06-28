@@ -181,6 +181,16 @@ export default function Login() {
           </p>
 
           <p className="text-xs font-medium text-gray-400">
+            Back to Landing?
+            <Link
+              to="/landing"
+              className="ml-1 font-bold text-[#ED346C] hover:text-[#d62659] transition-colors"
+            >
+              Explore BeautyBloom
+            </Link>
+          </p>
+
+          <p className="text-xs font-medium text-gray-400">
             Belum punya akun?
             <Link
               to="/register"

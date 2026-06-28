@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
-import MemberSidebar from "../components/MemberNavbar";
+import MemberSidebar from "../components/member_component/MemberNavbar";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function MemberLayout() {
