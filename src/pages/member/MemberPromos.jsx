@@ -12,6 +12,12 @@ export default function MemberPromos() {
 
   useEffect(() => {
     loadPromos();
+
+    const intervalId = setInterval(() => {
+      loadPromos();
+    }, 6000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const loadPromos = async () => {

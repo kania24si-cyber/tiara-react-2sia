@@ -76,11 +76,19 @@ export default function MemberDashboard() {
   useEffect(() => {
     loadMemberHome(true);
     const handleUpdate = () => loadMemberHome(false);
+
+    // realtime-like sync: event-based + polling
     window.addEventListener("member-data-updated", handleUpdate);
     window.addEventListener("storage", handleUpdate);
+
+    const intervalId = setInterval(() => {
+      loadMemberHome(false);
+    }, 6000);
+
     return () => {
       window.removeEventListener("member-data-updated", handleUpdate);
       window.removeEventListener("storage", handleUpdate);
+      clearInterval(intervalId);
     };
   }, [user.id]);
 

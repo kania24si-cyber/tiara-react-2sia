@@ -14,7 +14,7 @@ export default function MemberAddress() {
     note: ""
   });
 
-  useEffect(() => {
+  const loadAddress = () => {
     const stored = JSON.parse(localStorage.getItem(storageKey) || "{}");
     setForm({
       receiver: stored.receiver || user.username || "",
@@ -24,12 +24,38 @@ export default function MemberAddress() {
       postalCode: stored.postalCode || "",
       note: stored.note || ""
     });
+  };
+
+  useEffect(() => {
+    loadAddress();
+
+    const handleMemberDataChanged = () => {
+      loadAddress();
+    };
+
+    window.addEventListener("member-data-updated", handleMemberDataChanged);
+
+    const intervalId = setInterval(() => {
+      // realtime-like sync lintas tab
+      loadAddress();
+    }, 6000);
+
+    return () => {
+      window.removeEventListener("member-data-updated", handleMemberDataChanged);
+      clearInterval(intervalId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey, user.username]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem(storageKey, JSON.stringify(form));
+    // trigger realtime sync for other member pages/tabs
+    window.dispatchEvent(new Event("member-data-updated"));
+
     setSaved(true);
+
     setTimeout(() => setSaved(false), 1800);
   };
 

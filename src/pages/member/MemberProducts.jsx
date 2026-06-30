@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+
 import { productsAPI } from "../../services/productsAPI";
 import { promosAPI } from "../../services/promosAPI";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +15,9 @@ const notifyMemberDataChanged = () => window.dispatchEvent(new Event("member-dat
 export default function MemberProducts() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("admin") || "{}");
-  const [categoryFilter, setCategoryFilter] = useState(() => sessionStorage.getItem("m_prod_filter_cat") || "all");
-  const [search, setSearch] = useState(() => sessionStorage.getItem("m_prod_filter_search") || "");
+  const [categoryFilter, setCategoryFilter] = useState(() => "all");
+  const [search, setSearch] = useState(() => "");
+
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -27,6 +29,13 @@ export default function MemberProducts() {
   useEffect(() => {
     loadProducts();
     setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
+
+    const intervalId = setInterval(() => {
+      loadProducts();
+      setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
+    }, 6000);
+
+    return () => clearInterval(intervalId);
   }, [user.id]);
 
   useEffect(() => {
@@ -59,12 +68,18 @@ export default function MemberProducts() {
   }, [products]);
 
   const filteredProducts = useMemo(() => {
+    const q = (search || "").trim().toLowerCase();
     return products.filter((product) => {
-      const matchesCategory = categoryFilter === "all" || product.category === categoryFilter;
+      const matchesCategory =
+        categoryFilter === "all" ||
+        String(product.category).toLowerCase() === String(categoryFilter).toLowerCase();
+
       const matchesSearch =
-        product.nama_produk?.toLowerCase().includes(search.toLowerCase()) ||
-        product.brand?.toLowerCase().includes(search.toLowerCase()) ||
-        formatProductId(product.id).toLowerCase().includes(search.toLowerCase());
+        q.length === 0 ||
+        product.nama_produk?.toLowerCase().includes(q) ||
+        product.brand?.toLowerCase().includes(q) ||
+        formatProductId(product.id).toLowerCase().includes(q);
+
       return matchesCategory && matchesSearch;
     });
   }, [products, categoryFilter, search]);
@@ -162,7 +177,7 @@ export default function MemberProducts() {
             <div className="flex-1">
               <SearchBar
                 value={search}
-                onChange={setSearch}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Cari nama kosmetik, brand, atau ID produk..."
               />
             </div>
@@ -178,6 +193,7 @@ export default function MemberProducts() {
       </section>
 
       {loading && <LoadingSpinner text="Sinkronisasi produk kecantikan..." />}
+
 
       {!loading && error && (
         <div className="rounded-2xl border border-rose-100 bg-rose-50 p-5 text-center text-xs font-bold text-rose-600">

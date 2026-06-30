@@ -19,13 +19,32 @@ export default function MemberProfile() {
     role: "guest"
   });
 
+  const handleMemberDataChanged = () => {
+    // refresh profile from localStorage/usersAPI
+    loadUserProfile();
+  };
+
   useEffect(() => {
     if (currentSession.id) {
       loadUserProfile();
     } else {
       setError("Sesi kadaluwarsa, silakan masuk kembali.");
     }
+
+    window.addEventListener("member-data-updated", handleMemberDataChanged);
+
+    const intervalId = setInterval(() => {
+      // realtime-like sync lintas tab
+      if (currentSession?.id) loadUserProfile();
+    }, 6000);
+
+    return () => {
+      window.removeEventListener("member-data-updated", handleMemberDataChanged);
+      clearInterval(intervalId);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   const loadUserProfile = async () => {
     try {
@@ -58,7 +77,11 @@ export default function MemberProfile() {
       const updated = { ...currentSession, username: dataForm.username, avatar_url: dataForm.avatar_url };
       localStorage.setItem("admin", JSON.stringify(updated));
       
+      // trigger realtime sync for other member pages/tabs
+      window.dispatchEvent(new Event("member-data-updated"));
+
       setSuccess("Profil Anda sukses di-update!");
+
       setTimeout(() => setSuccess(""), 3000);
     } catch (err) {
       setError("Gagal memperbarui database.");

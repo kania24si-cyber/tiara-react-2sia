@@ -12,6 +12,12 @@ export default function MemberReviews() {
 
   useEffect(() => {
     loadReviews();
+
+    const intervalId = setInterval(() => {
+      loadReviews();
+    }, 6000);
+
+    return () => clearInterval(intervalId);
   }, [user.id]);
 
   const loadReviews = () => {

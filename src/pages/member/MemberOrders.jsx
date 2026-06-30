@@ -40,6 +40,15 @@ export default function MemberOrders() {
     loadOrders();
     const storedReviews = JSON.parse(localStorage.getItem(`reviews_${user.id}`) || "[]");
     setReviews(storedReviews);
+
+    const intervalId = setInterval(() => {
+      // realtime-like sync dari storage (mis. update di tab lain)
+      loadOrders();
+      const updatedReviews = JSON.parse(localStorage.getItem(`reviews_${user.id}`) || "[]");
+      setReviews(updatedReviews);
+    }, 6000);
+
+    return () => clearInterval(intervalId);
   }, [user.id]);
 
   const loadOrders = () => {
