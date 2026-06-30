@@ -183,7 +183,7 @@ export default function Login() {
           <p className="text-xs font-medium text-gray-400">
             Back to Landing?
             <Link
-              to="/landing"
+              to="/"
               className="ml-1 font-bold text-[#ED346C] hover:text-[#d62659] transition-colors"
             >
               Explore BeautyBloom

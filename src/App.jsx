@@ -62,19 +62,19 @@ function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
+        {/* ================= GUEST LANDING (Menggunakan GuestLayout) ================= */}
+        <Route path="/" element={<GuestLayout />}>
+          <Route index element={<GuestLandingShell />} />
+          <Route path="landing" element={<Navigate to="/" replace />} />
+          {/* Kamu bisa tambah route guest lain di sini nanti, misal: */}
+          {/* <Route path="about" element={<GuestAbout />} /> */}
+        </Route>
+
         {/* ================= AUTH AREA ================= */}
-        <Route path="/" element={<AuthLayout />}>
-          <Route index element={<Login />} />
+        <Route element={<AuthLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />
-        </Route>
-
-        {/* ================= GUEST LANDING (Menggunakan GuestLayout) ================= */}
-        <Route path="/landing" element={<GuestLayout />}>
-          <Route index element={<GuestLandingShell />} />
-          {/* Kamu bisa tambah route guest lain di sini nanti, misal: */}
-          {/* <Route path="about" element={<GuestAbout />} /> */}
         </Route>
 
         {/* ================= ADMIN AREA (Hanya Boleh Diakses Admin) ================= */}
@@ -128,7 +128,7 @@ function App() {
         </Route>
 
         {/* ================= FALLBACK ================= */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );

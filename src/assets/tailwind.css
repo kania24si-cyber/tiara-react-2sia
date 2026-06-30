@@ -47,34 +47,34 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .input-beauty {
-  @apply border border-gray-200 bg-white px-5 py-3 rounded-full outline-none w-full text-sm transition;
+  @apply border border-gray-200 bg-white px-5 py-3 rounded-full outline-none w-full text-sm transition-all duration-300;
 }
 
 .input-beauty:focus {
-  @apply border-pink-400 shadow-md;
+  @apply border-[#ED346C]/60 shadow-[0_0_15px_rgba(237,52,108,0.15)];
 }
 
 .btn-pink {
-  @apply bg-[#e11d48] text-white px-8 py-3 rounded-md font-medium hover:scale-105 transition;
+  background: linear-gradient(135deg, #FF7B7B, #ED346C);
+  @apply text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-md shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/35;
 }
 
 .btn-blue {
-  @apply bg-[#0E64D2] text-white px-8 py-3 rounded-md font-medium hover:scale-105 transition;
+  @apply bg-[#0E64D2] text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition;
 }
 
 .btn-outline {
-  @apply border border-pink-500 text-pink-500 px-8 py-3 rounded-full hover:bg-pink-50 transition;
+  @apply border border-[#ED346C] text-[#ED346C] px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:bg-pink-50/50 hover:scale-[1.03] active:scale-95;
 }
 
 .hero-beauty {
-  background: linear-gradient(90deg,#f43f5e,#ec4899);
+  background: linear-gradient(90deg, #f43f5e, #ec4899);
   @apply rounded-none text-white py-28 text-center;
 }
 
 .card-beauty {
-  @apply bg-white rounded-lg border border-gray-100 overflow-hidden transition shadow-sm hover:shadow-xl hover:-translate-y-1;
+  @apply bg-white rounded-3xl border border-pink-100/50 overflow-hidden transition-all duration-300 shadow-[0_4px_20px_-4px_rgba(244,221,221,0.4)] hover:shadow-[0_12px_30px_-6px_rgba(237,52,108,0.18)] hover:-translate-y-1.5;
 }
-
 
 .cart-btn {
   @apply bg-[#e11d48] text-white w-full py-3 rounded-xl mt-4 hover:bg-pink-700 transition;
@@ -103,7 +103,6 @@ h1,h2,h3,h4,h5,h6 {
 .menu-active {
   @apply bg-pink-500 text-white;
 }
-
 
 /* warna dashboard */
 @theme {
@@ -166,11 +165,9 @@ h1,h2,h3,h4,h5,h6 {
   @apply border border-[#E90D0D] text-[#E90D0D] px-4 py-2 rounded-md text-sm hover:bg-red-50 transition;
 }
 
-
 .widget-card {
   @apply bg-white rounded-xl p-4 shadow-sm border border-gray-100;
 }
-
 
 .topbar {
   @apply flex items-center justify-between bg-white px-6 py-4 shadow-sm rounded-xl;
@@ -182,4 +179,304 @@ h1,h2,h3,h4,h5,h6 {
 
 .subtitle-dashboard {
   @apply text-sm text-gray-500;
+}
+
+/* Premium Animations and Glassmorphism */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.03); }
+}
+
+.animate-float {
+  animation: float 4s infinite ease-in-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
+
+.text-gradient-pink {
+  @apply bg-gradient-to-r from-[#FF7B7B] via-[#ED346C] to-[#e11d48] bg-clip-text text-transparent;
+}
+
+.glass-premium {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(244, 221, 221, 0.25);
+}
+
+.glass-premium-glow {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(253, 116, 122, 0.2);
+  box-shadow: 0 10px 40px -10px rgba(237, 52, 108, 0.15);
+}
+
+/* ========== SHIMMER ANIMATION ========== */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes shimmer-slide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* ========== GRADIENT MESH BACKGROUND ========== */
+@keyframes mesh-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-mesh-pink {
+  background: linear-gradient(-45deg, #fff0f5, #fce7f3, #ffe4e6, #fdf2f8, #fff1f2);
+  background-size: 400% 400%;
+  animation: mesh-shift 12s ease infinite;
+}
+
+.gradient-mesh-dark {
+  background: linear-gradient(-45deg, #0f0c1a, #1a0a14, #110918, #1c0d1a, #0d0a18);
+  background-size: 400% 400%;
+  animation: mesh-shift 12s ease infinite;
+}
+
+/* ========== ANIMATED GRADIENT TEXT ========== */
+.text-gradient-animated {
+  background: linear-gradient(90deg, #FF7B7B, #ED346C, #c2185b, #ED346C, #FF7B7B);
+  background-size: 300% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ========== PREMIUM CARD VARIANTS ========== */
+.card-premium {
+  @apply bg-white rounded-[28px] border border-pink-100/60 overflow-hidden transition-all duration-500;
+  box-shadow: 0 4px 24px -4px rgba(244, 221, 221, 0.5), 0 1px 4px rgba(237, 52, 108, 0.06);
+}
+
+.card-premium:hover {
+  box-shadow: 0 20px 40px -8px rgba(237, 52, 108, 0.22), 0 4px 12px rgba(237, 52, 108, 0.1);
+  transform: translateY(-4px);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  @apply rounded-[28px] border border-white/60 transition-all duration-300;
+  box-shadow: 0 8px 32px rgba(244, 221, 221, 0.3), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.card-gold {
+  background: linear-gradient(135deg, #3d1f5e 0%, #ED346C 60%, #e11d48 100%);
+  @apply rounded-[28px] border border-pink-400/30 overflow-hidden transition-all duration-300;
+  box-shadow: 0 20px 60px -10px rgba(237, 52, 108, 0.5), 0 4px 16px rgba(61, 31, 94, 0.3);
+}
+
+/* ========== TIER BADGE ========== */
+.badge-silver {
+  background: linear-gradient(135deg, #94a3b8, #cbd5e1);
+  @apply text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full;
+}
+
+.badge-gold {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  @apply text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full;
+}
+
+.badge-platinum {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  @apply text-white text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full;
+}
+
+/* ========== PROGRESS BAR ========== */
+.progress-bar-track {
+  @apply w-full h-2 rounded-full bg-pink-100 overflow-hidden;
+}
+
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-700;
+  background: linear-gradient(90deg, #FF7B7B, #ED346C);
+}
+
+/* ========== GLOW EFFECTS ========== */
+.glow-pink {
+  box-shadow: 0 0 20px rgba(237, 52, 108, 0.35), 0 0 40px rgba(237, 52, 108, 0.15);
+}
+
+.glow-pink-sm {
+  box-shadow: 0 0 12px rgba(237, 52, 108, 0.3);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 20px rgba(237, 52, 108, 0.4);
+}
+
+/* ========== HOVER UNDERLINE ANIMATED ========== */
+.nav-link-animated {
+  @apply relative text-gray-600 transition-colors duration-200 hover:text-pink-utama;
+}
+
+.nav-link-animated::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300;
+  background: linear-gradient(90deg, #FF7B7B, #ED346C);
+}
+
+.nav-link-animated:hover::after {
+  @apply w-full;
+}
+
+/* ========== VOUCHER CARD ========== */
+.voucher-card {
+  @apply bg-white rounded-[28px] border border-dashed border-pink-200 overflow-hidden transition-all duration-300 relative;
+  box-shadow: 0 4px 20px rgba(244, 221, 221, 0.4);
+}
+
+.voucher-card:hover {
+  @apply border-pink-utama;
+  box-shadow: 0 12px 30px rgba(237, 52, 108, 0.18);
+}
+
+/* ========== MEMBER STATS CARD ========== */
+.stat-card {
+  @apply bg-white rounded-2xl p-5 border border-pink-100/50 transition-all duration-300;
+  box-shadow: 0 2px 12px rgba(244, 221, 221, 0.4);
+}
+
+.stat-card:hover {
+  box-shadow: 0 8px 24px rgba(237, 52, 108, 0.15);
+  @apply -translate-y-0.5;
+}
+
+/* ========== ICON BOX GRADIENT ========== */
+.icon-gradient-pink {
+  background: linear-gradient(135deg, #FF7B7B, #ED346C);
+  @apply w-10 h-10 rounded-2xl flex items-center justify-center text-white shrink-0;
+}
+
+.icon-gradient-soft {
+  background: linear-gradient(135deg, #fce7f3, #ffe4e6);
+  @apply w-10 h-10 rounded-2xl flex items-center justify-center text-pink-utama shrink-0;
+}
+
+/* ========== SECTION HEADER ========== */
+.section-pill {
+  @apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-widest;
+  background: linear-gradient(135deg, rgba(255,123,123,0.12), rgba(237,52,108,0.12));
+  color: #ED346C;
+  border: 1px solid rgba(237, 52, 108, 0.2);
+}
+
+/* ========== MEMBERSHIP PROGRESS ========== */
+@keyframes progress-fill {
+  from { width: 0%; }
+  to { width: var(--progress-width); }
+}
+
+.animate-progress {
+  animation: progress-fill 1.2s ease-out forwards;
+}
+
+/* ========== HERO GRADIENT ========== */
+.hero-guest-bg {
+  background: radial-gradient(ellipse at 10% 50%, rgba(255, 123, 123, 0.12) 0%, transparent 50%),
+              radial-gradient(ellipse at 90% 20%, rgba(237, 52, 108, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(244, 221, 221, 0.25) 0%, transparent 60%),
+              #fafafa;
+}
+
+.hero-member-bg {
+  background: radial-gradient(ellipse at 20% 50%, rgba(255, 123, 123, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 0%, rgba(237, 52, 108, 0.12) 0%, transparent 50%),
+              linear-gradient(135deg, #fff5f7 0%, #ffffff 50%, #fff0f5 100%);
+}
+
+/* ========== SCROLL FADE IN ========== */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-up; animation-duration: 0.6s; animation-timing-function: ease-out; }
+.animate-fade-up-delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-up; animation-duration: 0.6s; animation-timing-function: ease-out; }
+.animate-fade-up-delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-up; animation-duration: 0.6s; animation-timing-function: ease-out; }
+.animate-fade-up-delay-4 { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; animation-name: fade-up; animation-duration: 0.6s; animation-timing-function: ease-out; }
+
+/* ========== BTN PREMIUM (with shimmer hover) ========== */
+.btn-pink-premium {
+  background: linear-gradient(135deg, #FF7B7B, #ED346C);
+  @apply text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-[1.04] active:scale-95 relative overflow-hidden;
+  box-shadow: 0 8px 24px rgba(237, 52, 108, 0.35);
+}
+
+.btn-pink-premium::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: none;
+}
+
+.btn-pink-premium:hover::after {
+  animation: shimmer-slide 0.6s ease forwards;
+}
+
+/* ========== HEADER SCROLLED STATE ========== */
+.header-scrolled {
+  @apply shadow-lg;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* ========== MEMBER SIDEBAR ENHANCED ========== */
+.member-nav-active {
+  background: linear-gradient(135deg, #FF7B7B, #ED346C);
+  @apply text-white rounded-full shadow-sm;
+  box-shadow: 0 4px 12px rgba(237, 52, 108, 0.3);
+}
+
+/* ========== STAR RATING ========== */
+@keyframes star-pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.star-animate {
+  animation: star-pop 0.3s ease-out forwards;
+}
+
+/* ========== PINK PRIMARY VARS ========== */
+@theme {
+  --color-pink-primary-1: #FF7B7B;
+  --color-pink-primary-2: #ED346C;
+  --color-pink-primary-3: #FD747A;
+  --shadow-pink-sm: 0 4px 14px rgba(237, 52, 108, 0.25);
+  --shadow-pink-md: 0 8px 24px rgba(237, 52, 108, 0.35);
+  --shadow-pink-lg: 0 20px 60px rgba(237, 52, 108, 0.3);
 }
