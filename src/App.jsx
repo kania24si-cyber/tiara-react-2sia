@@ -33,6 +33,7 @@ function App() {
   const PromosDetail = React.lazy(() => import("./pages/PromosDetail"));
   const ReviewsDetail = React.lazy(() => import("./pages/ReviewsDetail"));
   const UsersDetail = React.lazy(() => import("./pages/UsersDetail"));
+  const AdminProfile = React.lazy(() => import("./pages/AdminProfile"));
 
   // ================= AUTH =================
   const Login = React.lazy(() => import("./pages/auth/Login"));
@@ -103,6 +104,7 @@ function App() {
           <Route path="reviews/:id" element={<ReviewsDetail />} />
           <Route path="users" element={<Users />} />
           <Route path="users/:id" element={<UsersDetail />} />
+          <Route path="profile" element={<AdminProfile />} />
         </Route>
 
         {/* ================= MEMBER AREA (Hanya Boleh Diakses Member) ================= */}

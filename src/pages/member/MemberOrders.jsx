@@ -43,7 +43,7 @@ export default function MemberOrders() {
 
     const intervalId = setInterval(() => {
       // realtime-like sync dari storage (mis. update di tab lain)
-      loadOrders();
+      loadOrders(true);
       const updatedReviews = JSON.parse(localStorage.getItem(`reviews_${user.id}`) || "[]");
       setReviews(updatedReviews);
     }, 6000);
@@ -51,11 +51,11 @@ export default function MemberOrders() {
     return () => clearInterval(intervalId);
   }, [user.id]);
 
-  const loadOrders = () => {
-    setLoading(true);
+  const loadOrders = (silent = false) => {
+    if (!silent) setLoading(true);
     const stored = JSON.parse(localStorage.getItem(`orders_${user.id}`) || "[]");
     setOrders(stored);
-    setLoading(false);
+    if (!silent) setLoading(false);
   };
 
   const handleProcessOrder = (orderId, targetStatus) => {

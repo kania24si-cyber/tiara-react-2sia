@@ -39,19 +39,26 @@ export default function Memberships() {
   const [selectedId, setSelectedId] = useState(null);
   const [dataForm, setDataForm] = useState(INITIAL_FORM_STATE);
 
-  useEffect(() => { loadMemberships(); }, []);
+  useEffect(() => {
+    loadMemberships();
+    const interval = setInterval(() => {
+      loadMemberships(true);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => { sessionStorage.setItem("membership_filter_level", levelFilter); }, [levelFilter]);
   useEffect(() => { sessionStorage.setItem("membership_filter_search", search); }, [search]);
 
-  const loadMemberships = async () => {
+  const loadMemberships = async (silent = false) => {
     try {
-      setLoading(true); setError("");
+      if (!silent) setLoading(true);
+      setError("");
       const data = await membershipsAPI.fetchMemberships();
       setMemberships(data);
     } catch (err) {
       setError("Gagal memuat data membership dari server");
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 

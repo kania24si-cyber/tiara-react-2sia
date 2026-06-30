@@ -15,10 +15,7 @@ export default function GuestFooter() {
             {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm"
-                  style={{ background: "linear-gradient(135deg, #FF7B7B, #ED346C)" }}>
-                  <span className="text-white font-poppins text-xs font-extrabold">BB</span>
-                </div>
+                <img src="/img/bb.png" alt="BeautyBloom Logo" className="w-9 h-9 object-contain rounded-xl shadow-sm" />
                 <span className="font-poppins text-base font-extrabold tracking-tight text-black">
                   Beauty<span className="text-gradient-pink">Bloom</span>
                 </span>

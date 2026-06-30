@@ -73,11 +73,9 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center px-4 bg-[#FFFBFB]">
       <div className="card-beauty w-full max-w-md p-8 shadow-lg bg-white border border-pink-100 rounded-3xl animate-fade-in">
         
-        {/* LOGO AREA (Small Placeholder) */}
+        {/* LOGO AREA (Image Logo) */}
         <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center border border-pink-100">
-                <span className="text-2xl">🌸</span>
-            </div>
+          <img src="/img/bb.png" alt="BeautyBloom Logo" className="w-16 h-16 object-contain rounded-2xl shadow-sm border border-pink-50 p-1" />
         </div>
 
         {/* TITLE */}

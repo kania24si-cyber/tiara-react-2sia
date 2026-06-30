@@ -31,7 +31,7 @@ export default function MemberProducts() {
     setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
 
     const intervalId = setInterval(() => {
-      loadProducts();
+      loadProducts(true);
       setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
     }, 6000);
 
@@ -46,16 +46,16 @@ export default function MemberProducts() {
     sessionStorage.setItem("m_prod_filter_search", search);
   }, [search]);
 
-  const loadProducts = async () => {
+  const loadProducts = async (silent = false) => {
     try {
-      setLoading(true);
+      if (!silent) setLoading(true);
       setError("");
       const data = await productsAPI.fetchProducts();
       setProducts(data || []);
     } catch (err) {
       setError("Gagal memuat katalog produk kecantikan.");
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
@@ -218,7 +218,7 @@ export default function MemberProducts() {
               <div>
                 <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-pink-50 border border-pink-50">
                   <img
-                    src={product.image || "https://placehold.co/300?text=BLOOM"}
+                    src={product.image || "/img/bb.png"}
                     alt={product.nama_produk}
                     className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                   />

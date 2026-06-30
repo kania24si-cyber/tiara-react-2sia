@@ -5,11 +5,9 @@ export default function Forgot() {
     <div className="min-h-[85vh] flex items-center justify-center px-4">
       <div className="card-beauty w-full max-w-md p-8 rounded-2xl bg-white border border-pink-100/70 shadow-sm">
         
-        {/* LOGO AREA (Small Placeholder) */}
+        {/* LOGO AREA (Image Logo) */}
         <div className="flex justify-center mb-4">
-          <div className="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center border border-pink-100">
-            <span className="text-2xl">🌸</span>
-          </div>
+          <img src="/img/bb.png" alt="BeautyBloom Logo" className="w-16 h-16 object-contain rounded-2xl shadow-sm border border-pink-50 p-1" />
         </div>
 
         {/* BRANDING TITLE */}

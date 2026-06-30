@@ -39,19 +39,25 @@ export default function Customers() {
   const [selectedId, setSelectedId] = useState(null);
   const [dataForm, setDataForm] = useState(INITIAL_FORM_STATE);
 
-  useEffect(() => { loadCustomers(); }, []);
+  useEffect(() => {
+    loadCustomers();
+    const interval = setInterval(() => {
+      loadCustomers(true);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
   useEffect(() => { sessionStorage.setItem("customer_filter_gender", genderFilter); }, [genderFilter]);
   useEffect(() => { sessionStorage.setItem("customer_filter_search", search); }, [search]);
 
-  const loadCustomers = async () => {
+  const loadCustomers = async (silent = false) => {
     try {
-      setLoading(true);
+      if (!silent) setLoading(true);
       const data = await customersAPI.fetchCustomers();
       setCustomers(data);
     } catch (err) {
       setError("Gagal memuat data customer");
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 

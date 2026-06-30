@@ -12,7 +12,18 @@ export default function MemberWishlist() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
+    const updateWishlist = () => {
+      setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
+    };
+    updateWishlist();
+    window.addEventListener("storage", updateWishlist);
+    window.addEventListener("member-data-updated", updateWishlist);
+    const intervalId = setInterval(updateWishlist, 6000);
+    return () => {
+      window.removeEventListener("storage", updateWishlist);
+      window.removeEventListener("member-data-updated", updateWishlist);
+      clearInterval(intervalId);
+    };
   }, [user.id]);
 
   const removeWishlist = (productId) => {

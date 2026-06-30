@@ -110,11 +110,7 @@ export default function MemberNavbar() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
           {/* Brand */}
           <button type="button" onClick={() => navigate("/member")} className="flex shrink-0 items-center gap-3 text-left">
-            <span className="relative flex h-10 w-10 items-center justify-center rounded-full text-white shadow-sm overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #FF7B7B, #ED346C)" }}>
-              <MdShoppingBag size={20} />
-              <div className="absolute inset-0 animate-shimmer opacity-30" />
-            </span>
+            <img src="/img/bb.png" alt="BLOOM Logo" className="h-10 w-10 object-contain rounded-full border border-pink-100 shadow-sm" />
             <span>
               <span className="block font-poppins text-xl font-black tracking-wide text-slate-950">BLOOM</span>
               <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-pink-utama">Member Store</span>

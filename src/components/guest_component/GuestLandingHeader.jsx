@@ -36,13 +36,7 @@ export default function GuestLandingHeader({ navigate, scrollToId }) {
 
           {/* Brand Logo & Tagline */}
           <button type="button" onClick={() => scrollToId("home")} className="flex items-center gap-3">
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-[#FF7B7B] via-pink-utama to-[#ED346C] flex items-center justify-center shadow-md glow-pink-sm">
-              <span className="text-white font-poppins text-sm font-extrabold tracking-wider">BB</span>
-              {/* Shimmer overlay */}
-              <div className="absolute inset-0 rounded-xl overflow-hidden">
-                <div className="absolute inset-0 animate-shimmer opacity-40" />
-              </div>
-            </div>
+            <img src="/img/bb.png" alt="BeautyBloom Logo" className="w-10 h-10 object-contain rounded-xl shadow-md" />
             <div className="text-left">
               <p className="font-poppins text-xs font-extrabold uppercase tracking-widest text-gradient-pink">
                 BeautyBloom

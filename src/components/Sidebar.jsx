@@ -75,11 +75,14 @@ export default function Sidebar() {
         `}</style>
 
         {/* LOGO */}
-        <div>
-          <h1 className="text-2xl font-black tracking-wider">BLOOM 🌸</h1>
-          <p className="text-[10px] uppercase tracking-widest text-white/70 font-medium mt-0.5">
-            Beauty Dashboard
-          </p>
+        <div className="flex items-center gap-3">
+          <img src="/img/bb.png" alt="BLOOM Logo" className="w-10 h-10 object-contain rounded-xl bg-white/10 p-1 border border-white/20 shadow-sm" />
+          <div>
+            <h1 className="text-xl font-black tracking-wider leading-none">BLOOM</h1>
+            <p className="text-[10px] uppercase tracking-widest text-white/70 font-medium mt-0.5">
+              Beauty Dashboard
+            </p>
+          </div>
         </div>
 
         {/* MENU */}

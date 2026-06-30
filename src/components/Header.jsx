@@ -9,10 +9,17 @@ export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    const data = localStorage.getItem("admin");
-    if (data) {
-      setAdmin(JSON.parse(data));
-    }
+    const loadAdminData = () => {
+      const data = localStorage.getItem("admin");
+      if (data) {
+        setAdmin(JSON.parse(data));
+      }
+    };
+    loadAdminData();
+    window.addEventListener("admin-profile-updated", loadAdminData);
+    return () => {
+      window.removeEventListener("admin-profile-updated", loadAdminData);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -83,7 +90,13 @@ export default function Header() {
                 </div>
 
                 <div className="py-1">
-                  <button className="w-full flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-gray-600 hover:text-[#ED346C] hover:bg-pink-50/50 rounded-xl transition-all font-sans">
+                  <button
+                    onClick={() => {
+                      setShowMenu(false);
+                      navigate("/dashboard/profile");
+                    }}
+                    className="w-full flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-gray-600 hover:text-[#ED346C] hover:bg-pink-50/50 rounded-xl transition-all font-sans"
+                  >
                     <FiUser size={14} className="text-gray-400" /> Profil Saya
                   </button>
                   

@@ -14,21 +14,21 @@ export default function MemberPromos() {
     loadPromos();
 
     const intervalId = setInterval(() => {
-      loadPromos();
+      loadPromos(true);
     }, 6000);
 
     return () => clearInterval(intervalId);
   }, []);
 
-  const loadPromos = async () => {
+  const loadPromos = async (silent = false) => {
     try {
-      setLoading(true);
+      if (!silent) setLoading(true);
       const data = await promosAPI.fetchPromos();
       setPromos((data || []).filter((promo) => promo.is_active));
     } catch (err) {
       console.error(err);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
 
