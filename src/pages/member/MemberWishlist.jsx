@@ -122,7 +122,6 @@ export default function MemberWishlist() {
                     onClick={() => navigate(`/member/products/${product.id}`)}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-pink-utama)] px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-rose-700"
                   >
-                    <ShoppingCart size={14} />
                     Order
                   </button>
                   <button

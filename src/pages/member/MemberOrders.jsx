@@ -232,13 +232,12 @@ export default function MemberOrders() {
                       <button
                         type="button"
                         onClick={() => openReviewModal(order)}
-                        className={`rounded-xl px-3 py-2 text-xs font-bold flex items-center gap-1.5 transition-colors ${
+                        className={`rounded-xl px-3 py-2 text-xs font-bold transition-colors ${
                           reviewed
                             ? "bg-slate-100 text-slate-600 border border-slate-200"
                             : "bg-pink-50 text-[var(--color-pink-utama)] border border-pink-100 hover:bg-pink-100"
                         }`}
                       >
-                        <MessageSquareHeart size={13} />
                         {reviewed ? "Lihat Review Anda" : "Tulis Ulasan Kosmetik"}
                       </button>
                     )}

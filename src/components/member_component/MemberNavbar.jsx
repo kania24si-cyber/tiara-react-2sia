@@ -70,6 +70,7 @@ export default function MemberNavbar() {
   const handleLogout = () => {
     localStorage.clear();
     sessionStorage.clear();
+    window.dispatchEvent(new Event("auth-state-changed"));
     navigate("/login", { replace: true });
   };
 
@@ -120,11 +121,9 @@ export default function MemberNavbar() {
           {/* Desktop Nav */}
           <nav className="hidden items-center justify-center gap-1 rounded-full border border-pink-100 bg-pink-50/50 p-1 shadow-sm md:flex">
             <NavLink to="/member" end className={navClass}>
-              <MdHome size={15} />
               Home
             </NavLink>
             <NavLink to="/member/products" className={navClass}>
-              <MdShoppingBag size={15} />
               Shop
             </NavLink>
           </nav>
@@ -173,19 +172,16 @@ export default function MemberNavbar() {
                   {/* Menu Items */}
                   <div className="mt-2 grid gap-0.5">
                     {[
-                      { icon: MdManageAccounts, label: "Ganti Profile", path: "/member/profile" },
-                      { icon: MdLocationOn, label: "Edit Alamat", path: "/member/address" },
-                      { icon: MdRateReview, label: "Review Saya", path: "/member/reviews" },
-                    ].map(({ icon: Icon, label, path }) => (
+                      { label: "Ganti Profile", path: "/member/profile" },
+                      { label: "Edit Alamat", path: "/member/address" },
+                      { label: "Review Saya", path: "/member/reviews" },
+                    ].map(({ label, path }) => (
                       <button
                         key={path}
                         type="button"
                         onClick={() => { setOpenProfileMenu(false); navigate(path); }}
-                        className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-left text-xs font-bold text-slate-600 hover:bg-pink-50 hover:text-pink-utama transition-colors"
+                        className="flex items-center gap-3 rounded-2xl px-4 py-2.5 text-left text-xs font-bold text-slate-600 hover:bg-pink-50 hover:text-pink-utama transition-colors"
                       >
-                        <div className="icon-gradient-soft !w-7 !h-7 !rounded-xl">
-                          <Icon size={14} />
-                        </div>
                         {label}
                       </button>
                     ))}
@@ -193,11 +189,8 @@ export default function MemberNavbar() {
                     <button
                       type="button"
                       onClick={handleLogout}
-                      className="flex items-center gap-3 rounded-2xl px-3 py-2.5 text-left text-xs font-bold text-rose-600 hover:bg-rose-50 transition-colors"
+                      className="flex items-center gap-3 rounded-2xl px-4 py-2.5 text-left text-xs font-bold text-rose-600 hover:bg-rose-50 transition-colors"
                     >
-                      <div className="w-7 h-7 rounded-xl bg-rose-50 flex items-center justify-center shrink-0">
-                        <MdLogout size={14} />
-                      </div>
                       Logout
                     </button>
                   </div>
@@ -210,8 +203,8 @@ export default function MemberNavbar() {
 
       {/* Mobile Nav Strip */}
       <nav className="flex items-center gap-1 overflow-x-auto border-b border-pink-50 bg-white px-3 py-2 shadow-sm md:hidden">
-        <NavLink to="/member" end className={navClass}><MdHome size={14} />Home</NavLink>
-        <NavLink to="/member/products" className={navClass}><MdShoppingBag size={14} />Shop</NavLink>
+        <NavLink to="/member" end className={navClass}>Home</NavLink>
+        <NavLink to="/member/products" className={navClass}>Shop</NavLink>
       </nav>
     </header>
   );

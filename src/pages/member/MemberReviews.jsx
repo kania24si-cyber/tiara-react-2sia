@@ -118,8 +118,7 @@ export default function MemberReviews() {
               </div>
 
               {/* VERIFIED LABEL */}
-              <div className="mt-4 pt-2 border-t border-gray-50 text-[10px] text-emerald-600 font-bold tracking-wide flex items-center gap-1">
-                <CheckCircle size={12} className="text-emerald-500" />
+              <div className="mt-4 pt-2 border-t border-gray-50 text-[10px] text-emerald-600 font-bold tracking-wide">
                 Terverifikasi Member Bloom
               </div>
             </div>

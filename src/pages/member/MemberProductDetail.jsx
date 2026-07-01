@@ -180,7 +180,6 @@ export default function MemberProductDetail() {
           {/* LOWER ACTIONS */}
           <div className="space-y-4 border-t border-slate-100 pt-5">
             <div className="flex items-center gap-2 rounded-xl bg-emerald-50/70 p-3 text-[11px] font-bold text-emerald-700">
-              <ShieldCheck size={16} className="text-emerald-600 shrink-0" />
               100% Produk Original & Terverifikasi BPOM Aman
             </div>
 
@@ -190,7 +189,6 @@ export default function MemberProductDetail() {
                 onClick={() => setShowOrderForm(true)}
                 className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-pink-utama)] py-3 text-xs font-extrabold text-white shadow-sm transition hover:bg-rose-700"
               >
-                <ShoppingCart size={14} />
                 Pesan Sekarang
               </button>
               <button

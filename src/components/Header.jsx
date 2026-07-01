@@ -25,6 +25,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("admin");
+    window.dispatchEvent(new Event("auth-state-changed"));
     navigate("/login");
   };
 

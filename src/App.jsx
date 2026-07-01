@@ -1,20 +1,38 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./assets/tailwind.css";
 import Loading from "./components/Loading";
 
 function App() {
-  // Ambil data user saat ini untuk Route Guarding berdasarkan role
-  const getAuthUser = () => {
+  const [authState, setAuthState] = useState(() => {
     try {
-      return JSON.parse(localStorage.getItem("admin") || "{}");
+      const u = JSON.parse(localStorage.getItem("admin") || "{}");
+      const logged = localStorage.getItem("isLoggedIn") === "true";
+      return { isLoggedIn: logged, user: u };
     } catch {
-      return {};
+      return { isLoggedIn: false, user: {} };
     }
-  };
+  });
 
-  const user = getAuthUser();
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  useEffect(() => {
+    const handleAuthChange = () => {
+      try {
+        const u = JSON.parse(localStorage.getItem("admin") || "{}");
+        const logged = localStorage.getItem("isLoggedIn") === "true";
+        setAuthState({ isLoggedIn: logged, user: u });
+      } catch {
+        setAuthState({ isLoggedIn: false, user: {} });
+      }
+    };
+    window.addEventListener("auth-state-changed", handleAuthChange);
+    window.addEventListener("storage", handleAuthChange);
+    return () => {
+      window.removeEventListener("auth-state-changed", handleAuthChange);
+      window.removeEventListener("storage", handleAuthChange);
+    };
+  }, []);
+
+  const { isLoggedIn, user } = authState;
 
   // ================= ADMIN PAGES =================
   const Dashboard = React.lazy(() => import("./pages/Dashboard"));

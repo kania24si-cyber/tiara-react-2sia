@@ -184,7 +184,7 @@ export default function MemberProducts() {
             <div className="w-full sm:w-48">
               <SelectField
                 value={categoryFilter}
-                onChange={setCategoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
                 options={categories}
               />
             </div>
@@ -256,7 +256,6 @@ export default function MemberProducts() {
                     onClick={() => openOrderModal(product)}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-pink-utama)] px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-rose-700"
                   >
-                    <ShoppingCart size={13} />
                     Tambah Ke Bag
                   </button>
                 </div>

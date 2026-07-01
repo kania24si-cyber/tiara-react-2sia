@@ -45,6 +45,7 @@ export default function Login() {
       const loggedInUser = user[0];
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("admin", JSON.stringify(loggedInUser));
+      window.dispatchEvent(new Event("auth-state-changed"));
 
       // Dialihkan berdasarkan peran (role) yang masuk
       if (loggedInUser.role === "admin") {

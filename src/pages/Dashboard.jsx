@@ -195,7 +195,7 @@ export default function Dashboard() {
             </button>
 
             <button 
-              onClick={() => { localStorage.clear(); navigate("/"); }} 
+              onClick={() => { localStorage.clear(); window.dispatchEvent(new Event("auth-state-changed")); navigate("/"); }} 
               className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-extrabold text-xs rounded-2xl shadow-md shadow-rose-500/10 transition-all transform active:scale-95 ml-auto md:ml-0"
             >
               <FiLogOut size={13} /> Keluar

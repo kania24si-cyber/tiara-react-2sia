@@ -16,10 +16,9 @@ import { promosAPI } from "../../services/promosAPI";
 
 const notifyMemberDataChanged = () => window.dispatchEvent(new Event("member-data-updated"));
 
-function StatCard({ icon, value, label, color = "text-pink-utama" }) {
+function StatCard({ value, label, color = "text-pink-utama" }) {
   return (
     <div className="stat-card text-left">
-      <div className="icon-gradient-soft mb-3">{icon}</div>
       <p className={`font-poppins text-2xl font-black ${color}`}>{value}</p>
       <p className="font-barlow text-[10px] font-bold uppercase tracking-wider text-abu mt-0.5">{label}</p>
     </div>
@@ -138,9 +137,9 @@ export default function MemberDashboard() {
             {/* Level Badge */}
             <div className={levelColor || "section-pill"}>
               {!levelColor ? (
-                <span className="section-pill"><MdStars size={12} /> {level}</span>
+                <span className="section-pill">{level}</span>
               ) : (
-                <span className={levelColor}><MdStars size={10} className="inline mr-1" />{level}</span>
+                <span className={levelColor}>{level}</span>
               )}
             </div>
 
@@ -161,14 +160,14 @@ export default function MemberDashboard() {
                 onClick={() => navigate("/member/products")}
                 className="btn-pink-premium inline-flex items-center gap-2 !rounded-full !px-6 !py-3 text-xs font-black uppercase tracking-wider cursor-pointer"
               >
-                Mulai Belanja <MdArrowForward size={14} />
+                Mulai Belanja
               </button>
               <button
                 type="button"
                 onClick={() => navigate("/member/promos")}
                 className="btn-outline inline-flex items-center gap-2 !rounded-full !px-6 !py-3 text-xs font-black uppercase tracking-wider cursor-pointer"
               >
-                <MdLocalOffer size={14} className="text-pink-utama" /> Lihat Voucher
+                Lihat Voucher
               </button>
             </div>
 
@@ -270,10 +269,10 @@ export default function MemberDashboard() {
 
       {/* ===== STATS CARDS ===== */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <StatCard icon={<MdStars size={20} />} value={points} label="Poin Loyalitas" color="text-pink-utama" />
-        <StatCard icon={<MdShoppingBag size={20} />} value={orders.length} label="Total Order" color="text-slate-900" />
-        <StatCard icon={<MdFavorite size={20} />} value={wishlist.length} label="Wishlist" color="text-slate-900" />
-        <StatCard icon={<MdStar size={20} />} value={reviews.length} label="Review Ditulis" color="text-slate-900" />
+        <StatCard value={points} label="Poin Loyalitas" color="text-pink-utama" />
+        <StatCard value={orders.length} label="Total Order" color="text-slate-900" />
+        <StatCard value={wishlist.length} label="Wishlist" color="text-slate-900" />
+        <StatCard value={reviews.length} label="Review Ditulis" color="text-slate-900" />
       </div>
 
       {/* ===== PRODUCTS & REVIEWS ===== */}
@@ -388,7 +387,7 @@ export default function MemberDashboard() {
               <div className="mt-3 flex flex-wrap gap-2">
                 {activePromos.slice(0, 3).map((promo) => (
                   <span key={promo.id} className="font-poppins text-[10px] font-extrabold uppercase tracking-widest bg-white/10 border border-white/20 text-white px-3 py-1 rounded-full">
-                    {promo.kode} — {promo.discount_pct || promo.diskonPct || 0}% OFF
+                    {promo.kode_promo} — {promo.persentase_diskon}% OFF
                   </span>
                 ))}
               </div>
@@ -399,7 +398,6 @@ export default function MemberDashboard() {
             onClick={() => navigate("/member/promos")}
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-xs font-black uppercase tracking-wider text-slate-900 shadow-md transition hover:bg-pink-50"
           >
-            <MdTrendingUp size={14} className="text-pink-utama" />
             Buka Katalog Voucher
           </button>
         </div>
