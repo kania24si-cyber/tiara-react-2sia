@@ -13,11 +13,12 @@ import PromoCard from "../components/PromoCard"; // Import komponen baru ✨
 
 import { Sparkles, SearchX } from "lucide-react";
 
+// 🛠️ FIX ERROR UNCONTROLLED: Semua field wajib memiliki default nilai string/angka dasar (bukan undefined/null)
 const INITIAL_FORM_STATE = {
   kode_promo: "",
   persentase_diskon: "",
   minimal_transaksi: "",
-  tanggal_kedaluwarsa: new Date().toISOString().split("T")[0],
+  tanggal_kadaluarsa: new Date().toISOString().split("T")[0],
   is_active: true
 };
 
@@ -63,11 +64,22 @@ export default function Promos() {
     try {
       setLoading(true); setError(""); setSuccess("");
 
+      // 🛠️ FIX UNIQUE CONSTRAINT: Ambil data form TANPA membawa properti id bawaan state edit
+      const payload = {
+        kode_promo: (dataForm.kode_promo || "").toUpperCase().trim(),
+        persentase_diskon: parseInt(dataForm.persentase_diskon, 10) || 0,
+        minimal_transaksi: parseInt(dataForm.minimal_transaksi, 10) || 0,
+        tanggal_kadaluarsa: dataForm.tanggal_kadaluarsa, 
+        is_active: dataForm.is_active === true || dataForm.is_active === "true"
+      };
+
       if (isEdit) {
-        await promosAPI.updatePromo(selectedId, dataForm);
-        setSuccess("Kupon diskon berhasil diperbarui ✨");
+        // Saat update, kita butuh selectedId sebagai filter query, bukan dimasukkan ke dalam payload bodi
+        await promosAPI.updatePromo(selectedId, payload);
+        setSuccess("Kupon diskon berhasil diperbarui");
       } else {
-        await promosAPI.createPromo(dataForm);
+        // Saat create, payload bersih tanpa properti 'id' sehingga Supabase bisa melakukan Auto Increment secara normal
+        await promosAPI.createPromo(payload);
         setSuccess("Promo Baru Berhasil Diterbitkan! 🎟️");
       }
 
@@ -75,7 +87,7 @@ export default function Promos() {
       await loadPromos();
       setTimeout(() => setSuccess(""), 3000);
     } catch (err) {
-      setError(err.message || "Terjadi kesalahan saat menyimpan data");
+      setError(err.response?.data?.message || err.message || "Terjadi kesalahan saat menyimpan data");
     } finally {
       setLoading(false);
     }
@@ -99,12 +111,14 @@ export default function Promos() {
   const handleEdit = (promo) => {
     setIsEdit(true);
     setSelectedId(promo.id);
+    
+    // 🛠️ FIX UNCONTROLLED: Berikan fallback "" jika salah satu field database bernilai null/kosong
     setDataForm({
-      kode_promo: promo.kode_promo,
-      persentase_diskon: promo.persentase_diskon,
-      minimal_transaksi: promo.minimal_transaksi,
-      tanggal_kedaluwarsa: promo.tanggal_kedaluwarsa,
-      is_active: promo.is_active,
+      kode_promo: promo.kode_promo || "",
+      persentase_diskon: promo.persentase_diskon ?? "",
+      minimal_transaksi: promo.minimal_transaksi ?? "",
+      tanggal_kadaluarsa: promo.tanggal_kadaluarsa || promo.tanggal_kedaluwarsa || new Date().toISOString().split("T")[0],
+      is_active: promo.is_active ?? true,
     });
     setShowForm(true);
   };
@@ -149,7 +163,7 @@ export default function Promos() {
 
       {/* POPUP MODAL FORM */}
       {showForm && (
-        <FormModal title={isEdit ? "Modify Promo Rules 📝" : "Issue New Promo Coupon 🌸"} onClose={closeModal}>
+        <FormModal title={isEdit ? "Modify Promo Rules 📝" : " New Promo Coupon "} onClose={closeModal}>
           <PromoForm dataForm={dataForm} handleChange={handleChange} handleSubmit={handleSubmit} loading={loading} isEdit={isEdit} />
         </FormModal>
       )}

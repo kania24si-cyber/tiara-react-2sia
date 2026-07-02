@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Pencil, Trash2, Eye, Calendar, DollarSign, Percent } from "lucide-react";
+import { Pencil, Trash2, Eye } from "lucide-react";
+
 
 export default function PromoCard({ promo, formatPromoId, onEdit, onDelete }) {
   return (
@@ -27,19 +28,17 @@ export default function PromoCard({ promo, formatPromoId, onEdit, onDelete }) {
           <h3 className="font-mono font-black text-xl tracking-wider text-slate-800 uppercase group-hover:text-[#ED346C] transition-colors">
             {promo.kode_promo}
           </h3>
-          <p className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent flex items-center gap-1">
-            <Percent size={20} className="text-purple-500" /> {promo.persentase_diskon}% OFF
+          <p className="text-2xl font-extrabold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+            {promo.persentase_diskon}% OFF
           </p>
         </div>
 
         {/* Detail Ketentuan Voucher */}
         <div className="space-y-2 pt-3 border-t border-dashed border-slate-100 text-xs">
           <div className="flex items-center gap-2 text-slate-600 font-medium">
-            <DollarSign size={14} className="text-slate-400" />
             <span>Min. Belanja: <strong className="text-slate-700">Rp {Number(promo.minimal_transaksi).toLocaleString("id-ID")}</strong></span>
           </div>
           <div className="flex items-center gap-2 text-slate-500">
-            <Calendar size={14} className="text-slate-400" />
             <span>Berlaku s/d: <span className="font-medium text-slate-600">{promo.tanggal_kedaluwarsa}</span></span>
           </div>
         </div>

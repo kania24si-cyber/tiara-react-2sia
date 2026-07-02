@@ -67,7 +67,7 @@ export default function GuestPromoDesire({ promos, navigate }) {
                         {p.kode}
                       </h3>
                       <span className={`text-xs font-bold transition-all duration-300 ${copied === p.kode ? "text-green-500" : "text-abu group-hover/code:text-pink-utama"}`}>
-                        {copied === p.kode ? "✓ Disalin!" : "📋 Salin"}
+                        {copied === p.kode ? "✓ Disalin!" : "Salin"}
                       </span>
                     </button>
 

@@ -10,11 +10,8 @@ export default function StatsCard({ title, value, trend, icon, color }) {
             {value}
           </h3>
         </div>
-        <div
-          className={`p-2.5 rounded-xl bg-gradient-to-br ${color} text-white text-base shadow-sm`}
-        >
-          {icon}
-        </div>
+        {/* Icon dihilangkan agar tampilan admin lebih minimal */}
+        <div />
       </div>
       <div className="mt-4 flex items-center gap-1.5 text-[9px] font-bold text-emerald-600 bg-emerald-50 w-fit px-2 py-0.5 rounded-md">
         <span className="w-1 h-1 rounded-full bg-emerald-500 anonymity animate-pulse"></span>
