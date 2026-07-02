@@ -1,43 +1,56 @@
 import { useEffect, useState } from "react";
 import { MapPin, Save } from "lucide-react";
+import { customersAPI } from "../../services/customersAPI";
 
 export default function MemberAddress() {
   const user = JSON.parse(localStorage.getItem("admin") || "{}");
-  const storageKey = `address_${user.id}`;
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Form untuk alamat pengiriman
+  // postalCode & note tetap ada agar UI tidak berubah, tapi saat update ke customers,
+  // kolom yang dipakai mengikuti schema customer: nama_lengkap, nomor_hp, kota_provinsi, alamat
+  // requirement: tampilkan “form customer” yang bisa diisi dari awal.
+  // Jadi field alamat tidak diisi kosong/tergantung data customer.
   const [form, setForm] = useState({
     receiver: "",
     phone: "",
     address: "",
     city: "",
     postalCode: "",
-    note: ""
+    note: "",
   });
 
-  const loadAddress = () => {
-    const stored = JSON.parse(localStorage.getItem(storageKey) || "{}");
-    setForm({
-      receiver: stored.receiver || user.username || "",
-      phone: stored.phone || "",
-      address: stored.address || "",
-      city: stored.city || "",
-      postalCode: stored.postalCode || "",
-      note: stored.note || ""
-    });
+  const loadCustomerAddress = async () => {
+    if (!user.id) return;
+
+    // Requirement: saat user masuk ke halaman edit alamat, TETAP tampilkan form customer yang KOSONG.
+    // Jadi, kita TIDAK lagi mengisi nilai dari Supabase ke form (receiver/phone/address/city).
+    // Field ini hanya akan tersisi setelah user mengetik + klik submit.
+
+    // Tetap buat loading supaya UI konsisten, tapi form dibiarkan kosong.
+    try {
+      setLoading(true);
+      await customersAPI.fetchCustomerById(user.id);
+    } catch (e) {
+      // ignore
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    loadAddress();
+    loadCustomerAddress();
 
     const handleMemberDataChanged = () => {
-      loadAddress();
+      loadCustomerAddress();
     };
 
     window.addEventListener("member-data-updated", handleMemberDataChanged);
 
     const intervalId = setInterval(() => {
       // realtime-like sync lintas tab
-      loadAddress();
+      loadCustomerAddress();
     }, 6000);
 
     return () => {
@@ -45,18 +58,32 @@ export default function MemberAddress() {
       clearInterval(intervalId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storageKey, user.username]);
+  }, [user.id, user.username]);
 
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    localStorage.setItem(storageKey, JSON.stringify(form));
-    // trigger realtime sync for other member pages/tabs
-    window.dispatchEvent(new Event("member-data-updated"));
+    if (!user.id) return;
 
-    setSaved(true);
+    try {
+      setLoading(true);
+      const payload = {
+        // update hanya kolom yang relevan dengan alamat
+        nama_lengkap: form.receiver,
+        nomor_hp: form.phone,
+        kota_provinsi: form.city,
+        alamat: form.address,
+      };
 
-    setTimeout(() => setSaved(false), 1800);
+      await customersAPI.updateCustomer(user.id, payload);
+
+      window.dispatchEvent(new Event("member-data-updated"));
+      setSaved(true);
+      setTimeout(() => setSaved(false), 1800);
+    } catch (e) {
+      // jika update gagal, biarkan saved tetap false
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
