@@ -1,24 +1,27 @@
-# TODO - BeautyBloom CRM Website - Landing Page V2 & Database Concept
+# TODO - FK customers -> users + auto username/user_id
 
-## Rencana
-1. Update `src/pages/LandingMVP.jsx` menjadi Landing Page V2:
-   - Header: menu Home, Products, Membership, Promo, Reviews, Contact + Login/Register
-   - Implement AIDA: Attention/Interest/Desire/Action
-   - Featured products: gambar, nama, harga, rating, tombol detail
-   - Membership section: Silver & Gold (diskon, benefit, syarat kenaikan level)
-   - Promo section: promo aktif (kode, diskon, masa berlaku, deskripsi)
-   - Review section: nama customer, rating, komentar, produk
-   - FAQ section: accordion sederhana
-   - CTA final dan footer rapi
-   - Tetap soft pink theme & responsif
-2. Tambahkan dokumentasi rancangan database konseptual:
-   - Table: users, products, customers, memberships, transactions, reviews, promos
-   - Relasi dan catatan integrasi Supabase V3
+## Step 1
+- Update `src/components/CustomerForm.jsx`:
+  - Tambah dropdown/field `username` (read-only untuk member; dropdown untuk admin via props)
+  - Tambah input hidden/readonly untuk `user_id`.
 
-## Checklist
-- [x] Approve: upgrade Landing page V2 dari `src/pages/LandingMVP.jsx`
-- [x] Step 1: Implement Landing V2 (AIDA + sections)
-- [x] Step 2: Buat dokumen database konseptual (markdown)
-- [ ] Step 3: Verifikasi build/dev tanpa error
+## Step 2
+- Update `src/pages/Customers.jsx` (Admin):
+  - Ambil daftar `users` dari `usersAPI`.
+  - Tambahkan dropdown memilih user berdasarkan `users.username`.
+  - Saat submit/create/update `customers`, sertakan `user_id` dan `username`.
 
+## Step 3
+- Update `src/pages/member/MemberAddress.jsx`:
+  - Pastikan payload update ke `customers` sertakan `user_id` (dan `username` jika tersedia).
+
+## Step 4
+- Update `src/services/customersAPI.js` jika perlu:
+  - Pastikan payload `user_id` dan `username` ikut terkirim saat create/update.
+
+## Step 5 (DB)
+- Sediakan SQL migration Supabase:
+  - pastikan kolom `customers.user_id` ada
+  - buat FK `customers.user_id -> users.id`
+  - (opsional) unique constraint untuk 1 customer per user.
 

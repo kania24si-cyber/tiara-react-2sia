@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { customersAPI } from "../services/customersAPI";
+import { usersAPI } from "../services/usersAPI";
 
 import PageHeader from "../components/PageHeader";
 import CustomerForm from "../components/CustomerForm";
@@ -15,6 +16,7 @@ import SelectField from "../components/SelectField";
 import { Pencil, Trash2, Eye, Sparkles, SearchX } from "lucide-react";
 
 const INITIAL_FORM_STATE = {
+  user_id: "",
   nama_lengkap: "",
   jenis_kelamin: "",
   tanggal_lahir: "",
@@ -38,6 +40,23 @@ export default function Customers() {
   const [isEdit, setIsEdit] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [dataForm, setDataForm] = useState(INITIAL_FORM_STATE);
+  const [users, setUsers] = useState([]);
+
+  // Fetch daftar akun member dari cloud database Supabase
+  useEffect(() => {
+    const loadUsers = async () => {
+      try {
+        const all = await usersAPI.fetchUsers();
+        // role hanya boleh: admin atau member
+        const members = (all || []).filter((u) => u.role === "member");
+        setUsers(members);
+      } catch (e) {
+        setUsers([]);
+      }
+    };
+    loadUsers();
+  }, []);
+
 
   useEffect(() => {
     loadCustomers();
@@ -46,6 +65,7 @@ export default function Customers() {
     }, 6000);
     return () => clearInterval(interval);
   }, []);
+
   useEffect(() => { sessionStorage.setItem("customer_filter_gender", genderFilter); }, [genderFilter]);
   useEffect(() => { sessionStorage.setItem("customer_filter_search", search); }, [search]);
 
@@ -61,6 +81,7 @@ export default function Customers() {
     }
   };
 
+  // Menangani penulisan form dinamis sesuai field name di database
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setDataForm({ ...dataForm, [name]: value });
@@ -72,11 +93,22 @@ export default function Customers() {
       setLoading(true);
       setError(""); setSuccess("");
 
+      // Membuat payload bersih untuk menghindari pengiriman properti id duplikat
+      const cleanPayload = {
+        user_id: dataForm.user_id,
+        nama_lengkap: dataForm.nama_lengkap,
+        jenis_kelamin: dataForm.jenis_kelamin,
+        tanggal_lahir: dataForm.tanggal_lahir,
+        nomor_hp: dataForm.nomor_hp,
+        alamat: dataForm.alamat,
+        kota_provinsi: dataForm.kota_provinsi
+      };
+
       if (isEdit) {
-        await customersAPI.updateCustomer(selectedId, dataForm);
+        await customersAPI.updateCustomer(selectedId, cleanPayload);
         setSuccess("Profil Member berhasil diperbarui ✨");
       } else {
-        await customersAPI.createCustomer(dataForm);
+        await customersAPI.createCustomer(cleanPayload);
         setSuccess("Member Baru Berhasil Terdaftar! 💄");
       }
 
@@ -95,25 +127,32 @@ export default function Customers() {
     try {
       setLoading(true);
       await customersAPI.deleteCustomer(id);
+      // refresh list agar UI update
       await loadCustomers();
+      setSuccess("Customer berhasil dihapus ✨");
+      setTimeout(() => setSuccess(""), 3000);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Gagal menghapus customer");
     } finally {
       setLoading(false);
     }
   };
 
+  // Memasukkan data ke form saat tombol edit ditekan
   const handleEdit = (customer) => {
     setIsEdit(true);
     setSelectedId(customer.id);
+
     setDataForm({
-      nama_lengkap: customer.nama_lengkap,
-      jenis_kelamin: customer.jenis_kelamin,
-      tanggal_lahir: customer.tanggal_lahir,
-      nomor_hp: customer.nomor_hp,
-      alamat: customer.alamat,
-      kota_provinsi: customer.kota_provinsi,
+      user_id: customer.user_id || "", 
+      nama_lengkap: customer.nama_lengkap || "",
+      jenis_kelamin: customer.jenis_kelamin || "",
+      tanggal_lahir: customer.tanggal_lahir || "",
+      nomor_hp: customer.nomor_hp || "",
+      alamat: customer.alamat || "",
+      kota_provinsi: customer.kota_provinsi || "",
     });
+
     setShowForm(true);
   };
 
@@ -171,7 +210,14 @@ export default function Customers() {
       {/* POPUP MODAL FORM */}
       {showForm && (
         <FormModal title={isEdit ? "Edit Member Profile 💄" : "Register New Member 🌸"} onClose={closeModal}>
-          <CustomerForm dataForm={dataForm} handleChange={handleChange} handleSubmit={handleSubmit} loading={loading} isEdit={isEdit} />
+          <CustomerForm 
+            dataForm={dataForm} 
+            handleChange={handleChange} 
+            handleSubmit={handleSubmit} 
+            loading={loading} 
+            isEdit={isEdit} 
+            userList={users} // Mengirim state users hasil fetch untuk dibaca di dropdown form
+          />
         </FormModal>
       )}
 

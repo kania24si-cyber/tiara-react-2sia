@@ -75,7 +75,7 @@ export default function UserForm({ dataForm, handleChange, handleSubmit, loading
         >
           <option value="">Pilih Role</option>
           <option value="admin">Admin</option>
-          <option value="guest">Guest</option>
+          <option value="member">Member</option>
         </select>
       </div>
 

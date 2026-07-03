@@ -117,6 +117,8 @@ export default function CustomersDetail() {
               </span>
             </div>
             <p className="text-xs font-mono font-bold text-[#ED346C] mt-1">{formatCustomerId(customer.id)}</p>
+            <p className="text-[11px] text-gray-500 font-semibold mt-0.5">@{customer.username || "unknown"}</p>
+
           </div>
         </div>
 

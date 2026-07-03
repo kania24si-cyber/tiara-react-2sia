@@ -68,6 +68,8 @@ export default function MemberAddress() {
       setLoading(true);
       const payload = {
         // update hanya kolom yang relevan dengan alamat
+        user_id: user.id,
+        username: user.username,
         nama_lengkap: form.receiver,
         nomor_hp: form.phone,
         kota_provinsi: form.city,
