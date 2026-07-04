@@ -13,9 +13,13 @@ const INITIAL_FORM_STATE = {
   alamat: "",
 };
 
+// [KONSEP] Parent Component & Component dengan Javascript (Logic)
+// Komponen ini menjadi Induk (Parent) yang mengelola logika bisnis (state, API data) dan merender Child Component.
 export default function MemberAddress() {
   const user = JSON.parse(localStorage.getItem("admin") || "{}");
 
+  // [KONSEP] useState
+  // Hook untuk menyimpan state lokal (saved, loading, dataForm) agar tampilan (UI) render ulang saat data berubah.
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -35,6 +39,8 @@ export default function MemberAddress() {
       if (!customer) return;
 
       setDataForm({
+        // customer form butuh user_id untuk relasi (di dropdown),
+        // untuk member aktif kita pakai user login.
         user_id: user.id,
         nama_lengkap: customer.nama_lengkap || "",
         jenis_kelamin: customer.jenis_kelamin || "",
@@ -50,6 +56,9 @@ export default function MemberAddress() {
     }
   };
 
+  // [KONSEP] useEffect
+  // Hook untuk menjalankan efek samping (side effects) seperti mengambil data dari API, 
+  // mengatur timer interval, dan menambahkan event listener global saat komponen dimuat.
   useEffect(() => {
     loadCustomerAddress();
 
@@ -100,8 +109,6 @@ export default function MemberAddress() {
       window.dispatchEvent(new Event("member-data-updated"));
       setSaved(true);
       setTimeout(() => setSaved(false), 1800);
-
-      setDataForm(INITIAL_FORM_STATE);
     } catch (e) {
       // jika update gagal
     } finally {
@@ -128,7 +135,8 @@ export default function MemberAddress() {
           </div>
         )}
 
-        {/* Gunakan form customer agar field & mapping schema masuk ke database customers */}
+        {/* [KONSEP] Props Component (Pemanggilan Child Component) */}
+        {/* Mengirimkan data (state) dan callback function (handleChange, handleSubmit) ke Child Component melalui properti (Props). */}
         <CustomerForm
           dataForm={{
             ...dataForm,
@@ -139,6 +147,7 @@ export default function MemberAddress() {
           loading={loading}
           isEdit={true}
           userList={[]}
+          hideUserSelect={true}
         />
       </div>
     </div>

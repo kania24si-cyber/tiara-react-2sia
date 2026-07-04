@@ -1,41 +1,47 @@
 import Button from "./Button";
 
+// [KONSEP] Child Component & Props Component
+// Komponen ini merupakan Anak (Child) dari Parent component.
+// Komponen ini tidak menyimpan state sendiri secara mandiri, melainkan menerima data dan aksi melalui parameters (Props) dari Parent Component.
 export default function CustomerForm({
   dataForm,
   handleChange,
   handleSubmit,
   loading,
   isEdit,
-  userList = [] // Menampung data baris akun dari usersAPI
+  userList = [], // Menampung data baris akun dari usersAPI
+  hideUserSelect = false
 }) {
   return (
     <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
       
       {/* Kolom Pilihan Akun (Username dari Tabel User) */}
-      <div className="flex flex-col gap-1 md:col-span-2">
-        <label className="text-xs text-gray-500 font-semibold">
-          {isEdit ? "Ubah Hubungan Akun (Username)" : "Pilih Akun Member (Username)"}
-        </label>
-        <select
-          name="user_id" 
-          value={dataForm.user_id || ""}
-          onChange={handleChange}
-          className="input-beauty"
-          required
-        >
-          <option value="">-- Pilih Username dari Database --</option>
-          {userList.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.username}
-            </option>
-          ))}
-        </select>
-        {isEdit && (
-          <p className="text-[10px] text-amber-600 mt-0.5">
-            *Sedang mengedit. Anda dapat memindahkan relasi customer ini ke username lain jika diperlukan.
-          </p>
-        )}
-      </div>
+      {!hideUserSelect && (
+        <div className="flex flex-col gap-1 md:col-span-2">
+          <label className="text-xs text-gray-500 font-semibold">
+            {isEdit ? "Ubah Hubungan Akun (Username)" : "Pilih Akun Member (Username)"}
+          </label>
+          <select
+            name="user_id" 
+            value={dataForm.user_id || ""}
+            onChange={handleChange}
+            className="input-beauty"
+            required
+          >
+            <option value="">-- Pilih Username dari Database --</option>
+            {userList.map((user) => (
+              <option key={user.id} value={user.id}>
+                {user.username}
+              </option>
+            ))}
+          </select>
+          {isEdit && (
+            <p className="text-[10px] text-amber-600 mt-0.5">
+              *Sedang mengedit. Anda dapat memindahkan relasi customer ini ke username lain jika diperlukan.
+            </p>
+          )}
+        </div>
+      )}
 
       {/* Nama Lengkap */}
       <div className="flex flex-col gap-1">

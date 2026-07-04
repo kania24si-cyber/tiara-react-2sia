@@ -33,12 +33,38 @@ export const customersAPI = {
     return response.data;
   },
 
-  async updateCustomer(id, data) {
-    await axios.patch(
-      `${API_URL}?id=eq.${id}`,
-      data,
-      { headers }
-    );
+  async updateCustomer(id, data, options = {}) {
+    const loggedInUser = JSON.parse(localStorage.getItem("admin") || "{}");
+    const isMember = options.byUserId || (loggedInUser.role === "member" && String(loggedInUser.id) === String(id));
+    
+    if (isMember) {
+      // Check if the customer record exists for user_id = id
+      const response = await axios.get(
+        `${API_URL}?user_id=eq.${id}&select=*`,
+        { headers }
+      );
+      if (response.data && response.data.length > 0) {
+        // Update existing record
+        await axios.patch(
+          `${API_URL}?user_id=eq.${id}`,
+          data,
+          { headers }
+        );
+      } else {
+        // Create new record
+        await axios.post(
+          API_URL,
+          { ...data, user_id: id },
+          { headers }
+        );
+      }
+    } else {
+      await axios.patch(
+        `${API_URL}?id=eq.${id}`,
+        data,
+        { headers }
+      );
+    }
   },
 
   async deleteCustomer(id) {
@@ -48,9 +74,13 @@ export const customersAPI = {
     );
   },
 
-  async fetchCustomerById(id) {
+  async fetchCustomerById(id, options = {}) {
+    const loggedInUser = JSON.parse(localStorage.getItem("admin") || "{}");
+    const isMember = options.byUserId || (loggedInUser.role === "member" && String(loggedInUser.id) === String(id));
+    const queryParam = isMember ? `user_id=eq.${id}` : `id=eq.${id}`;
+
     const response = await axios.get(
-      `${API_URL}?id=eq.${id}&select=*`,
+      `${API_URL}?${queryParam}&select=*`,
       { headers }
     );
 

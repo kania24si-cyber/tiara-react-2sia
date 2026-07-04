@@ -32,8 +32,13 @@ const ENDPOINTS = {
   transactions: "https://bjehblhcuapgyuibidfe.supabase.co/rest/v1/transactions"
 };
 
+// [KONSEP] Parent Component & Component dengan Javascript (Logic)
+// Komponen utama Dashboard yang mengelola data ringkasan analitik penjualan, data log aktivitas, dan merender grafik.
 export default function Dashboard() {
   const navigate = useNavigate();
+
+  // [KONSEP] useState
+  // Hook untuk menyimpan state data analitik (isFetching, actionLoading, rawProducts, rawPromos, metrics, logs) secara lokal.
   const [isFetching, setIsFetching] = useState(false);
   const [actionLoading, setActionLoading] = useState(null);
 
@@ -56,6 +61,8 @@ export default function Dashboard() {
   ]);
 
   // --- AMBIL DATA REAL-TIME MULTI-API ---
+  // [KONSEP] useEffect
+  // Hook efek samping untuk mengamankan halaman (autentikasi login) serta mengambil data dashboard secara paralel saat komponen di-mount.
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (isLoggedIn !== "true") navigate("/");

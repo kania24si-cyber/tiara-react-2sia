@@ -14,9 +14,17 @@ import {
   MdStars,
 } from "react-icons/md";
 
+// [KONSEP] Parent Component & Component dengan Javascript (Logic)
+// Komponen utama navigasi member yang menampung sub-elemen dan mengatur menu dropdown profil.
 export default function MemberNavbar() {
   const navigate = useNavigate();
+
+  // [KONSEP] useRef
+  // Digunakan untuk merujuk langsung ke node DOM fisik (dropdown profil) di browser guna melacak aksi klik di luar menu.
   const dropdownRef = useRef(null);
+
+  // [KONSEP] useState
+  // Hook untuk menyimpan state lokal interaktif (jumlah barang di cart, wishlist, dan visibilitas dropdown).
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
@@ -85,6 +93,8 @@ export default function MemberNavbar() {
     memberLevel === "Silver" ? "badge-silver" :
     "bg-pink-100 text-pink-utama text-[9px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full";
 
+  // [KONSEP] Nested Component (Komponen Bersarang)
+  // Komponen pembantu kecil yang dideklarasikan langsung di dalam file induknya untuk merender tombol ikon dengan badge counter secara konsisten.
   const HeaderIcon = ({ label, count, icon: Icon, onClick }) => (
     <button
       type="button"
