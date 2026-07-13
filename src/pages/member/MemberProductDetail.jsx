@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { productsAPI } from "../../services/productsAPI";
 import { promosAPI } from "../../services/promosAPI";
+import { reviewsAPI } from "../../services/reviewsAPI";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { ArrowLeft, Heart, ShieldCheck, ShoppingCart, X } from "lucide-react";
+import { ArrowLeft, Heart, MessageSquare, Star, X } from "lucide-react";
 
 const notifyMemberDataChanged = () => window.dispatchEvent(new Event("member-data-updated"));
 
@@ -18,6 +19,9 @@ export default function MemberProductDetail() {
   const [showOrderForm, setShowOrderForm] = useState(false);
   const [orderForm, setOrderForm] = useState({ quantity: 1, promoCode: "" });
   const [orderMessage, setOrderMessage] = useState("");
+  // === REVIEWS PER PRODUK ===
+  const [productReviews, setProductReviews] = useState([]);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
 
   useEffect(() => {
     const loadProductDetail = async () => {
@@ -36,6 +40,21 @@ export default function MemberProductDetail() {
 
     loadProductDetail();
     setWishlist(JSON.parse(localStorage.getItem(`wishlist_${user.id}`) || "[]"));
+
+    // Fetch ulasan produk ini dari Supabase
+    const loadProductReviews = async () => {
+      try {
+        setReviewsLoading(true);
+        const all = await reviewsAPI.fetchReviews();
+        const filtered = all.filter((r) => String(r.product_id) === String(id));
+        setProductReviews(filtered);
+      } catch (err) {
+        setProductReviews([]);
+      } finally {
+        setReviewsLoading(false);
+      }
+    };
+    loadProductReviews();
   }, [id, user.id]);
 
   const wishlistIds = useMemo(() => wishlist.map((item) => String(item.id)), [wishlist]);
@@ -206,6 +225,126 @@ export default function MemberProductDetail() {
           </div>
         </div>
       </div>
+
+      {/* ===================== SEKSI ULASAN PRODUK ===================== */}
+      <div className="mt-8 rounded-[28px] border border-pink-100 bg-white p-5 shadow-sm sm:p-7">
+        {/* Header seksi */}
+        <div className="mb-5 flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-pink-50">
+            <MessageSquare size={14} className="text-[var(--color-pink-utama)]" />
+          </div>
+          <div>
+            <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[var(--color-pink-utama)]">
+              Komunitas Bloom
+            </p>
+            <h2 className="font-[var(--font-poppins)] text-sm font-black text-slate-900">
+              Ulasan Pembeli Produk Ini
+            </h2>
+          </div>
+          {/* Badge jumlah ulasan */}
+          {productReviews.length > 0 && (
+            <span className="ml-auto rounded-full bg-pink-50 px-3 py-0.5 text-[10px] font-extrabold text-[var(--color-pink-utama)]">
+              {productReviews.length} ulasan
+            </span>
+          )}
+        </div>
+
+        {/* Rata-rata rating */}
+        {productReviews.length > 0 && (
+          <div className="mb-5 flex items-center gap-3 rounded-2xl border border-amber-100 bg-amber-50/50 p-4">
+            <p className="font-[var(--font-poppins)] text-3xl font-black text-amber-500">
+              {(productReviews.reduce((s, r) => s + Number(r.rating || 0), 0) / productReviews.length).toFixed(1)}
+            </p>
+            <div>
+              <div className="flex gap-0.5">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star
+                    key={s}
+                    size={14}
+                    className={s <= Math.round(productReviews.reduce((acc, r) => acc + Number(r.rating || 0), 0) / productReviews.length) ? "fill-amber-400 text-amber-400" : "fill-gray-100 text-gray-200"}
+                  />
+                ))}
+              </div>
+              <p className="mt-0.5 text-[10px] font-bold text-slate-500">
+                Berdasarkan {productReviews.length} ulasan terverifikasi
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Loading state */}
+        {reviewsLoading && (
+          <div className="py-6 text-center text-xs font-semibold text-slate-400">
+            Memuat ulasan...
+          </div>
+        )}
+
+        {/* Empty state */}
+        {!reviewsLoading && productReviews.length === 0 && (
+          <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed border-pink-100 bg-pink-50/30 py-10 text-center">
+            <Star size={22} className="text-pink-200" />
+            <p className="text-xs font-bold text-slate-400">Belum ada ulasan untuk produk ini.</p>
+            <p className="text-[10px] font-medium text-slate-300">Jadilah yang pertama memberi penilaian setelah pesananmu selesai!</p>
+          </div>
+        )}
+
+        {/* Daftar ulasan */}
+        {!reviewsLoading && productReviews.length > 0 && (
+          <div className="space-y-4">
+            {productReviews.map((review, index) => {
+              const customerName = review.customers?.nama_lengkap || `Pembeli`;
+              const initial = customerName?.[0]?.toUpperCase() || "B";
+              const gradients = [
+                "from-rose-400 to-pink-600",
+                "from-violet-400 to-purple-600",
+                "from-amber-400 to-orange-500",
+                "from-teal-400 to-emerald-500",
+              ];
+              const grad = gradients[index % gradients.length];
+              return (
+                <div
+                  key={review.id}
+                  className="flex gap-3 rounded-2xl border border-slate-50 bg-slate-50/50 p-4 transition hover:border-pink-100 hover:bg-white"
+                >
+                  {/* Avatar */}
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${grad} font-[var(--font-poppins)] text-xs font-black text-white`}
+                  >
+                    {initial}
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    {/* Nama & rating */}
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="truncate text-xs font-bold text-slate-800">{customerName}</p>
+                      <div className="flex shrink-0 gap-0.5">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <Star
+                            key={s}
+                            size={11}
+                            className={s <= Number(review.rating) ? "fill-amber-400 text-amber-400" : "fill-gray-100 text-gray-200"}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Komentar */}
+                    <p className="mt-1.5 text-xs font-medium leading-relaxed text-slate-600 italic">
+                      "{review.komentar || review.comment || "-"}"
+                    </p>
+
+                    {/* Badge terverifikasi */}
+                    <p className="mt-2 text-[10px] font-extrabold tracking-wide text-emerald-600">
+                      ✓ Pembeli Terverifikasi
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {/* ============================================================= */}
 
       {/* OVERLAY MODAL FORM */}
       {showOrderForm && (
