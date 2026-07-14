@@ -49,6 +49,8 @@ export default function Reviews() {
   const [products, setProducts] = useState([]);
 
   const [showForm, setShowForm] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
   const [dataForm, setDataForm] = useState(INITIAL_FORM_STATE);
 
   useEffect(() => {
@@ -110,12 +112,23 @@ export default function Reviews() {
         rating: dataForm.rating ? parseInt(dataForm.rating, 10) : null,
       };
 
-      const endpoint = `${BASE_URL}/reviews`;
-      await axios.post(endpoint, dataToSubmit, { headers: HEADERS });
+      if (isEdit) {
+        // Saat edit, hanya update field yang boleh diubah (rating & komentar)
+        const updatePayload = {
+          rating: dataToSubmit.rating,
+          komentar: dataToSubmit.komentar,
+        };
+        await reviewsAPI.updateReview(selectedId, updatePayload);
+        setSuccess("Ulasan berhasil diperbarui! ✨");
+      } else {
+        const endpoint = `${BASE_URL}/reviews`;
+        await axios.post(endpoint, dataToSubmit, { headers: HEADERS });
+        setSuccess("Ulasan baru berhasil disimpan! 💌");
+      }
 
-      setSuccess("Ulasan baru berhasil disimpan! 💌");
       closeModal();
       await loadReviews();
+      setTimeout(() => setSuccess(""), 3000);
     } catch (err) {
       setError(err.response?.data?.message || "Terjadi kendala saat menyimpan ulasan");
     } finally {
@@ -139,9 +152,23 @@ export default function Reviews() {
     }
   };
 
+  const handleEdit = (review) => {
+    setIsEdit(true);
+    setSelectedId(review.id);
+    setDataForm({
+      product_id: review.product_id || "",
+      customer_id: review.customer_id || "",
+      rating: review.rating ? String(review.rating) : "",
+      komentar: review.komentar || "",
+    });
+    setShowForm(true);
+  };
+
   const closeModal = () => {
     setDataForm(INITIAL_FORM_STATE);
     setShowForm(false);
+    setIsEdit(false);
+    setSelectedId(null);
   };
 
   const filteredReviews = reviews.filter((r) => {
@@ -174,6 +201,8 @@ export default function Reviews() {
       >
         <button
           onClick={() => {
+            setIsEdit(false);
+            setSelectedId(null);
             setDataForm(INITIAL_FORM_STATE);
             setShowForm(true);
           }}
@@ -189,7 +218,7 @@ export default function Reviews() {
 
       {/* POPUP MODAL FORM */}
       {showForm && (
-        <FormModal title="Write New Review 🌸" onClose={closeModal}>
+        <FormModal title={isEdit ? "Edit Ulasan 📝" : "Write New Review 🌸"} onClose={closeModal}>
           <ReviewForm
             dataForm={dataForm}
             handleChange={handleChange}
@@ -197,6 +226,7 @@ export default function Reviews() {
             loading={loading}
             customers={customers}
             products={products}
+            isEdit={isEdit}
           />
         </FormModal>
       )}
@@ -274,6 +304,7 @@ export default function Reviews() {
                 review={review}
                 formatReviewId={formatReviewId}
                 onDelete={handleDelete}
+                onEdit={handleEdit}
               />
             ))}
           </div>

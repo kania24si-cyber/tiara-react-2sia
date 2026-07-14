@@ -23,6 +23,15 @@ export const reviewsAPI = {
     return response.data;
   },
 
+  // UPDATE REVIEW
+  async updateReview(id, data) {
+    await axios.patch(
+      `${API_URL}?id=eq.${id}`,
+      data,
+      { headers }
+    );
+  },
+
   // DELETE REVIEW
   async deleteReview(id) {
     await axios.delete(

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Star, Trash2, Eye, Calendar, ShoppingBag } from "lucide-react";
+import { Star, Trash2, Eye, Pencil, Calendar, ShoppingBag } from "lucide-react";
 
-export default function ReviewCard({ review, formatReviewId, onDelete }) {
+export default function ReviewCard({ review, formatReviewId, onDelete, onEdit }) {
   return (
     <div className="bg-white p-5 rounded-2xl border border-pink-100/60 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-200">
       <div>
@@ -20,6 +20,13 @@ export default function ReviewCard({ review, formatReviewId, onDelete }) {
                 <Eye size={14} />
               </button>
             </Link>
+            <button
+              onClick={() => onEdit(review)}
+              className="p-1.5 text-blue-500 hover:bg-blue-50 rounded-xl transition-colors"
+              title="Edit Ulasan"
+            >
+              <Pencil size={14} />
+            </button>
             <button
               onClick={() => onDelete(review.id)}
               className="p-1.5 text-rose-600 hover:bg-rose-50 rounded-xl transition-colors"
